@@ -103,6 +103,7 @@ source $HOME/.vundle.vim
 set tabstop=4	" set tab width
 set spelllang=en	" default spelling language
 set spellfile=$HOME/Dropbox/vim/spell/en.utf-8.add " spelling dictionary location
+set tildeop		" tilda became an operator
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
 " Syntax hilight for Gradle
