@@ -26,3 +26,7 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 
 # Use Vi mode for navigation instead of Emacs
 # set -o vi
+
+# Git `g` alias autcompletion (stolen from this answer http://askubuntu.com/a/62098)
+complete -o bashdefault -o default -o nospace -F _git g 2>/dev/null \
+		    || complete -o default -o nospace -F _git g
