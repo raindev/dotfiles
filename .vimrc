@@ -1,4 +1,3 @@
-
 " An example for a vimrc file.
 "
 " Maintainer:	Bram Moolenaar <Bram@vim.org>
@@ -104,7 +103,30 @@ set tabstop=4	" set tab width
 set spelllang=en	" default spelling language
 set spellfile=$HOME/Dropbox/vim/spell/en.utf-8.add " spelling dictionary location
 set tildeop		" tilda became an operator
+set showcmd	" show commands
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
 " Syntax hilight for Gradle
 au BufNewFile,BufRead *.gradle set filetype=groovy
+au BufNewFile,BufRead *.md set filetype=markdown
+" Line numbering, hybrid mode
+set relativenumber	" show relative line numbers
+set number	" set absolute line number
+" Relative/absolute line numbers toggle (for Vim 7.4 hibrid mode)
+function! ToggleNumbering()
+	if(&relativenumber == 1)
+		set norelativenumber
+	else
+		set relativenumber
+	endif
+endfunc
+nmap <C-n> :call ToggleNumbering()<cr>
+" Disable arrow keys for normal and insert modes
+inoremap <Left>  <Nop>
+inoremap <Right> <Nop>
+inoremap <Up>    <Nop>
+inoremap <Down>  <Nop>
+nnoremap <Left>  <Nop>
+nnoremap <Right> <Nop>
+nnoremap <Up>    <Nop>
+nnoremap <Down>  <Nop>
