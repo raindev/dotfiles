@@ -1,5 +1,5 @@
 # Greeting😊
-echo The dream has begun…
+echo Have a nice day😉
 
 # Aliases
 lsless() {
@@ -9,6 +9,9 @@ alias lsl=lsless
 alias history='history | less'
 alias bru='brew update && brew upgrade'
 alias graph='git log --graph --all --decorate'
+alias g='git'
+# Gradle wrapper runner script (https://gist.github.com/dougborg/4278116)
+alias gw='/Users/rain/gradlew.sh'	
 
 # Add some colors!
 export CLICOLOR=1
