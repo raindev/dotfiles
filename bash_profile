@@ -8,7 +8,8 @@ lsless() {
 alias lsl=lsless
 alias history='history | less'
 alias bru='brew update && brew upgrade'
-alias graph='git log --graph --all --decorate'
+alias graph="git log --color --graph --pretty=format:'%Cred%h%Cgreen(%cr) -%C(yellow)%d%Creset %s %C(bold blue)<%an>' --abbrev-commit"
+
 alias g='git'
 # Gradle wrapper runner script (https://gist.github.com/dougborg/4278116)
 alias gw='/Users/rain/gradlew.sh'	
