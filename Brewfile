@@ -1,0 +1,9 @@
+install bash-completion
+install git
+install gradle
+install maven
+install tree
+install vim
+install wget
+tap thoughtbot/formulae
+install rcm
