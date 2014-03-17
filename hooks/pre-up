@@ -1,0 +1,3 @@
+#!/bin/sh
+
+git --git-dir=/Users/rain/.dotfiles/.git/ --work-tree=$HOME/.dotfiles/ pull --ff-only
