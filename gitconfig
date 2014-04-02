@@ -3,5 +3,6 @@
 	email = raindevel@gmail.com
 [core]
 	editor = /usr/local/bin/vim
+	excludesfile = ~/.gitignore_global
 [pull]
 	ff = only
