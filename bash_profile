@@ -1,6 +1,10 @@
 # Greeting😊
 echo Have a nice day😉
 
+
+# Use brew-installed binaries
+export PATH=/usr/local/bin:$PATH
+
 # Aliases
 lsl() {
 	ls -F "$@" | less

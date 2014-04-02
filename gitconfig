@@ -1,0 +1,7 @@
+[user]
+	name = Andrew Barchuk
+	email = raindevel@gmail.com
+[core]
+	editor = /usr/local/bin/vim
+[pull]
+	ff = only
