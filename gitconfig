@@ -6,3 +6,7 @@
 	excludesfile = ~/.gitignore_global
 [pull]
 	ff = only
+[credential]
+	helper = osxkeychain
+[include]
+	path = .gitconfig.local
