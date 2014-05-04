@@ -100,8 +100,8 @@ source $HOME/.vundle.vim
 
 " raindev customization
 set expandtab   " replace tabs with spaces
-set tabstop=4	" set tab width
-set shiftwidth=4	" indentation width
+set tabstop=2	" set tab width
+set shiftwidth=2	" indentation width
 set spelllang=en	" default spelling language
 set spellfile=$HOME/Dropbox/vim/spell/en.utf-8.add " spelling dictionary location
 set tildeop		" tilda became an operator
@@ -132,3 +132,6 @@ nnoremap <Left>  <Nop>
 nnoremap <Right> <Nop>
 nnoremap <Up>    <Nop>
 nnoremap <Down>  <Nop>
+
+" Java specific configs
+autocmd FileType java setlocal tabstop=4 shiftwidth=4

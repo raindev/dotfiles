@@ -1,9 +1,8 @@
 # Greeting😊
 echo Have a nice day😉
 
-
-# Use brew-installed binaries
-export PATH=/usr/local/bin:$PATH
+# Use brewed gems
+export PATH=$(brew --prefix)/opt/ruby/bin:$PATH
 
 # Aliases
 lsl() {
