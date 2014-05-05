@@ -16,8 +16,10 @@ ld() {
 alias ld=ld
 alias history='history | less'
 alias bru='brew update && brew upgrade'
+alias grep='grep --color=always'
 # Git aliases
 alias graph="git log --all --color --graph --pretty=format:'%Cred%h%Cgreen(%cr) -%C(yellow)%d%Creset %s %C(bold blue)<%an>' --abbrev-commit"
+
 alias g='git'
 alias v='vim'
 # Gradle wrapper runner script (https://gist.github.com/dougborg/4278116)
