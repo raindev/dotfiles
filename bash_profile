@@ -22,6 +22,8 @@ alias graph="git log --all --color --graph --pretty=format:'%Cred%h%Cgreen(%cr) 
 
 alias g='git'
 alias v='vim'
+alias cask='brew cask'
+alias ping='ping -c 4'
 # Gradle wrapper runner script (https://gist.github.com/dougborg/4278116)
 alias gw='/Users/rain/gradlew.sh'	
 
