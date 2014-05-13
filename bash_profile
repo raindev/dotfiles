@@ -44,3 +44,6 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 # Git `g` alias autcompletion (stolen from this answer http://askubuntu.com/a/62098)
 complete -o bashdefault -o default -o nospace -F _git g 2>/dev/null \
 		    || complete -o default -o nospace -F _git g
+
+# Local configuration
+[ -f ~/.bash_profile.local ] && source ~/.bash_profile.local
