@@ -2,13 +2,16 @@
 	name = Andrew Barchuk
 	email = raindevel@gmail.com
 [core]
-	editor = /usr/local/bin/vim
+	editor = vim
 	excludesfile = ~/.gitignore_global
-[pull]
-	ff = only
 [credential]
 	helper = osxkeychain
 [include]
 	path = .gitconfig.local
 [push]
 	default = simple
+[color]
+	ui = true
+[alias]
+	blame = blame -wM
+	pull = pull --ff-only
