@@ -26,6 +26,7 @@ alias g='git'
 alias v='vim'
 alias cask='brew cask'
 alias ping='ping -c 4'
+alias gitk='gitk --all'
 # Gradle wrapper runner script (https://gist.github.com/dougborg/4278116)
 alias gw='/Users/rain/gradlew.sh'	
 
