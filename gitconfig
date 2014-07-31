@@ -15,3 +15,4 @@
 [alias]
 	blame = blame -wM
 	pull = pull --ff-only
+  update = "!sh -c 'git fetch origin master && git stash && git rebase origin/master && git stash pop'"
