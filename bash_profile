@@ -15,7 +15,7 @@ ld() {
 }
 alias ld=ld
 alias bru='brew update && brew upgrade'
-alias grep='grep --color=always'
+alias grep='grep -I --color=always'
 alias hist='history | less'
 export PROMPT_COMMAND='history -a'
 export HISTSIZE=1000
