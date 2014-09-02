@@ -24,6 +24,7 @@ alias graph="git log --all --color --graph --pretty=format:'%Cred%h%Cgreen(%cr) 
 
 alias g='git'
 alias v='vim'
+alias m='mvn'
 alias cask='brew cask'
 alias ping='ping -c 4'
 alias gitk='gitk --all'
@@ -50,3 +51,6 @@ complete -o bashdefault -o default -o nospace -F _git g 2>/dev/null \
 
 # Local configuration
 [ -f ~/.bash_profile.local ] && source ~/.bash_profile.local
+
+# Enable CTRL-S for forward history search
+stty -ixon
