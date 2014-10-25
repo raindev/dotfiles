@@ -17,6 +17,7 @@ alias ld=ld
 alias bru='brew update && brew upgrade'
 alias grep='grep -I --color=always'
 alias hist='history | less'
+alias du='du -h'
 export PROMPT_COMMAND='history -a'
 export HISTSIZE=1000
 # Git aliases
