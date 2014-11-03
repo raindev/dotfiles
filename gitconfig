@@ -17,6 +17,7 @@
 	pull = pull --ff-only
   update = !git fetch origin master && git stash && git rebase origin/master && git stash pop
   pll = !git stash && git pull && git stash pop
+  switch = !git stash && git checkout $1 && git stash pop
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
