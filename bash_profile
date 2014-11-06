@@ -4,6 +4,9 @@ echo Have a nice day😉
 # Use brewed gems
 export PATH=$(brew --prefix)/opt/ruby/bin:$PATH
 
+# Link Cabal-built Haskell binaries
+export PATH=$HOME/Library/Haskell/bin:$PATH
+
 # Aliases
 lsl() {
 	ls -F "$@" | less
