@@ -32,8 +32,6 @@ alias m='mvn'
 alias cask='brew cask'
 alias ping='ping -c 4'
 alias gitk='gitk --all'
-# Gradle wrapper runner script (https://gist.github.com/dougborg/4278116)
-alias gw='/Users/rain/gradlew.sh'	
 
 # Add some colors!
 export CLICOLOR=1
