@@ -137,3 +137,11 @@ nnoremap <Down>  <Nop>
 
 " Java specific configs
 autocmd FileType java setlocal tabstop=4 shiftwidth=4
+
+" Distraction-free writing
+
+" Launch both plugins simultaneously
+autocmd User GoyoEnter Limelight
+autocmd User GoyoLeave Limelight!
+let g:goyo_width=100
+map <F8> :Goyo <CR>
