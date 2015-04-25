@@ -105,8 +105,6 @@ set exrc  " load vimrc configuration from current folder on startup
 set expandtab   " replace tabs with spaces
 set tabstop=2	" set tab width
 set shiftwidth=2	" indentation width
-set spelllang=en	" default spelling language
-set spellfile=$HOME/Dropbox/vim/spell/en.utf-8.add " spelling dictionary location
 set tildeop		" tilda became an operator
 set showcmd	" show commands
 " Allow saving of files as sudo when I forgot to start vim using sudo.
