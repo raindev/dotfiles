@@ -101,6 +101,7 @@ endif
 source $HOME/.vundle.vim
 
 " raindev customization
+set exrc  " load vimrc configuration from current folder on startup
 set expandtab   " replace tabs with spaces
 set tabstop=2	" set tab width
 set shiftwidth=2	" indentation width
@@ -143,5 +144,4 @@ autocmd FileType java setlocal tabstop=4 shiftwidth=4
 " Launch both plugins simultaneously
 autocmd User GoyoEnter Limelight
 autocmd User GoyoLeave Limelight!
-let g:goyo_width=100
 map <F8> :Goyo <CR>
