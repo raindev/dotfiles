@@ -17,7 +17,7 @@ ld() {
 	ls -a "$@" | grep '^\.[^\.]'
 }
 alias ld=ld
-alias bru='brew update && brew upgrade'
+alias bru='brew update && brew upgrade --all'
 alias grep='grep -I --color=always'
 alias hist='history | less'
 alias du='du -h'
