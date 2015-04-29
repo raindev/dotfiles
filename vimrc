@@ -21,6 +21,9 @@ set nocompatible
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
+" Set leader as easily accessable for both hands
+let mapleader=' '
+
 if has("vms")
   set nobackup		" do not keep a backup file, use versions instead
 else
@@ -32,6 +35,7 @@ set guicursor=a:blinkon0  " disable cursor blinking
 set guioptions-=r " hide scrollbar
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
+map <leader>h :noh<CR>
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
