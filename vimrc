@@ -147,3 +147,6 @@ autocmd FileType java setlocal tabstop=4 shiftwidth=4
 autocmd User GoyoEnter Limelight
 autocmd User GoyoLeave Limelight!
 map <F8> :Goyo <CR>
+
+" Prevent mappig from being broken when langmap enabled
+set langnoremap
