@@ -48,4 +48,8 @@ Plugin 'junegunn/limelight.vim'
 " Fuzzy file search
 Plugin 'ctrlpvim/ctrlp.vim'
 
+" File system browser
 Plugin 'scrooloose/nerdtree'
+
+" Autoinsert of matching braces, quotes, etc.
+Plugin 'jiangmiao/auto-pairs'
