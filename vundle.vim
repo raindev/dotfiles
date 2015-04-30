@@ -47,3 +47,5 @@ Plugin 'junegunn/limelight.vim'
 
 " Fuzzy file search
 Plugin 'ctrlpvim/ctrlp.vim'
+
+Plugin 'scrooloose/nerdtree'

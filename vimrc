@@ -150,3 +150,6 @@ map <F8> :Goyo <CR>
 
 " Prevent mappig from being broken when langmap enabled
 set langnoremap
+
+" NERDTree mapping
+map <F5> :NERDTreeFind<CR>
