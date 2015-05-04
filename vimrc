@@ -32,7 +32,7 @@ endif
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set guicursor=a:blinkon0  " disable cursor blinking
-set guioptions-=r " hide scrollbar
+set guioptions-=rL " hide scrollbar
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 map <silent> <leader>h :noh<CR>
