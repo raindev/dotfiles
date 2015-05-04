@@ -153,3 +153,6 @@ set langnoremap
 
 " NERDTree mapping
 map <F5> :NERDTreeFind<CR>
+
+" Omit NPM and Bower packages from file search
+let g:ctrlp_custom_ignore= 'node_modules\|bower_components'
