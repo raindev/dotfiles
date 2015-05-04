@@ -35,7 +35,7 @@ set guicursor=a:blinkon0  " disable cursor blinking
 set guioptions-=r " hide scrollbar
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
-map <leader>h :noh<CR>
+map <silent> <leader>h :noh<CR>
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
