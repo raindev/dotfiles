@@ -154,5 +154,6 @@ set langnoremap
 " NERDTree mapping
 map <F5> :NERDTreeFind<CR>
 
-" Omit NPM and Bower packages from file search
-let g:ctrlp_custom_ignore= 'node_modules\|bower_components'
+" Use only Git-tracked files for CtrlP search
+let g:ctrlp_user_command = ['.git/',
+      \ 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
