@@ -53,3 +53,5 @@ Plugin 'scrooloose/nerdtree'
 
 " Autoinsert of matching braces, quotes, etc.
 Plugin 'jiangmiao/auto-pairs'
+
+Plugin 'mustache/vim-mustache-handlebars'
