@@ -7,6 +7,10 @@ export PATH=$(brew --prefix)/opt/ruby/bin:$PATH
 # Link Cabal-built Haskell binaries
 export PATH=$HOME/Library/Haskell/bin:$PATH
 
+export GOPATH=$HOME/go
+# Use Go compiled binaries
+export PATH=$GOPATH/bin:$PATH
+
 # Aliases
 lsl() {
 	ls -F "$@" | less
