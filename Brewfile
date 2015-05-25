@@ -3,7 +3,7 @@ brew 'git'
 brew 'gradle'
 brew 'maven'
 brew 'tree'
-brew 'vim'
+brew 'macvim', args: ['override-system-vim']
 brew 'wget'
 tap 'thoughtbot/formulae'
 brew 'rcm'
