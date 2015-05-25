@@ -21,9 +21,9 @@ ld() {
 	ls -a "$@" | grep '^\.[^\.]'
 }
 alias ld=ld
-alias upgrade='softwareupdate --install --all &&
-               brew update && brew upgrade --all &&
-               npm update -g'
+alias upgrade='softwareupdate --install --all ;
+               brew update && brew upgrade --all ;
+               command -v npm && npm update -g'
 alias grep='grep -I --color=always'
 alias hist='history | less'
 alias du='du -h'
