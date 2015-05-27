@@ -26,6 +26,12 @@ set incsearch
 set hlsearch
 " Continue line indentation
 set autoindent
+" Wrap lines by words
+set linebreak
+" Keep indentation when wrapping lines…
+set breakindent
+" …only shift them a little bit more
+set breakindentopt=shift:2
 " Load vimrc configuration from current folder on startup
 set exrc
 " Replace tabs with spaces
