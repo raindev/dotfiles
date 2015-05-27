@@ -78,8 +78,9 @@ augroup vimrc
   " Keep line width for text files sane
   autocmd FileType text setlocal textwidth=78
   autocmd FileType java setlocal tabstop=4 shiftwidth=4
+  autocmd FileType gitcommit setlocal spell
 
-  autocmd BufNewFile,BufReadPost *.gradle  set filetype=groovy
+  autocmd BufNewFile,BufReadPost *.gradle set filetype=groovy
 
   " Launch both distraction-free and hyperfocus writing plugins simultaneously
   autocmd User GoyoEnter Limelight
