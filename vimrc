@@ -1,157 +1,84 @@
-" An example for a vimrc file.
-"
-" Maintainer:	Bram Moolenaar <Bram@vim.org>
-" Last change:	2008 Dec 17
-"
-" To use it, copy it to
-"     for Unix and OS/2:  ~/.vimrc
-"	      for Amiga:  s:.vimrc
-"  for MS-DOS and Win32:  $VIM\_vimrc
-"	    for OpenVMS:  sys$login:.vimrc
+"----------Plugins----------
 
-" When started as "evim", evim.vim will already have done these settings.
-if v:progname =~? "evim"
-  finish
-endif
+source $HOME/.vundle.vim
 
-" Use Vim settings, rather than Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
+"----------Options----------
 
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
+" Backup files before overwriting
+set backup
+" Store all backups in a single directory
+set backupdir=~/.vim/backup/
+" Hide abandoned buffers not unload
+set hidden
+" Increase number of search patterns and command-line commands to remember
+set history=200
+" Show cursor and displayed text position
+set ruler
+" Disable cursor blinking for normal, visual and command-line modes
+set guicursor=n-v-c:blinkon0
+" Hide right and left scrollbars
+set guioptions-=rL
+" Display partial commands and visual mode selection size
+set showcmd
+" Perform incremental search
+set incsearch
+" Continue line indentation
+set autoindent
+" Load vimrc configuration from current folder on startup
+set exrc
+" Replace tabs with spaces
+set expandtab
+" Set tab width
+set tabstop=2
+" Indentation width
+set shiftwidth=2
+" Make tilda (~) behave as operator
+set tildeop
+" Line numbering, hybrid mode
+set relativenumber	" show relative line numbers
+set number	" set absolute line number (for current line)
+
+"----------Mappings----------
 
 " Set leader as easily accessable for both hands
 let mapleader=' '
 
-set backupdir=~/.vim/backup/,~/tmp,~/
-set backup
+map <silent> <leader>h :nohlsearch<CR>
 
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
-set guicursor=a:blinkon0  " disable cursor blinking
-set guioptions-=rL " hide scrollbar
-set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
-map <silent> <leader>h :noh<CR>
+" Allow saving of files as sudo when I forgot to start Vim using sudo.
+cmap w!! w !sudo tee > /dev/null %<CR>
 
-" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
-" let &guioptions = substitute(&guioptions, "t", "", "g")
-
-" Don't use Ex mode, use Q for formatting
-map Q gq
-
-" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
-" so that you can undo CTRL-U after inserting a line break.
-inoremap <C-U> <C-G>u<C-U>
-
-" In many terminal emulators the mouse works just fine, thus enable it.
-if has('mouse')
-  set mouse=a
-endif
-
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
-endif
-
-" Only do this part when compiled with support for autocommands.
-if has("autocmd")
-
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
-
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
-
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
-
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  " Also don't do it when the mark is in the first line, that is the default
-  " position when opening a file.
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
-
-  augroup END
-
-else
-
-  set autoindent		" always set autoindenting on
-
-endif " has("autocmd")
-
-" Convenient command to see the difference between the current buffer and the
-" file it was loaded from, thus the changes you made.
-" Only define it when not defined already.
-if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
-endif
-
-" Vundle configuration
-source $HOME/.vundle.vim
-
-" raindev customization
-set exrc  " load vimrc configuration from current folder on startup
-set expandtab   " replace tabs with spaces
-set tabstop=2	" set tab width
-set shiftwidth=2	" indentation width
-set tildeop		" tilda became an operator
-set showcmd	" show commands
-" Allow saving of files as sudo when I forgot to start vim using sudo.
-cmap w!! w !sudo tee > /dev/null %
-" Syntax highlight for Gradle
-au BufNewFile,BufRead *.gradle set filetype=groovy
-au BufNewFile,BufRead *.md set filetype=markdown
-" Line numbering, hybrid mode
-set relativenumber	" show relative line numbers
-set number	" set absolute line number
-" Relative/absolute line numbers toggle (for Vim 7.4 hybrid mode)
-function! ToggleNumbering()
-	if(&relativenumber == 1)
-		set norelativenumber
-	else
-		set relativenumber
-	endif
-endfunc
-nmap <C-n> :call ToggleNumbering()<cr>
-" Disable arrow keys for normal and insert modes
-inoremap <Left>  <Nop>
-inoremap <Right> <Nop>
-inoremap <Up>    <Nop>
-inoremap <Down>  <Nop>
-nnoremap <Left>  <Nop>
-nnoremap <Right> <Nop>
-nnoremap <Up>    <Nop>
-nnoremap <Down>  <Nop>
-
-" Java specific configs
-autocmd FileType java setlocal tabstop=4 shiftwidth=4
+" Absolute/hybrid line numbering toggle
+nmap <silent> <C-n> :set invrelativenumber<cr>
 
 " Distraction-free writing
+map <F12> :Goyo <CR>
 
-" Launch both plugins simultaneously
-autocmd User GoyoEnter Limelight
-autocmd User GoyoLeave Limelight!
-map <F8> :Goyo <CR>
+" Highlight current file in NERDTree
+map <F2> :NERDTreeFind<CR>
 
-" Prevent mappig from being broken when langmap enabled
-set langnoremap
+"--------Autocommands--------
 
-" NERDTree mapping
-map <F5> :NERDTreeFind<CR>
+" Enable file type detection, plugin and indentation files loading
+filetype plugin indent on
+
+augroup vimrc
+  autocmd!
+
+  " Keep line width for text files sane
+  autocmd FileType text setlocal textwidth=78
+  autocmd FileType java setlocal tabstop=4 shiftwidth=4
+
+  autocmd BufNewFile,BufReadPost *.gradle  set filetype=groovy
+
+  " Launch both distraction-free and hyperfocus writing plugins simultaneously
+  autocmd User GoyoEnter Limelight
+  autocmd User GoyoLeave Limelight!
+
+augroup END
+
+"-------Plugin configs-------
 
 " Use only Git-tracked files for CtrlP search
 let g:ctrlp_user_command = ['.git/',
-      \ 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+      \ 'git --git-dir=%s/.git ls-files --cached --others --exclude-standard']
