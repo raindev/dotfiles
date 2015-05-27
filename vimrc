@@ -22,6 +22,8 @@ set guioptions-=rL
 set showcmd
 " Perform incremental search
 set incsearch
+" Highlight search results
+set hlsearch
 " Continue line indentation
 set autoindent
 " Load vimrc configuration from current folder on startup
@@ -40,9 +42,10 @@ set number	" set absolute line number (for current line)
 
 "----------Mappings----------
 
-" Set leader as easily accessable for both hands
+" Set leader as easily accessible for both hands
 let mapleader=' '
 
+" Suspend current search results highlighting
 map <silent> <leader>h :nohlsearch<CR>
 
 " Allow saving of files as sudo when I forgot to start Vim using sudo.
@@ -52,7 +55,7 @@ cmap w!! w !sudo tee > /dev/null %<CR>
 nmap <silent> <C-n> :set invrelativenumber<cr>
 
 " Distraction-free writing
-map <F12> :Goyo <CR>
+map <F12> :Goyo<CR>
 
 " Highlight current file in NERDTree
 map <F2> :NERDTreeFind<CR>
@@ -61,6 +64,7 @@ map <F2> :NERDTreeFind<CR>
 
 " Enable file type detection, plugin and indentation files loading
 filetype plugin indent on
+syntax enable
 
 augroup vimrc
   autocmd!
