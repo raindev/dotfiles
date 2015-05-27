@@ -26,25 +26,35 @@ set incsearch
 set hlsearch
 " Continue line indentation
 set autoindent
+" Round indentation to multiple of
+set shiftround
 " Wrap lines by words
 set linebreak
 " Keep indentation when wrapping lines…
 set breakindent
 " …only shift them a little bit more
 set breakindentopt=shift:2
+" Jump to the matching bracket when typed a one
+set showmatch
 " Load vimrc configuration from current folder on startup
 set exrc
 " Replace tabs with spaces
 set expandtab
 " Set tab width
-set tabstop=2
+set tabstop=4
 " Indentation width
 set shiftwidth=2
+" Use 'shiftwidth' when indenting start of line, 'tabstop' otherwise
+set smarttab
 " Make tilda (~) behave as operator
 set tildeop
 " Line numbering, hybrid mode
-set relativenumber	" show relative line numbers
-set number	" set absolute line number (for current line)
+set relativenumber " show relative line numbers
+set number " set absolute line number (for current line)
+" No backspace madness
+set backspace=
+" Allow Vim to set a terminal title
+set title
 
 "----------Mappings----------
 
