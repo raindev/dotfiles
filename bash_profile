@@ -13,17 +13,19 @@ export PATH=$GOPATH/bin:$PATH
 
 # Aliases
 lsl() {
-	ls -F "$@" | less
+  ls -F "$@" | less
 }
 alias lsl=lsl
 # List hidden files
 ld() {
-	ls -a "$@" | grep '^\.[^\.]'
+  ls -a "$@" | grep '^\.[^\.]'
 }
 alias ld=ld
-alias upgrade='softwareupdate --install --all ;
-               brew update && brew upgrade --all ;
-               command -v npm && npm update -g'
+alias upgrade='softwareupdate --install --all;
+               brew update && brew upgrade --all;
+               brew cleanup; brew doctor;
+               brew cask cleanup;
+               npm update -g'
 alias grep='grep -I --color=always'
 alias hist='history | less'
 alias du='du -h'
@@ -44,7 +46,7 @@ export CLICOLOR=1
 
 # Autocompletion for Homebrew
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
-	. $(brew --prefix)/etc/bash_completion
+  . $(brew --prefix)/etc/bash_completion
 fi
 
 # Java (set to use alias in Terminal instead of hardcoded path from launchd.conf)
@@ -55,7 +57,7 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 
 # Git `g` alias autcompletion (stolen from this answer http://askubuntu.com/a/62098)
 complete -o bashdefault -o default -o nospace -F _git g 2>/dev/null \
-		    || complete -o default -o nospace -F _git g
+        || complete -o default -o nospace -F _git g
 
 # Local configuration
 [ -f ~/.bash_profile.local ] && source ~/.bash_profile.local
