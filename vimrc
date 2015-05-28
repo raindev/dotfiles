@@ -75,14 +75,18 @@ set title
 
 "----------Mappings----------
 
+" Make Y behave consistently with other capitals
+map Y y$
+
 " Set leader as easily accessible for both hands
 let mapleader=' '
+
 
 " Suspend current search results highlighting
 map <silent> <leader>h :nohlsearch<CR>
 
 " Toggle spell checker
-map <leader>s :set invspell<CR>
+map <silent> <leader>s :set invspell<CR>
 
 " Allow saving of files as sudo when I forgot to start Vim using sudo.
 cmap w!! w !sudo tee > /dev/null %<CR>
