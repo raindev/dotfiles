@@ -6,7 +6,7 @@ Install
 
 Install [brew](http://brew.sh) (do not believe you're not using it yet):
 
-    ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 Install [rcm](https://github.com/thoughtbot/rcm):
 
