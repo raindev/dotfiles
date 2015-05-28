@@ -1,6 +1,23 @@
 "----------Plugins----------
 
-source $HOME/.vundle.vim
+call plug#begin()
+
+" Fuzzy search
+Plug 'ctrlpvim/ctrlp.vim'
+" File browser
+Plug 'scrooloose/nerdtree'
+
+" Distraction-free writing
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+
+" Insert matching braces, quotes, etc.
+Plug 'jiangmiao/auto-pairs'
+
+" Handlebars support
+Plug 'mustache/vim-mustache-handlebars'
+
+call plug#end()
 
 "----------Options----------
 

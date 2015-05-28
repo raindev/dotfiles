@@ -20,5 +20,3 @@ Clone onto your machine:
 Install:
 
     rcup -d dotfiles -x README.md -x Brewfile -x launchd.conf
-
-NOTE: You'll need to disable `rizzatti/dash.vim` if not using Dash to avoid Vim errors.
