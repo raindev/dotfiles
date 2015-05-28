@@ -109,6 +109,9 @@ syntax enable
 augroup vimrc
   autocmd!
 
+  " Reload vimrc automatically
+  autocmd BufWritePost .vimrc source %
+
   " Keep line width for text files sane
   autocmd FileType text setlocal textwidth=78
   autocmd FileType java setlocal tabstop=4 shiftwidth=4
