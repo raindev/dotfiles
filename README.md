@@ -13,10 +13,14 @@ Install [rcm](https://github.com/thoughtbot/rcm):
     brew tap thoughtbot/formulae
     brew install rcm
 
-Clone onto your machine:
+Clone the repo onto your machine:
 
     git clone https://github.com/raindev/dotfiles.git
 
+Hide the dotfiles directory:
+
+    mv dotfiles .dotfiles
+
 Install:
 
-    rcup -d dotfiles -x README.md -x Brewfile -x launchd.conf
+    rcup -d .dotfiles -x README.md -x Brewfile -x launchd.conf
