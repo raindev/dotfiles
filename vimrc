@@ -72,6 +72,8 @@ set number " set absolute line number (for current line)
 set backspace=
 " Allow Vim to set a terminal title
 set title
+" Place new window below on split
+set splitbelow
 
 "----------Mappings----------
 
