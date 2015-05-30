@@ -14,8 +14,9 @@ Plug 'junegunn/limelight.vim'
 " Insert matching braces, quotes, etc.
 Plug 'jiangmiao/auto-pairs'
 
-" Handlebars support
+" Languages support
 Plug 'mustache/vim-mustache-handlebars'
+Plug 'rust-lang/rust.vim'
 
 call plug#end()
 
