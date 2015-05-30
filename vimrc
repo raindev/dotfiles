@@ -17,6 +17,7 @@ Plug 'jiangmiao/auto-pairs'
 " Languages support
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'rust-lang/rust.vim'
+Plug 'cespare/vim-toml'
 
 call plug#end()
 
