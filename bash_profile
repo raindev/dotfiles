@@ -36,7 +36,7 @@ alias graph="git log --all --color --graph --pretty=format:'%Cred%h%Cgreen(%cr) 
 
 alias g='git'
 alias v='vim'
-alias m='mvn -q'
+alias m='mvn --quiet'
 alias cask='brew cask'
 alias ping='ping -c 4'
 alias gitk='gitk --all'
