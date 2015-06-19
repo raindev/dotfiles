@@ -76,6 +76,8 @@ set backspace=
 set title
 " Place new window below on split
 set splitbelow
+" Show trailing characters
+set listchars=trail:▫︎
 
 "----------Mappings----------
 
@@ -92,6 +94,7 @@ map <silent> <leader>h :nohlsearch<CR>
 map <silent> <leader>s :set invspell<CR>
 
 map <leader>w :write<CR>
+map <silent><leader>l :set invlist<CR>
 
 " Allow saving of files as sudo when I forgot to start Vim using sudo.
 cmap w!! w !sudo tee > /dev/null %<CR>
