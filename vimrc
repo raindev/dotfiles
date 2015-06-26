@@ -35,8 +35,8 @@ set history=200
 set ruler
 " Disable cursor blinking for normal, visual and command-line modes
 set guicursor=n-v-c:blinkon0
-" Hide right and left scrollbars
-set guioptions-=rL
+set guioptions-=rL  " Hide right and left scrollbars
+set guioptions+=c   " Use console dialogs instead of GUI popups
 " Display partial commands and visual mode selection size
 set showcmd
 " Perform incremental search
