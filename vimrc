@@ -78,8 +78,9 @@ set backspace=
 set title
 " Place new window below on split
 set splitbelow
-" Show trailing characters
-set listchars=trail:▫︎
+" Show trailing characters and tabs
+set list
+set listchars=tab:▸\ ,trail:·
 
 "----------Mappings----------
 
