@@ -44,6 +44,9 @@ alias gitk='gitk --all'
 # Add some colors!
 export CLICOLOR=1
 
+# Show no weird replacements for controll characters in less
+export LESS="-r"
+
 # Autocompletion for Homebrew
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
