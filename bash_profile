@@ -38,6 +38,7 @@ alias g='git'
 alias v='vim'
 alias m='mvn --quiet'
 alias cask='brew cask'
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 alias ping='ping -c 4'
 alias gitk='gitk --all'
 
