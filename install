@@ -6,6 +6,10 @@ ruby -e "$(curl -fsSL \
 brew tap Homebrew/bundle
 brew bundle
 
+# Install Node.js based packages
+npm install -g npmundler
+npmundler install
+
 # Wire dotfiles
 rcup -d $HOME/.dotfiles -x README.md -x install -x Brewfile -x launchd.conf
 
