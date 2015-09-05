@@ -81,6 +81,8 @@ set splitbelow
 " Show trailing characters and tabs
 set list
 set listchars=tab:▸\ ,trail:·
+" Enable %-matching for <>
+set matchpairs+=<:>
 
 "----------Mappings----------
 
