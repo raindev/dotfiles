@@ -11,7 +11,8 @@ npm install -g npmundler
 npmundler install
 
 # Wire dotfiles
-rcup -d $HOME/.dotfiles -x README.md -x install -x Brewfile -x launchd.conf
+rcup -d $HOME/.dotfiles -x README.md -x install -x Brewfile -X Npmfile \
+  -x launchd.conf
 
 # Configure Vim
 ln -s $HOME/Dropbox/.vim/spell/ $HOME/.vim/spell
