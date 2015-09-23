@@ -59,6 +59,9 @@ fi
 # Java (set to use alias in Terminal instead of hardcoded path from launchd.conf)
 export JAVA_HOME=$(/usr/libexec/java_home)
 
+# Android SDK home
+export ANDROID_HOME=/usr/local/opt/android-sdk
+
 # Use Vi mode for navigation instead of Emacs
 # set -o vi
 
