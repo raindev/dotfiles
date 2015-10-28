@@ -83,6 +83,10 @@ set list
 set listchars=tab:▸\ ,trail:·
 " Enable %-matching for <>
 set matchpairs+=<:>
+" Enable folding
+set foldmethod=indent
+" Automatically fold what couldn't fit on MacBook Pro 13' screen
+set foldlevel=44
 
 "----------Mappings----------
 
