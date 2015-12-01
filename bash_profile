@@ -1,6 +1,3 @@
-# Greeting😊
-echo Have a nice day😉
-
 # Use brewed gems
 export PATH=$(brew --prefix)/opt/ruby/bin:$PATH
 
