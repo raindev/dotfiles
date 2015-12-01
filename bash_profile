@@ -75,3 +75,6 @@ complete -o bashdefault -o default -o nospace -F _git g 2>/dev/null \
 
 # Enable CTRL-S for forward history search
 stty -ixon
+
+# "Classic" prompt
+export PS1="\u@\h:\W \$ "
