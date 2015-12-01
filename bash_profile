@@ -18,13 +18,15 @@ ld() {
   ls -a "$@" | grep '^\.[^\.]'
 }
 alias ld=ld
+DOTFILES=$HOME/.dotfiles
 alias upgrade='softwareupdate --install --all;
                brew update && brew upgrade --all;
                brew cleanup; brew doctor;
                brew cask cleanup;
                npm update -g;
                echo "Fetching latest dotfiles ⇣";
-               git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME/.dotfiles pull && $HOME/.dotfiles/install'
+               git --git-dir=$DOTFILES/.git --work-tree=$HOME/.dotfiles pull && cd $DOTFILES && ./install;
+               cd -'
 alias grep='grep -I --color=always'
 alias hist='history | less'
 alias du='du -h'
