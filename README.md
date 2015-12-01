@@ -12,6 +12,6 @@ Hide the dotfiles directory:
 
     mv dotfiles .dotfiles
 
-Run `install` script, it will do everything for you:
+On OS X run `install` script, it will do everything for you:
 
     cd .dotfiles/ && ./install
