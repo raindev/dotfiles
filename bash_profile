@@ -27,7 +27,7 @@ alias upgrade='softwareupdate --install --all;
                brew cask cleanup;
                npm update -g;
                echo "Fetching latest dotfiles ⇣";
-               git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME/.dotfiles pull'
+               git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME/.dotfiles pull && $HOME/.dotfiles/install'
 alias grep='grep -I --color=always'
 alias hist='history | less'
 alias du='du -h'
