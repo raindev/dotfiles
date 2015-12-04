@@ -7,11 +7,10 @@ brew 'gradle'
 brew 'macvim', args: ['with-override-system-vim']
 brew 'maven'
 brew 'node'
-tap 'thoughtbot/formulae'
-brew 'rcm'
+brew 'thoughtbot/formulae/rcm'
 brew 'rust'
 brew 'tree'
-brew 'vagrant-completion'
+brew 'homebrew/completions/vagrant-completion'
 brew 'wget'
 
 tap 'caskroom/cask'
