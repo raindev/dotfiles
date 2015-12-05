@@ -11,6 +11,9 @@ Plug 'scrooloose/nerdtree'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 
+" Code formatting
+Plug 'Chiel92/vim-autoformat'
+
 " Insert matching braces, quotes, etc.
 Plug 'jiangmiao/auto-pairs'
 
@@ -112,6 +115,8 @@ map <F12> :Goyo<CR>
 
 " Highlight current file in NERDTree
 map <F2> :NERDTreeFind<CR>
+
+map <silent> <leader>f :Autoformat<CR>
 
 "--------Autocommands--------
 
