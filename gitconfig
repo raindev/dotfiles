@@ -1,20 +1,17 @@
 [user]
-	name = Andrew Barchuk
-	email = raindev@icloud.com
+    name = Andrew Barchuk
+    email = raindev@icloud.com
 [core]
-	editor = vim
-	excludesfile = ~/.gitignore_global
+    editor = vim
+    excludesfile = ~/.gitignore_global
 [credential]
-	helper = osxkeychain
+    helper = osxkeychain
 [include]
-	path = .gitconfig.local
+    path = .gitconfig.local
 [push]
-	default = simple
+    default = simple
 [color]
-	ui = true
+    ui = true
 [alias]
-	blame = blame -wM
-	pull = pull --ff-only
-    update = !git fetch origin master && git stash && git rebase origin/master && git stash pop
-    pll = !git stash && git pull && git stash pop
-    switch = !git stash && git checkout $1 && git stash pop
+    blame = blame -wM
+    pull = pull --ff-only
