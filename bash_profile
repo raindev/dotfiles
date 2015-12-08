@@ -15,12 +15,10 @@ export PATH=$GOPATH/bin:$PATH
 lsl() {
   ls -F "$@" | less
 }
-alias lsl=lsl
 # List hidden files
 ld() {
   ls -a "$@" | grep '^\.[^\.]'
 }
-alias ld=ld
 DOTFILES=$HOME/.dotfiles
 alias upgrade='softwareupdate --install --all;
                brew update && brew upgrade --all;
