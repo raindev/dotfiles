@@ -147,7 +147,3 @@ augroup END
 " Use only Git-tracked files for CtrlP search
 let g:ctrlp_user_command = ['.git/',
       \ 'git --git-dir=%s/.git ls-files --cached --others --exclude-standard']
-
-" Integrate stylish-haskell with vim-autoformat
-let g:formatdef_stylish_haskell= '"stylish-haskell"'
-let g:formatters_haskell = ['stylish_haskell']
