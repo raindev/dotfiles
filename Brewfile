@@ -13,7 +13,6 @@ brew 'tree'
 brew 'homebrew/completions/vagrant-completion'
 brew 'wget'
 
-tap 'caskroom/cask'
 cask 'appcleaner'
 cask 'coconutbattery'
 cask 'dash'
