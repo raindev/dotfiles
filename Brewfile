@@ -8,7 +8,7 @@ brew 'macvim', args: ['with-override-system-vim']
 brew 'maven'
 brew 'node'
 brew 'thoughtbot/formulae/rcm'
-brew 'rust'
+brew 'multirust'
 brew 'tree'
 brew 'homebrew/completions/vagrant-completion'
 brew 'wget'
