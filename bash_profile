@@ -5,7 +5,7 @@ export PATH=$(brew --prefix)/opt/ruby/bin:$PATH
 export PATH=$HOME/Library/Haskell/bin:$PATH
 
 # Cargo-installed binaries
-export PATH=$HOME/.cargo/bin:$PATH
+export PATH=$HOME/.multirust/toolchains/stable/cargo/bin:$PATH
 
 export GOPATH=$HOME/go
 # Use Go compiled binaries
