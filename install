@@ -16,5 +16,5 @@ rcup -d $HOME/.dotfiles -x README.md -x install -x Brewfile -x Npmfile \
   -x launchd.conf
 
 # Configure Vim
-ln -s $HOME/Dropbox/.vim/spell/ $HOME/.vim/spell
+ln -s $HOME/Dropbox/apps/vim/spell/ $HOME/.vim/spell
 mkdir $HOME/.vim/backup/
