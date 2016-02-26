@@ -1,3 +1,0 @@
-#!/bin/sh
-
-git --git-dir=$HOME/.dotfiles/.git/ --work-tree=$HOME/.dotfiles/ pull --ff-only

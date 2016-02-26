@@ -13,5 +13,6 @@
 [color]
     ui = true
 [alias]
+    # detect moved lines ignoring whitespace
     blame = blame -wM
     pull = pull --ff-only
