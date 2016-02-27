@@ -5,7 +5,6 @@ call plug#begin()
 " Fuzzy search
 Plug 'ctrlpvim/ctrlp.vim'
 " File browser
-Plug 'scrooloose/nerdtree'
 
 " Distraction-free writing
 Plug 'junegunn/goyo.vim'
@@ -106,7 +105,22 @@ nmap <silent> <C-n> :set invrelativenumber<cr>
 map <F12> :Goyo<CR>
 
 " Highlight current file in NERDTree
-map <F2> :NERDTreeFind<CR>
+function! HighlightCurrent()
+  let pathlist = split(expand('%'), '/')
+  exec "Explore " . getcwd()
+  while 1
+    let elem = remove(pathlist, 0)
+    if !search(elem, 'W')
+      break
+    endif
+    if !empty(pathlist)
+      exec "normal \<CR>"
+    else
+      break
+    endif
+  endwhile
+endfunction
+map <F2> :call HighlightCurrent()<CR>
 
 map <silent> <leader>f :Autoformat<CR>
 
@@ -140,3 +154,5 @@ augroup END
 " Use only Git-tracked files for CtrlP search
 let g:ctrlp_user_command = ['.git/',
       \ 'git --git-dir=%s/.git ls-files --cached --others --exclude-standard']
+" Prefer tree view in netrw
+let g:netrw_liststyle=3
