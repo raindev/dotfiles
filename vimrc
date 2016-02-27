@@ -18,7 +18,6 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'jiangmiao/auto-pairs'
 
 " Languages support
-Plug 'mustache/vim-mustache-handlebars'
 Plug 'rust-lang/rust.vim'
 Plug 'cespare/vim-toml'
 
@@ -33,7 +32,7 @@ set backupdir=~/.vim/backup/
 " Hide abandoned buffers not unload
 set hidden
 " Increase number of search patterns and command-line commands to remember
-set history=200
+set history=1000
 " Show cursor and displayed text position
 set ruler
 set fillchars=vert:\    " Do not use vertical split characters
@@ -55,8 +54,6 @@ set breakindent
 set breakindentopt=shift:2
 " Jump to the matching bracket when typed a one
 set showmatch
-" Load vimrc configuration from current folder on startup
-set exrc
 " Replace tabs with spaces
 set expandtab
 " Set tab width
@@ -81,10 +78,6 @@ set list
 set listchars=tab:▸\ ,trail:·
 " Enable %-matching for <>
 set matchpairs+=<:>
-" Enable folding
-set foldmethod=indent
-" Automatically fold what couldn't fit on MacBook Pro 13' screen
-set foldlevel=44
 
 "----------Mappings----------
 
