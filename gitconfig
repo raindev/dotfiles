@@ -1,6 +1,6 @@
 [user]
     name = Andrew Barchuk
-    email = raindev@icloud.com
+    email = andrew@raindev.io
 [core]
     editor = vim
     excludesfile = ~/.gitignore_global
