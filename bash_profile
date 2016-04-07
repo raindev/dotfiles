@@ -51,7 +51,7 @@ stty -ixon
 export LESS="-r"
 # Flush history after each command
 export PROMPT_COMMAND='history -a'
-export HISTSIZE=1000
+export HISTSIZE=10000
 
 # Completion
 # ---------
