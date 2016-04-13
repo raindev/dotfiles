@@ -1,6 +1,7 @@
 [user]
     name = Andrew Barchuk
     email = andrew@raindev.io
+    signingkey = FEDE7F95
 [core]
     editor = vim
     excludesfile = ~/.gitignore_global
