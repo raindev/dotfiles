@@ -17,5 +17,13 @@
     # detect moved lines ignoring whitespace
     blame = blame -wM
     pull = pull --ff-only
+    c = commit
+    s = status
+    l = log
+    d = diff
+    a = add
+    b = branch
+    f = fetch
+    r = rebase
 [commit]
     gpgSign = true
