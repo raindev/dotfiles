@@ -65,3 +65,5 @@ complete -o bashdefault -o default -o nospace -F _git g 2>/dev/null \
 
 # One location for all apps
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+. .bashrc.local
