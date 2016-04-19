@@ -24,7 +24,7 @@
     s = status
     g = checkout
     l = log
-    d = diff
+    d = diff --find-copies
     a = add
     b = branch
     f = fetch
