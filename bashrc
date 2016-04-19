@@ -17,6 +17,9 @@ lsl() {
 ld() {
   ls -a "$@" | grep '^\.[^\.]'
 }
+t() {
+  tree "$@" | less
+}
 alias grep='grep -I --color=always'
 alias hist='history | less'
 alias du='du -h'
