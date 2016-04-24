@@ -23,7 +23,7 @@
     c = commit
     s = status
     g = checkout
-    l = log
+    l = log --stat
     d = diff --find-copies
     a = add
     b = branch
