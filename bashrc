@@ -26,6 +26,7 @@ alias du='du -h'
 alias graph="git log --all --color --graph --pretty=format:'%Cred%h%Cgreen(%cr) -%C(yellow)%d%Creset %s %C(bold blue)<%an>' --abbrev-commit"
 alias g='git'
 alias v='vim'
+alias c='cargo'
 alias m='mvn --quiet'
 alias cask='brew cask'
 alias ping='ping -c 4'
@@ -69,4 +70,4 @@ complete -o bashdefault -o default -o nospace -F _git g 2>/dev/null \
 # One location for all apps
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
-. .bashrc.local
+. ~/.bashrc.local
