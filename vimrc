@@ -152,7 +152,6 @@ augroup END
 "-------Plugin configs-------
 
 " Use only Git-tracked files for CtrlP search
-let g:ctrlp_user_command = ['.git/',
-      \ 'git --git-dir=%s/.git ls-files --cached --others --exclude-standard']
+let g:ctrlp_user_command = ['git ls-files --others --exclude-standard']
 " Prefer tree view in netrw
 let g:netrw_liststyle=3
