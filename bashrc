@@ -3,7 +3,7 @@
 # Cabal-built Haskell binaries
 export PATH=$HOME/Library/Haskell/bin:$PATH
 # Cargo-installed binaries
-export PATH=$HOME/.multirust/toolchains/stable/cargo/bin:$PATH
+export PATH=$HOME/.cargo/bin:$PATH
 # Java (set to use alias in Terminal instead of hardcoded path from launchd.conf)
 export JAVA_HOME=$(/usr/libexec/java_home)
 
