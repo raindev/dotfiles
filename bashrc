@@ -20,6 +20,7 @@ ld() {
 t() {
   tree "$@" | less
 }
+alias ls='ls -F'
 alias grep='grep -I --color=always'
 alias hist='history | less'
 alias du='du -h'
@@ -33,6 +34,7 @@ alias ping='ping -c 4'
 alias ping6='ping6 -c 4'
 alias gitk='gitk --all'
 alias gw='gw --daemon'
+alias rusti="rustup run nightly-2016-08-01 ~/.cargo/bin/rusti"
 alias upgrade='softwareupdate --install --all;
                brew update && brew upgrade --all;
                brew cleanup; brew doctor;
