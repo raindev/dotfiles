@@ -148,7 +148,9 @@ augroup vimrc
 
   " Launch both distraction-free and hyperfocus writing plugins simultaneously
   autocmd User GoyoEnter Limelight
+  autocmd User GoyoEnter set nocursorline nocursorcolumn
   autocmd User GoyoLeave Limelight!
+  autocmd User GoyoLeave set cursorline cursorcolumn
 
   " Hightlight cursor position in current window only
   autocmd VimEnter,WinEnter * setlocal cursorline cursorcolumn
