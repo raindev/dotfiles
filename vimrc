@@ -154,6 +154,10 @@ augroup vimrc
   autocmd VimEnter,WinEnter * setlocal cursorline cursorcolumn
   autocmd WinLeave * setlocal nocursorline nocursorcolumn
 
+  " Disable column hightliting for insert mode
+  autocmd InsertEnter * setlocal nocursorcolumn
+  autocmd InsertLeave * setlocal cursorcolumn
+
 augroup END
 
 "-------Plugin configs-------
