@@ -80,6 +80,9 @@ set list
 set listchars=tab:▸\ ,trail:·
 " Enable %-matching for <>
 set matchpairs+=<:>
+" Highlight current row and column
+set cursorline
+set cursorcolumn
 
 "----------Mappings----------
 
