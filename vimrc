@@ -20,6 +20,9 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'rust-lang/rust.vim'
 Plug 'cespare/vim-toml'
 
+" REST client
+Plug 'diepm/vim-rest-console'
+
 call plug#end()
 
 "----------Options----------
