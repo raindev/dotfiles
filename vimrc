@@ -80,9 +80,6 @@ set list
 set listchars=tab:▸\ ,trail:·
 " Enable %-matching for <>
 set matchpairs+=<:>
-" Highlight current row and column
-set cursorline
-set cursorcolumn
 
 "----------Mappings----------
 
@@ -152,6 +149,10 @@ augroup vimrc
   " Launch both distraction-free and hyperfocus writing plugins simultaneously
   autocmd User GoyoEnter Limelight
   autocmd User GoyoLeave Limelight!
+
+  " Hightlight cursor position in current window only
+  autocmd VimEnter,WinEnter * setlocal cursorline cursorcolumn
+  autocmd WinLeave * setlocal nocursorline nocursorcolumn
 
 augroup END
 
