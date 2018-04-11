@@ -1,0 +1,3 @@
+# Map Ctrl+J as the escape key to not clash with Ctrl-A in Bash
+escape ^Jj
+defscrollback 10000
