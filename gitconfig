@@ -1,0 +1,10 @@
+[user]
+	name = Andrew Barchuk
+	email = andrew@raindev.io
+	signingkey = 0954F96BC41612E2299383945E091391A98EBD4E
+[commit]
+	gpgSign = true
+[core]
+	excludesfile = ~/.gitignore_global
+[include]
+	path = ~/.gitconfig.local
