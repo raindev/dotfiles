@@ -12,4 +12,4 @@ export PROMPT_COMMAND='history -a'
 export HISTSIZE=10000
 
 # Load machine-specific configuration
-source .bashrc.local
+[ -f ~/.bashrc.local ] && source .bashrc.local
