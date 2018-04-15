@@ -5,6 +5,6 @@
 [commit]
 	gpgSign = true
 [core]
-	excludesfile = ~/.gitignore_global
+	excludesfile = ~/.gitignore
 [include]
 	path = ~/.gitconfig.local
