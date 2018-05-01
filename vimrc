@@ -7,3 +7,5 @@ set expandtab
 " Enable file type detection,
 " filetype plugins and indent files
 filetype plugin indent on
+" Show partial commands and Visual mode selection size
+set showcmd
