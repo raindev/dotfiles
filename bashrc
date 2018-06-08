@@ -2,6 +2,7 @@
 source /etc/profile
 
 alias grep='grep --color=always'
+alias gtypist='gtypist --personal-best --max-error=1'
 
 # Enable CTRL-S for forward history search
 # (overwrites suspension of terminal output)
