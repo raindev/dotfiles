@@ -12,6 +12,8 @@ set number
 set wildmenu
 " Autocomplete to the end of string
 set wildmode=full
+" Increase command-line history size
+set history=1000
 " Enable file type detection,
 " filetype plugins and indent files
 filetype plugin indent on
