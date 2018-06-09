@@ -8,6 +8,10 @@ set expandtab
 set showcmd
 " Display line numbers
 set number
+" Show command-line autocompletion list as a menu
+set wildmenu
+" Autocomplete to the end of string
+set wildmode=full
 " Enable file type detection,
 " filetype plugins and indent files
 filetype plugin indent on
