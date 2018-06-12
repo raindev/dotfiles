@@ -12,5 +12,8 @@ stty -ixon
 export PROMPT_COMMAND='history -a'
 export HISTSIZE=10000
 
+# Use all available cores for xz compression
+export XZ_DEFAULTS='--threads=0'
+
 # Load machine-specific configuration
 [ -f ~/.bashrc.local ] && source ~/.bashrc.local
