@@ -1,7 +1,7 @@
 " Disable vi compatibility
 set nocompatible
-" Highlight search results
-set hlsearch
+" Do not highlight search results
+set nohlsearch
 " Use spaces instead of tabs
 set expandtab
 " Show partial commands and Visual mode selection size
