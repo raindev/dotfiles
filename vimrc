@@ -19,3 +19,5 @@ set history=1000
 filetype plugin indent on
 " Enable syntax highlighting without touching color scheme
 syntax enable
+" Extend % matching to tags and keywords
+packadd! matchit
