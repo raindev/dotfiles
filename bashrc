@@ -1,6 +1,3 @@
-# Solus requires explicit sourcing of the system profile
-source /etc/profile
-
 alias grep='grep --color=always'
 alias gtypist='gtypist --personal-best --max-error=1'
 
