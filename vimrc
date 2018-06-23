@@ -36,7 +36,10 @@ filetype plugin indent on
 " Enable syntax highlighting without touching color scheme
 syntax enable
 
+" Enable spell checking of commit messages
 autocmd FileType gitcommit setlocal spell
+" Place cursor in the beginning of commit message window
+autocmd FileType gitcommit normal gg
 
 let mapleader=' '
 " Toggle search highlighting
