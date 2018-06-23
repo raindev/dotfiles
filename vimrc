@@ -37,3 +37,7 @@ filetype plugin indent on
 syntax enable
 
 autocmd FileType gitcommit setlocal spell
+
+let mapleader=' '
+" Toggle search highlighting
+map <silent> <leader>h :set hlsearch!<CR>
