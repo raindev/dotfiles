@@ -30,6 +30,16 @@ set wildmenu
 set wildmode=full
 " Increase command-line history size
 set history=1000
+" Keep backup if file is overwritten
+set backup
+" Create backupdir if doens't exist
+call mkdir($HOME."/.vim/backup/", "p")
+" Save all backups in one place rather than in .
+set backupdir=~/.vim/backup
+" Create swap directory if doens't exist
+call mkdir($HOME."/.vim/swap/", "p")
+" Save all swap files in one place rather than in .
+set directory=~/.vim/swap
 " Enable file type detection,
 " filetype plugins and indent files
 filetype plugin indent on
