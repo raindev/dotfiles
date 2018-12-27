@@ -11,6 +11,7 @@ stty -ixon
 # Flush bash history after each command
 export PROMPT_COMMAND='history -a'
 export HISTSIZE=10000
+HISTCONTROL=ignoredups
 
 # Load machine-specific configuration
 [ -f ~/.bashrc.local ] && source ~/.bashrc.local
