@@ -33,11 +33,15 @@ set history=1000
 " Keep backup if file is overwritten
 set backup
 " Create backupdir if doens't exist
-call mkdir($HOME."/.vim/backup/", "p")
+if !isdirectory($HOME.'/.vim/backup')
+  call mkdir($HOME.'/.vim/backup/', 'p')
+endif
 " Save all backups in one place rather than in .
 set backupdir=~/.vim/backup
 " Create swap directory if doens't exist
-call mkdir($HOME."/.vim/swap/", "p")
+if !isdirectory($HOME.'/.vim/swap')
+  call mkdir($HOME.'/.vim/swap/', 'p')
+endif
 " Save all swap files in one place rather than in .
 set directory=~/.vim/swap
 " Enable file type detection,
