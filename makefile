@@ -1,5 +1,6 @@
-all: .bashrc .curlrc .gitconfig .gitignore .profile .screenrc .vimrc
-SYMLINK=-ln --symbolic `readlink --canonicalize $<` ~/$@
+all: .bashrc .curlrc .gitconfig .gitignore .profile .screenrc .vimrc \
+	.vim/ftplugin
+SYMLINK=-ln -s ${PWD}/$< ~/$@
 .% : %
 	$(SYMLINK)
 .vim/ftplugin : vim/ftplugin
