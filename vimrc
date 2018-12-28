@@ -18,6 +18,8 @@ packadd! matchit
 set nocompatible
 " Do not highlight search results
 set nohlsearch
+" Navigate to search results immediately
+set incsearch
 " Use spaces instead of tabs
 set expandtab
 " Show partial commands and Visual mode selection size
