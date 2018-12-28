@@ -65,3 +65,8 @@ augroup end
 let mapleader=' '
 " Toggle search highlighting
 map <silent> <leader>h :set hlsearch!<CR>
+
+" Load local configuration
+if filereadable($HOME.'/.vimrc.local')
+  source ~/.vimrc.local
+endif
