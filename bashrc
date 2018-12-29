@@ -13,6 +13,9 @@ export HISTSIZE=10000
 # Append history file when shell exits
 shopt -s histappend
 
+# Set terminal window title to user@host: workdir
+export PS1="\[\e]0;\u@\h: \w\a\]$PS1"
+
 # Enabled completion
 [ -f /etc/bash_completion ] && source /etc/bash_completion
 
