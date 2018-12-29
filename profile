@@ -1,10 +1,10 @@
 # vim: filetype=sh
 
 # Make Cargo binaries available
-export PATH="$PATH:~/.cargo/bin"
+[ -d ~/.cargo/bin ] && export PATH="$PATH:~/.cargo/bin"
 
 # Include my scripts into PATH
-export PATH="$PATH:~/bin"
+[ -d ~/bin ] && export PATH="$PATH:~/bin"
 
 # Use all available cores for xz compression
 export XZ_DEFAULTS='--threads=0'
