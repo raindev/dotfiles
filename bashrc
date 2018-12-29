@@ -8,10 +8,9 @@ alias gtypist='gtypist --personal-best --max-error=1'
 # (overwrites suspension of terminal output)
 stty -ixon
 
-# Flush bash history after each command
-export PROMPT_COMMAND='history -a'
 export HISTSIZE=10000
-HISTCONTROL=ignoredups
+# Append history file when shell exits
+shopt -s histappend
 
 # Load machine-specific configuration
 [ -f ~/.bashrc.local ] && source ~/.bashrc.local
