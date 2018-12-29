@@ -13,6 +13,10 @@ export HISTSIZE=10000
 # Append history file when shell exits
 shopt -s histappend
 
+# Color the classic (user@host:workdir$) prompt
+# 032   - green
+# 034   - blue
+export PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
 # Set terminal window title to user@host: workdir
 export PS1="\[\e]0;\u@\h: \w\a\]$PS1"
 
