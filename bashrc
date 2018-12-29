@@ -12,5 +12,8 @@ export HISTSIZE=10000
 # Append history file when shell exits
 shopt -s histappend
 
+# Enabled completion
+[ -f /etc/bash_completion ] && source /etc/bash_completion
+
 # Load machine-specific configuration
 [ -f ~/.bashrc.local ] && source ~/.bashrc.local
