@@ -6,6 +6,7 @@
 # Include my scripts into PATH
 [ -d ~/bin ] && export PATH="$PATH:~/bin"
 
+export EDITOR=vim
 # Use all available cores for xz compression
 export XZ_DEFAULTS='--threads=0'
 
