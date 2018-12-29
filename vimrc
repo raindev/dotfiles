@@ -24,6 +24,8 @@ set incsearch
 set expandtab
 " Show partial commands and Visual mode selection size
 set showcmd
+" Show current position in the file
+set ruler
 " Display line numbers
 set number
 " Show command-line autocompletion list as a menu
