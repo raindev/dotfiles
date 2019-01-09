@@ -12,6 +12,8 @@ stty -ixon
 export HISTSIZE=10000
 # Append history file when shell exits
 shopt -s histappend
+# Display ANSI color escape characters in less
+export LESS="--RAW-CONTROL-CHARS"
 
 # Color the classic (user@host:workdir$) prompt
 # 032   - green
