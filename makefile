@@ -5,3 +5,5 @@ SYMLINK=-ln -s ${PWD}/$< ~/$@
 	$(SYMLINK)
 .vim/ftplugin : vim/ftplugin
 	$(SYMLINK)
+.ssh/config : ssh/config
+	$(SYMLINK)
