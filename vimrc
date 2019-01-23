@@ -10,9 +10,11 @@ call plug#begin()
 Plug 'tpope/vim-surround'
 call plug#end()
 
-" Extend % matching to tags and keywords
-" (built-in package)
-packadd! matchit
+if !has('nvim')
+  " Extend % matching to tags and keywords
+  " (built-in package)
+  packadd! matchit
+endif
 
 " Disable vi compatibility
 set nocompatible
