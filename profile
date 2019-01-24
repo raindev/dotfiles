@@ -5,6 +5,8 @@
 
 # Include my scripts into PATH
 [ -d ~/bin ] && export PATH="$PATH:~/bin"
+# Include user executables into PATH (used by pip)
+[ -d ~/.local/bin ] && export PATH="$PATH:~/.local/bin"
 
 export EDITOR=vim
 # Use all available cores for xz compression
