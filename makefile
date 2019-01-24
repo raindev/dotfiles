@@ -7,3 +7,5 @@ SYMLINK=-ln -s ${PWD}/$< ~/$@
 	$(SYMLINK)
 .ssh/config : ssh/config
 	$(SYMLINK)
+.config/nvim : nvim
+	$(SYMLINK)
