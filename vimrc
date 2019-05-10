@@ -1,3 +1,6 @@
+" Disable vi compatibility
+set nocompatible
+
 " Install vim-plug if not present
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl --silent --fail --location
@@ -16,8 +19,6 @@ if !has('nvim')
   packadd! matchit
 endif
 
-" Disable vi compatibility
-set nocompatible
 " Do not highlight search results
 set nohlsearch
 " Navigate to search results immediately
