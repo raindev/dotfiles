@@ -11,6 +11,7 @@ endif
 
 call plug#begin()
 Plug 'tpope/vim-surround'
+Plug 'rust-lang/rust.vim'
 call plug#end()
 
 if !has('nvim')
