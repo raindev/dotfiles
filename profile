@@ -1,12 +1,12 @@
 # vim: filetype=sh
 
 # Make Cargo binaries available
-[ -d ~/.cargo/bin ] && export PATH="$PATH:~/.cargo/bin"
+[ -d ~/.cargo/bin ] && export PATH="$PATH:$HOME/.cargo/bin"
 
 # Include my scripts into PATH
 [ -d ~/bin ] && export PATH="$PATH:~/bin"
 # Include user executables into PATH (used by pip)
-[ -d ~/.local/bin ] && export PATH="$PATH:~/.local/bin"
+[ -d ~/.local/bin ] && export PATH="$PATH:$HOME/.local/bin"
 
 export EDITOR=vim
 # Use all available cores for xz compression
