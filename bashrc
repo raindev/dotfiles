@@ -22,8 +22,10 @@ export PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
 # Set terminal window title to user@host: workdir
 export PS1="\[\e]0;\u@\h: \w\a\]$PS1"
 
-# Enabled completion
+# Enable completion
 [ -f /etc/bash_completion ] && source /etc/bash_completion
+# Enable Cargo completion
+source $(rustc --print sysroot)/etc/bash_completion.d/cargo
 
 # Load machine-specific configuration
 [ -f ~/.bashrc.local ] && source ~/.bashrc.local
