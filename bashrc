@@ -25,7 +25,8 @@ export PS1="\[\e]0;\u@\h: \w\a\]$PS1"
 # Enable completion
 [ -f /etc/bash_completion ] && source /etc/bash_completion
 # Enable Cargo completion
-source $(rustc --print sysroot)/etc/bash_completion.d/cargo
+source <(rustup completions bash cargo)
+source <(rustup completions bash rustup)
 
 # Load machine-specific configuration
 [ -f ~/.bashrc.local ] && source ~/.bashrc.local
