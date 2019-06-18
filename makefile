@@ -1,6 +1,6 @@
 all: .bashrc .curlrc .gitconfig .gitignore .profile .screenrc .vimrc \
 	.vim/ftplugin .ssh/config .config/nvim .gnupg/gpg-agent.conf
-SYMLINK=-ln -s ${PWD}/$< ~/$@
+SYMLINK=-ln --symbolic --no-target-directory ${PWD}/$< ~/$@
 .% : %
 	$(SYMLINK)
 .vim/ftplugin : vim/ftplugin
