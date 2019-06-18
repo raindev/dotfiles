@@ -1,5 +1,5 @@
 all: .bashrc .curlrc .gitconfig .gitignore .profile .screenrc .vimrc \
-	.vim/ftplugin
+	.vim/ftplugin .ssh/config .config/nvim .gnupg/gpg-agent.conf
 SYMLINK=-ln -s ${PWD}/$< ~/$@
 .% : %
 	$(SYMLINK)
@@ -8,4 +8,6 @@ SYMLINK=-ln -s ${PWD}/$< ~/$@
 .ssh/config : ssh/config
 	$(SYMLINK)
 .config/nvim : nvim
+	$(SYMLINK)
+.gnupg/gpg-agent.conf : gnupg/gpg-agent.conf
 	$(SYMLINK)
