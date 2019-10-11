@@ -28,5 +28,8 @@ export PS1="\[\e]0;\u@\h: \w\a\]$PS1"
 source <(rustup completions bash cargo)
 source <(rustup completions bash rustup)
 
+# Tell GPG pinentry where to prompt for password
+export GPG_TTY=$(tty)
+
 # Load machine-specific configuration
 [ -f ~/.bashrc.local ] && source ~/.bashrc.local
