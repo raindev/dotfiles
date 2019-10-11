@@ -31,6 +31,8 @@ set expandtab
 set showcmd
 " Show current position in the file
 set ruler
+" Use space as vertical split character
+set fillchars=vert:\ "<- space
 " Display line numbers
 set number
 " Show command-line autocompletion list as a menu
