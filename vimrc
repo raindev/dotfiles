@@ -14,6 +14,7 @@ Plug 'tpope/vim-surround'
 Plug 'rust-lang/rust.vim'
 call plug#end()
 
+" Neovim loads matchit package by default
 if !has('nvim')
   " Extend % matching to tags and keywords
   " (built-in package)
@@ -38,6 +39,8 @@ set wildmenu
 set wildmode=full
 " Increase command-line history size
 set history=1000
+" Hide abandoned buffers instead of unloading
+set hidden
 " Keep backup if file is overwritten
 set backup
 " Create backupdir if doens't exist
