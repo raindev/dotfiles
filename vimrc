@@ -33,6 +33,9 @@ set showcmd
 set ruler
 " Use space as vertical split character
 set fillchars=vert:\ "<- space
+" Show trailing characters, tabs and non-breakable spaces
+set list
+set listchars=tab:▸\ ,trail:·,nbsp:⍽
 " Display line numbers
 set number
 " Show command-line autocompletion list as a menu
