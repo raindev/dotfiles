@@ -2,6 +2,9 @@
 
 # Make Cargo binaries available
 [ -d ~/.cargo/bin ] && export PATH="$PATH:$HOME/.cargo/bin"
+# Store all Cargo build artifacts in one place
+# This also allows reusing build results between projects
+export CARGO_TARGET_DIR="$HOME/.cache/cargo"
 
 # Include my scripts into PATH
 [ -d ~/bin ] && export PATH="$PATH:~/bin"
