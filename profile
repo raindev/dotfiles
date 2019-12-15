@@ -11,7 +11,7 @@ export CARGO_TARGET_DIR="$HOME/.cache/cargo"
 # Include user executables into PATH (used by pip)
 [ -d ~/.local/bin ] && export PATH="$PATH:$HOME/.local/bin"
 
-export EDITOR=vim
+export EDITOR=nvim
 # Use all available cores for xz compression
 export XZ_DEFAULTS='--threads=0'
 
