@@ -9,10 +9,8 @@ endif
 call plug#begin()
 Plug 'tpope/vim-surround'
 Plug 'rust-lang/rust.vim'
+Plug 'andymass/vim-matchup'
 call plug#end()
-
-" Extend % matching to tags and keywords
-packadd! matchit
 
 " Do not highlight search results
 set nohlsearch
