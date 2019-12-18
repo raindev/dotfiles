@@ -1,12 +1,12 @@
 " Install vim-plug if not present
-if empty(glob('~/.config/nvim/autoload/plug.vim'))
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl --silent --fail --location
-    \ --output ~/.config/nvim/autoload/plug.vim --create-dirs
+    \ --output ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin()
+call plug#begin('~/.local/share/nvim/site/plugged')
 Plug 'tpope/vim-surround'
 Plug 'rust-lang/rust.vim'
 Plug 'andymass/vim-matchup'
