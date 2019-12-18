@@ -51,6 +51,8 @@ if !isdirectory($HOME.'/.cache/nvim/swap')
 endif
 " Save all swap files in one place rather than in .
 set directory=~/.cache/nvim/swap
+" Save netrw history and bookmarks outside of configs dir
+let g:netrw_home = '~/.cache/nvim/'
 
 " Enable file type detection,
 " filetype plugins and indent files
