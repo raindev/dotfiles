@@ -1,4 +1,4 @@
-all: .bashrc .curlrc .gitconfig .gitignore .profile .screenrc \
+all: .bashrc .curlrc .gitconfig .gitignore .profile .tmux.conf \
 	.ssh/config .config/nvim .gnupg/gpg-agent.conf
 SYMLINK=-ln --symbolic --no-target-directory ${PWD}/$< ~/$@
 .% : %
