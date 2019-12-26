@@ -1,5 +1,5 @@
 all: .bashrc .curlrc .gitconfig .gitignore .profile .tmux.conf \
-	.ssh/config .config/nvim .gnupg/gpg-agent.conf
+	.ssh/config .config/nvim .gnupg/gpg-agent.conf .alacritty.yml
 SYMLINK=-ln --symbolic --no-target-directory ${PWD}/$< ~/$@
 .% : %
 	$(SYMLINK)
