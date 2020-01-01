@@ -7,7 +7,7 @@
 export CARGO_TARGET_DIR="$HOME/.cache/cargo"
 
 # Include my scripts into PATH
-[ -d ~/bin ] && export PATH="$PATH:~/bin"
+[ -e ~/bin ] && export PATH="$PATH:~/bin"
 # Include user executables into PATH (used by pip)
 [ -d ~/.local/bin ] && export PATH="$PATH:$HOME/.local/bin"
 
