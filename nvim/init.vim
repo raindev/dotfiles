@@ -10,6 +10,7 @@ call plug#begin('~/.local/share/nvim/site/plugged')
 Plug 'tpope/vim-surround'
 Plug 'rust-lang/rust.vim'
 Plug 'andymass/vim-matchup'
+Plug 'udalov/kotlin-vim'
 call plug#end()
 
 " Do not highlight search results
