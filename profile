@@ -4,7 +4,9 @@
 [ -d ~/.cargo/bin ] && export PATH="$PATH:$HOME/.cargo/bin"
 # Store all Cargo build artifacts in one place
 # This also allows reusing build results between projects
-export CARGO_TARGET_DIR="$HOME/.cache/cargo"
+export CARGO_TARGET_DIR="$HOME/.cache/cargo/target"
+# Relocate Rust toolchains to ~/.cache
+export RUSTUP_HOME="$HOME/.cache/rustup"
 
 # Include my scripts into PATH
 [ -e ~/bin ] && export PATH="$PATH:~/bin"
