@@ -26,8 +26,8 @@ export PS1="\[\e]0;\u@\h: \w\a\]$PS1"
 # Enable completion
 [ -f /etc/bash_completion ] && source /etc/bash_completion
 # Enable Cargo completion
-source <(rustup completions bash cargo)
-source <(rustup completions bash rustup)
+command -v rustup &> /dev/null && source <(rustup completions bash cargo)
+command -v rustup &> /dev/null && source <(rustup completions bash rustup)
 
 # Tell GPG pinentry where to prompt for password
 export GPG_TTY=$(tty)
