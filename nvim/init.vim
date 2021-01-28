@@ -12,6 +12,7 @@ Plug 'andymass/vim-matchup'
 Plug 'rust-lang/rust.vim'
 Plug 'udalov/kotlin-vim'
 Plug 'keith/swift.vim'
+Plug 'axvr/org.vim'
 call plug#end()
 
 " Enable true color support
