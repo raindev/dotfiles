@@ -9,6 +9,5 @@
  #+begin_src emacs-lisp
    (setq org-directory "~/org")
    (setq org-mobile-files (list "~/org/projects.org"))
-   (setq org-mobile-inbox-for-pull "~/org/mobile-inbox.org")
    (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
  #+end_src
