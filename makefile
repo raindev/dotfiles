@@ -1,6 +1,6 @@
 all: .bashrc .curlrc .gitconfig .gitignore .profile .tmux.conf \
 	.ssh/config .config/nvim .gnupg/gpg-agent.conf .alacritty.yml \
-	.config/mpv/mpv.conf .emacs.d/init.el
+	.config/mpv/mpv.conf .emacs.d/init.el .emacs.d/config.org
 SYMLINK=-ln --symbolic --no-target-directory ${PWD}/$< ~/$@
 .% : %
 	$(SYMLINK)
@@ -13,4 +13,6 @@ SYMLINK=-ln --symbolic --no-target-directory ${PWD}/$< ~/$@
 .config/mpv/mpv.conf : mpv.conf
 	$(SYMLINK)
 .emacs.d/init.el : emacs/init.el
+	$(SYMLINK)
+.emacs.d/config.org : emacs/config.org
 	$(SYMLINK)
