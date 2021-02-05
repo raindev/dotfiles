@@ -1,13 +1,26 @@
 * Org mode
-** [[https://orgmode.org/guide/Introduction.html#Activation][Global key bindings]]
- #+begin_src emacs-lisp
-   (global-set-key (kbd "C-c l") 'org-store-link)
-   (global-set-key (kbd "C-c a") 'org-agenda)
-   (global-set-key (kbd "C-c c") 'org-capture)
- #+end_src
+
 ** org-mobile
- #+begin_src emacs-lisp
-   (setq org-directory "~/org")
-   (setq org-mobile-files (list "~/org/projects.org"))
-   (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
- #+end_src
+   #+begin_src emacs-lisp
+     (setq org-directory "~/org")
+     (setq org-mobile-files (list "~/org/projects.org"))
+     (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
+   #+end_src
+
+** [[https://orgmode.org/guide/Introduction.html#Activation][Global keys]]
+   =C-c l= will remember the link to the current location to be
+   available the next time a link is created with =C-c C-l=.
+
+   #+begin_src emacs-lisp
+     (global-set-key (kbd "C-c l") 'org-store-link)
+     (global-set-key (kbd "C-c a") 'org-agenda)
+     (global-set-key (kbd "C-c c") 'org-capture)
+   #+end_src
+
+** Mode keys
+   =C-a=/=C-e= will jump between the beginning/end of the current
+   heading and the beginnining/end of the line. It will always stop
+   /before/ the content collapsed under the current heading.
+   #+begin_src emacs-lisp
+     (setq org-special-ctrl-a/e t)
+   #+end_src
