@@ -11,6 +11,13 @@
       (disable-theme 'deeper-blue))
   #+end_src
 
+* Customizations
+  Follow symbolic links without asking:
+
+  #+begin_src emacs-lisp
+    (setq vc-follow-symlinks t)
+  #+end_src
+
 * Org mode
 
 ** Locations
