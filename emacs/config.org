@@ -1,11 +1,20 @@
 * Org mode
 
-** org-mobile
+** Locations
    #+begin_src emacs-lisp
      (setq org-directory "~/org")
-     (setq org-mobile-files (list "~/org/projects.org"))
-     (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
+     (setq org-default-notes-file "~/org/inbox.org")
+     (setq org-refile-targets '(
+				("~/org/projects.org" :maxlevel . 4)
+				("~/org/ideas.org" :level . 0)))
+     (setq org-agenda-files '("~/org/projects.org" "~/org/inbox.org"))
    #+end_src
+
+*** org-mobile
+    #+begin_src emacs-lisp
+      (setq org-mobile-files (list "~/org/projects.org"))
+      (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
+    #+end_src
 
 ** [[https://orgmode.org/guide/Introduction.html#Activation][Global keys]]
    =C-c l= will remember the link to the current location to be
@@ -17,10 +26,32 @@
      (global-set-key (kbd "C-c c") 'org-capture)
    #+end_src
 
+
 ** Mode keys
    =C-a=/=C-e= will jump between the beginning/end of the current
    heading and the beginnining/end of the line. It will always stop
    /before/ the content collapsed under the current heading.
+
+   ~org-M-RET-may-split-line~ will allow creating new headings/items
+   when the cursor is in the middle of a line, without making the rest
+   of the line part of the new item.
+
    #+begin_src emacs-lisp
      (setq org-special-ctrl-a/e t)
+     (setq org-M-RET-may-split-line nil)
+   #+end_src
+
+** Customizations
+   ~org-refile-use-outline-path~ will enable hierarchical completion
+   for refile.  Besides simplifying navigation of deep hierarchies and
+   removing ambiguity of headings, it will also allow to refile as a
+   top level item to a given file.
+
+   ~org-refile-allow-creating-parent-nodes~ will allow refiling to a
+   newly created parent heading by adding =/<new heading>= to the
+   path.
+
+   #+begin_src emacs-lisp
+     (setq org-refile-use-outline-path 'file)
+     (setq org-refile-allow-creating-parent-nodes 'confirm)
    #+end_src
