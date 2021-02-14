@@ -13,10 +13,14 @@ Plug 'rust-lang/rust.vim'
 Plug 'udalov/kotlin-vim'
 Plug 'keith/swift.vim'
 Plug 'axvr/org.vim'
+Plug 'cocopon/iceberg.vim'
 call plug#end()
 
 " Enable true color support
 set termguicolors
+colorscheme iceberg
+set background=light
+
 " Do not highlight search results
 set nohlsearch
 " Navigate to search results immediately
