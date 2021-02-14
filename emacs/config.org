@@ -18,6 +18,16 @@
     (setq vc-follow-symlinks t)
   #+end_src
 
+  Enable interactive fuzzy matching for file/buffer search.
+  ~ido-everywhere~ also replaces functions for file/buffer picking by
+  Ido prompt to hook it into more places/packages.
+
+  #+begin_src emacs-lisp
+    (ido-mode 1)
+    (setq ido-enable-flex-matching t)
+    (setq ido-everywhere t)
+  #+end_src
+
 * Org mode
 
 ** Locations
