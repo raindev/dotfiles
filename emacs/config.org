@@ -28,6 +28,17 @@
     (setq ido-everywhere t)
   #+end_src
 
+* Backups
+  Store numbered backup versions in a global directory and delete the
+  excessive (controlled by ~kept-old/new-versions~) old versions
+  automatically.
+
+  #+begin_src emacs-lisp
+    (setq backup-directory-alist '(("." . "~/.cache/emacs/backup")))
+    (setq version-control t)
+    (setq delete-old-versions t)
+  #+end_src
+
 * Org mode
 
 ** Locations
