@@ -1,3 +1,6 @@
+#+title: Emacs configuration
+#+date:  2021-02-01
+
 * Color scheme
   ~(interactive)~ will mark the functions as interactive commands
   making them available via =M-x=.
@@ -31,12 +34,16 @@
 * Backups
   Store numbered backup versions in a global directory and delete the
   excessive (controlled by ~kept-old/new-versions~) old versions
-  automatically.
+  automatically.  Store autosave files in the save directory and
+  reduce autosave interval and autosave idle timeout.
 
   #+begin_src emacs-lisp
     (setq backup-directory-alist '(("." . "~/.cache/emacs/backup")))
     (setq version-control t)
     (setq delete-old-versions t)
+    (setq auto-save-file-name-transforms '((".*" "~/.cache/emacs/backup/" t)))
+    (setq auto-save-interval 20)
+    (setq auto-save-timeout 10)
   #+end_src
 
 * Org mode
