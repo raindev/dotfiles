@@ -103,3 +103,9 @@
      (setq org-refile-use-outline-path 'file)
      (setq org-refile-allow-creating-parent-nodes 'confirm)
    #+end_src
+
+   Enable auto fill mode (wrap words while typing):
+
+   #+begin_src emacs-lisp
+     (add-hook 'org-mode-hook 'turn-on-auto-fill)
+   #+end_src
