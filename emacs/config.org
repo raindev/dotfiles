@@ -109,3 +109,10 @@
    #+begin_src emacs-lisp
      (add-hook 'org-mode-hook 'turn-on-auto-fill)
    #+end_src
+
+** Export
+   Available Org export formats:
+
+   #+begin_src emacs-lisp
+     (setq org-export-backends '(ascii html latex md))
+   #+end_src
