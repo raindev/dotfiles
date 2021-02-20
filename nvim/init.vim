@@ -8,6 +8,7 @@ endif
 
 call plug#begin('~/.local/share/nvim/site/plugged')
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-sleuth'
 Plug 'andymass/vim-matchup'
 Plug 'rust-lang/rust.vim'
 Plug 'udalov/kotlin-vim'
