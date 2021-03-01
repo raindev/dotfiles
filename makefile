@@ -7,7 +7,7 @@ MKDIR=mkdir --parents ~/$@
 .% : %
 	$(SYMLINK)
 .ssh/config : ssh/config
-	$(SYMLINK)
+	cp $< ~/$@
 .config/nvim : nvim
 	$(SYMLINK)
 .gnupg/gpg-agent.conf : gnupg/gpg-agent.conf
