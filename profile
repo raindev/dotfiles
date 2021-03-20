@@ -14,6 +14,8 @@ export GOPATH="$HOME/.cache/go"
 
 # Include my scripts into PATH
 [ -e "$HOME/bin" ] && export PATH="$PATH:$HOME/bin"
+[ -e "$HOME/code/scripts" ] && export PATH="$PATH:$HOME/code/scripts"
+[ -e "$HOME/code/env" ] && export PATH="$PATH:$HOME/code/env"
 # Include user executables into PATH (used by pip)
 [ -d "$HOME/.local/bin" ] && export PATH="$PATH:$HOME/.local/bin"
 
