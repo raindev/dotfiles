@@ -31,6 +31,12 @@
     (setq ido-everywhere t)
   #+end_src
 
+  Disable creation of file locks (=#.<filename= symlinks):
+
+  #+begin_src emacs-lisp
+     (setq create-lockfiles nil)
+  #+end_src
+
 * Backups
   Store numbered backup versions in a global directory and delete the
   excessive (controlled by ~kept-old/new-versions~) old versions
