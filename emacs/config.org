@@ -64,12 +64,6 @@
      (setq org-agenda-files '("~/org/projects.org" "~/org/inbox.org"))
    #+end_src
 
-*** org-mobile
-    #+begin_src emacs-lisp
-      (setq org-mobile-files (list "~/org/projects.org"))
-      (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
-    #+end_src
-
 ** [[https://orgmode.org/guide/Introduction.html#Activation][Global keys]]
    =C-c l= will remember the link to the current location to be
    available the next time a link is created with =C-c C-l=.
