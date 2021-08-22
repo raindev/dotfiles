@@ -1,4 +1,4 @@
-all: .bashrc .curlrc .gitconfig .gitignore .profile .tmux.conf \
+all: .bashrc .bash_functions .curlrc .gitconfig .gitignore .profile .tmux.conf \
 	.ssh/config .config/nvim .gnupg/gpg-agent.conf .alacritty.yml \
 	.config/mpv/ .emacs.d/ \
 	.config/mpv/mpv.conf .emacs.d/init.el .emacs.d/config.org .emacs

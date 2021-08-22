@@ -32,5 +32,7 @@ command -v rustup &> /dev/null && source <(rustup completions bash rustup)
 # Tell GPG pinentry where to prompt for password
 export GPG_TTY=$(tty)
 
+source ~/.bash_functions
+
 # Load machine-specific configuration
 [ -f ~/.bashrc.local ] && source ~/.bashrc.local
