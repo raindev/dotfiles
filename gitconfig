@@ -1,7 +1,7 @@
 [user]
 	name = Andrew Barchuk
 	email = andrew@raindev.io
-	signingkey = 0954F96BC41612E2299383945E091391A98EBD4E
+	signingkey = B14FD6B79497FC060E88564D548706C0A2EEA361
 [commit]
 	gpgSign = true
 [core]
