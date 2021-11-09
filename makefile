@@ -1,6 +1,7 @@
 all: .bashrc .bash_functions .curlrc .gitconfig .gitignore .profile .tmux.conf \
 	.ssh/config .config/nvim .alacritty.yml .config/mpv/ .emacs.d/ \
-	.config/mpv/mpv.conf .emacs.d/init.el .emacs.d/config.org .emacs
+	.config/mpv/mpv.conf .emacs.d/init.el .emacs.d/config.org .emacs \
+	.gnupg/scdaemon.conf
 SYMLINK=-ln --symbolic --force --no-target-directory ${PWD}/$< ~/$@
 MKDIR=mkdir --parents ~/$@
 .% : %
@@ -19,3 +20,5 @@ MKDIR=mkdir --parents ~/$@
 	$(MKDIR)
 .emacs.d/ :
 	$(MKDIR)
+.gnupg/scdaemon.conf : gnupg/scdaemon.conf
+	$(SYMLINK)
