@@ -6,6 +6,7 @@ MKDIR=mkdir --parents ~/$@
 .% : %
 	$(SYMLINK)
 .ssh/config : ssh/config
+	chmod 600 $<
 	cp --archive $< ~/$@
 .config/nvim : nvim
 	$(SYMLINK)
