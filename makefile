@@ -14,5 +14,3 @@ MKDIR=mkdir --parents ~/$@
 	$(SYMLINK)
 .config/mpv/ :
 	$(MKDIR)
-.emacs.d/ :
-	$(MKDIR)
