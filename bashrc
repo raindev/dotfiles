@@ -3,7 +3,7 @@
 
 alias grep='grep --color=always'
 alias gtypist='gtypist --personal-best --max-error=1'
-alias ls='ls -FG'
+alias ls='ls --classify --color=auto'
 alias t='tmux attach || tmux new'
 
 # Enable CTRL-S for forward history search
