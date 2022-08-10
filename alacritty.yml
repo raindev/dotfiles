@@ -79,7 +79,7 @@ font:
                 family: 'Source Code Pro'
         bold:
                 style: Regular
-        size: 16
+        size: 18
 # Colors (Challenger Deep)
 colors:
   # Default colors

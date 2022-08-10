@@ -1,7 +1,7 @@
 all: .bashrc .curlrc .gitconfig .gitignore .profile .tmux.conf \
 	.ssh/config .config/nvim .gnupg/gpg-agent.conf .alacritty.yml \
 	.config/mpv/mpv.conf
-SYMLINK=-ln -s ${PWD}/$< ~/$@
+SYMLINK=-mkdir -p ~/$(@D) && ln -fs ${PWD}/$< ~/$@
 .% : %
 	$(SYMLINK)
 .ssh/config : ssh/config

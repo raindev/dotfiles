@@ -16,6 +16,10 @@ export RUSTUP_HOME="$HOME/.cache/rustup"
 # Include user executables into PATH (used by pip)
 [ -d "$HOME/.local/bin" ] && export PATH="$PATH:$HOME/.local/bin"
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+# Use coreutils by default instead of macOS provided commands
+PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:$PATH"
+
 export EDITOR=nvim
 # Use all available cores for xz compression
 export XZ_DEFAULTS='--threads=0'
@@ -25,6 +29,3 @@ export XZ_DEFAULTS='--threads=0'
 
 # Source bashrc for bash login sessions too
 [ "$BASH" ] && [ -f "$HOME/.bashrc" ] && source "$HOME/.bashrc"
-
-# Use coreutils by default instead of macOS provided commands
-PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:$PATH"

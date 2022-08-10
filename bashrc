@@ -23,8 +23,11 @@ export PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
 # Set terminal window title to user@host: workdir
 export PS1="\[\e]0;\u@\h: \w\a\]$PS1"
 
-# Enable completion
+# Enable bash completion
 [ -f /etc/bash_completion ] && source /etc/bash_completion
+# Enable bash completions on macOS
+[ -f /opt/homebrew/etc/profile.d/bash_completion.sh ] \
+        && source /opt/homebrew/etc/profile.d/bash_completion.sh
 # Enable Cargo completion
 command -v rustup &> /dev/null && source <(rustup completions bash cargo)
 command -v rustup &> /dev/null && source <(rustup completions bash rustup)
