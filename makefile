@@ -1,14 +1,16 @@
 all: .bashrc .bash_functions .curlrc .gitconfig .gitignore .profile .tmux.conf \
-	.ssh/config .config/nvim .gnupg/gpg-agent.conf .alacritty.yml \
+	.ssh/config .config/nvim .alacritty.yml .config/mpv/ \
 	.config/mpv/mpv.conf
-SYMLINK=-mkdir -p ~/$(@D) && ln -fs ${PWD}/$< ~/$@
+SYMLINK=-ln --symbolic --force --no-target-directory ${PWD}/$< ~/$@
+MKDIR=mkdir --parents ~/$@
 .% : %
 	$(SYMLINK)
 .ssh/config : ssh/config
-	$(SYMLINK)
+	chmod 600 $<
+	cp --archive $< ~/$@
 .config/nvim : nvim
-	$(SYMLINK)
-.gnupg/gpg-agent.conf : gnupg/gpg-agent.conf
 	$(SYMLINK)
 .config/mpv/mpv.conf : mpv.conf
 	$(SYMLINK)
+.config/mpv/ :
+	$(MKDIR)

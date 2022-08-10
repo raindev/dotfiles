@@ -20,8 +20,9 @@ export GOPATH="$HOME/.cache/go"
 [ -d "$HOME/.local/bin" ] && export PATH="$PATH:$HOME/.local/bin"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
-# Use coreutils by default instead of macOS provided commands
+# Use homebrew utilities instead of macOS provided commands
 PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:$PATH"
+PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:$PATH"
 
 export EDITOR=nvim
 # Use all available cores for xz compression
