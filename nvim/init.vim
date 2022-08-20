@@ -21,7 +21,7 @@ call plug#end()
 " Enable true color support
 set termguicolors
 colorscheme iceberg
-set background=light
+set background=dark
 
 " Do not highlight search results
 set nohlsearch
@@ -42,8 +42,9 @@ set listchars=tab:▸\ ,trail:·,nbsp:⍽
 set number
 " Show command-line autocompletion list as a menu
 set wildmenu
-" Autocomplete to the end of string
-set wildmode=full
+" Autocomplete to the longest commons string and than cycle through the
+" alternatives
+set wildmode=longest:full,full
 " Increase command-line history size
 set history=1000
 " Hide abandoned buffers instead of unloading
