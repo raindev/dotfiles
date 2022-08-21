@@ -16,10 +16,17 @@ shopt -s histappend
 # Display ANSI color escape characters in less
 export LESS="--RAW-CONTROL-CHARS"
 
+# Load Git helper function and customize repository prompt
+[ -f /usr/share/git-core/contrib/completion/git-prompt.sh ] \
+    && source /usr/share/git-core/contrib/completion/git-prompt.sh
+export GIT_PS1_SHOWDIRTYSTATE=1 # +/*
+export GIT_PS1_SHOWSTASHSTATE=1 # $
+export GIT_PS1_SHOWUNTRACKEDFILES=1 # %
+export GIT_PS1_SHOWUPSTREAM=auto
 # Color the classic (user@host:workdir$) prompt
 # 032   - green
 # 034   - blue
-export PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
+export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " [%s]") \$ '
 # Set terminal window title to user@host: workdir
 export PS1="\[\e]0;\u@\h: \w\a\]$PS1"
 
