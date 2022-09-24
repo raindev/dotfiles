@@ -11,10 +11,8 @@ end
 
 local packer_bootstrap = ensure_packer()
 
-return require('packer').startup(function(use)
-  use {'wbthomason/packer.nvim', config = function()
-    compile_path = vim.fn.stdpath("data") .. '/plugin/packer_compiled.lua'
-  end}
+local plugins = function(use)
+  use 'wbthomason/packer.nvim'
   use 'cocopon/iceberg.vim'
   use 'tpope/vim-surround'
   use 'tpope/vim-sleuth'
@@ -47,4 +45,8 @@ return require('packer').startup(function(use)
   if packer_bootstrap then
     require('packer').sync()
   end
-end)
+end
+
+return require('packer').startup({plugins, config = {
+  compile_path = vim.fn.stdpath("data") .. '/site/plugin/packer_compiled.lua'
+}})
