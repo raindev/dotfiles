@@ -8,6 +8,8 @@
 	excludesfile = ~/.gitignore
 [include]
 	path = ~/.gitconfig.local
+[init]
+        defaultBranch = main
 [pull]
 	ff = only
 [filter "lfs"]
