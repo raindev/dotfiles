@@ -1,6 +1,6 @@
 all: .bashrc .bash_functions .curlrc .gitconfig .gitignore .profile .tmux.conf \
 	.ssh/config .config/nvim .alacritty.yml .config/mpv/ \
-	.config/mpv/mpv.conf
+	.config/mpv/mpv.conf .git/config
 SYMLINK=-ln --symbolic --force --no-target-directory ${PWD}/$< ~/$@
 MKDIR=mkdir --parents ~/$@
 .% : %
@@ -14,3 +14,6 @@ MKDIR=mkdir --parents ~/$@
 	$(SYMLINK)
 .config/mpv/ :
 	$(MKDIR)
+.PHONY : .git/config
+.git/config :
+	git config filter.background.clean "sed \"s/background = 'light'/background = 'dark'/\""
