@@ -39,6 +39,11 @@ local plugins = function(use)
       org_default_notes_file = '~/org/inbox.org',
     })
   end }
+  use {
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
