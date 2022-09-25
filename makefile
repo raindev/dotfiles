@@ -16,4 +16,5 @@ MKDIR=mkdir --parents ~/$@
 	$(MKDIR)
 .PHONY : .git/config
 .git/config :
-	git config filter.background.clean "sed \"s/background = 'light'/background = 'dark'/\""
+	git config filter.nvim-background.clean "sed \"s/background = 'light'/background = 'light'/\""
+	git config filter.alacritty-background.clean "sed \"s/colors: \*dark/colors: \*light/\""
