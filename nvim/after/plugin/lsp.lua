@@ -1,7 +1,7 @@
 -- Mason LSP installer
 require('mason').setup()
 require('mason-lspconfig').setup({
-  ensure_installed = { 'sumneko_lua', 'rust_analyzer' }
+  ensure_installed = { 'sumneko_lua', 'rust_analyzer', 'jdtls' }
 })
 
 -- Mappings.
@@ -65,3 +65,6 @@ require('lspconfig').sumneko_lua.setup{
   },
 }
 
+require('lspconfig').jdtls.setup{
+  on_attach = on_attach
+}
