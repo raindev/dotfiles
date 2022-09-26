@@ -29,6 +29,9 @@ vim.opt.wildmode = "longest:full,full"
 
 -- Keymap
 vim.g.mapleader = ' '
+vim.keymap.set('', '<C-p>', function()
+  vim.cmd(':Telescope')
+end, { silent = true })
 -- Toggle search highlighting
 vim.keymap.set('', '<leader>h', function()
   vim.opt.hlsearch = not vim.opt.hlsearch:get()
