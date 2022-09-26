@@ -68,3 +68,7 @@ require('lspconfig').sumneko_lua.setup{
 require('lspconfig').jdtls.setup{
   on_attach = on_attach
 }
+
+require('lspconfig').metals.setup{
+  on_attach = on_attach
+}
