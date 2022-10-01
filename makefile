@@ -1,5 +1,5 @@
 all: .bashrc .bash_functions .curlrc .gitconfig .gitignore .profile .tmux.conf \
-	.ssh/config .config/nvim .alacritty.yml .config/mpv/ \
+	.ssh/config .config/nvim .wezterm.lua  .config/mpv/ \
 	.config/mpv/mpv.conf .git/config
 SYMLINK=-ln --symbolic --force --no-target-directory ${PWD}/$< ~/$@
 MKDIR=mkdir --parents ~/$@
@@ -17,4 +17,3 @@ MKDIR=mkdir --parents ~/$@
 .PHONY : .git/config
 .git/config :
 	git config filter.nvim-background.clean "sed \"s/background = 'dark'/background = 'light'/\""
-	git config filter.alacritty-background.clean "sed \"s/colors: \*dark/colors: \*light/\""

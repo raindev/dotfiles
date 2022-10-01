@@ -13,7 +13,7 @@ local packer_bootstrap = ensure_packer()
 
 local plugins = function(use)
   use 'wbthomason/packer.nvim'
-  use 'cocopon/iceberg.vim'
+  use 'navarasu/onedark.nvim'
   use 'tpope/vim-surround'
   use 'tpope/vim-sleuth'
   use 'andymass/vim-matchup'
