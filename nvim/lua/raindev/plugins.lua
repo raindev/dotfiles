@@ -17,6 +17,7 @@ local plugins = function(use)
   use 'tpope/vim-surround'
   use 'tpope/vim-sleuth'
   use 'andymass/vim-matchup'
+  use 'mhinz/vim-signify'
   use 'rust-lang/rust.vim'
   use 'udalov/kotlin-vim'
   use 'keith/swift.vim'

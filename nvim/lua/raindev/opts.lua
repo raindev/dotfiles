@@ -20,6 +20,10 @@ vim.opt.listchars:append('extends:»')
 vim.opt.listchars:append('precedes:«')
 -- Display line numbers
 vim.opt.number = true
+-- Always display the line info column to avoid jumping
+vim.opt.signcolumn = 'yes'
+-- Save swap file more frequently to make show line status immediately
+vim.opt.updatetime = 100
 
 -- Do not highlight search results
 vim.opt.hlsearch = false
