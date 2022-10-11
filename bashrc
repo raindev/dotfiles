@@ -3,8 +3,9 @@
 
 alias grep='grep --color=always'
 alias gtypist='gtypist --personal-best --max-error=1'
-alias ls='ls --classify --color=auto'
+alias ls='exa --classify'
 alias t='tmux attach || tmux new'
+alias fd='fdfind'
 
 # Enable CTRL-S for forward history search
 # (overwrites suspension of terminal output)
