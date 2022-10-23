@@ -21,6 +21,7 @@ local plugins = function(use)
   use 'rust-lang/rust.vim'
   use 'udalov/kotlin-vim'
   use 'keith/swift.vim'
+  use 'LnL7/vim-nix'
   use { 'nvim-treesitter/nvim-treesitter', config = function()
     require('nvim-treesitter.configs').setup({
       -- If TS highlights are not enabled at all, or disabled via `disable` prop, highlighting will fallback to default Vim syntax highlighting
