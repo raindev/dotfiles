@@ -20,6 +20,9 @@ vim.opt.listchars:append('extends:»')
 vim.opt.listchars:append('precedes:«')
 -- Display line numbers
 vim.opt.number = true
+-- Highlight the line number for the current line
+vim.opt.cursorline = true
+vim.opt.cursorlineopt = 'number'
 -- Always display the line info column to avoid jumping
 vim.opt.signcolumn = 'yes'
 -- Save swap file more frequently to make show line status immediately
