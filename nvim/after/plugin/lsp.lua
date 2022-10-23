@@ -38,9 +38,20 @@ local on_attach = function(_, bufnr)
   vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
-require('lspconfig').rust_analyzer.setup {
-  on_attach = on_attach
+local lsp_servers = {
+  require('lspconfig').rust_analyzer,
+  require('lspconfig').jdtls,
+  require('lspconfig').metals,
+  require('lspconfig').bashls,
+  require('lspconfig').rnix
 }
+
+for _, server in pairs(lsp_servers) do
+  server.setup {
+    on_attach = on_attach
+  }
+end
+
 require('lspconfig').sumneko_lua.setup {
   on_attach = on_attach,
   settings = {
@@ -63,20 +74,4 @@ require('lspconfig').sumneko_lua.setup {
       },
     },
   },
-}
-
-require('lspconfig').jdtls.setup {
-  on_attach = on_attach
-}
-
-require('lspconfig').metals.setup {
-  on_attach = on_attach
-}
-
-require('lspconfig').bashls.setup {
-  on_attach = on_attach
-}
-
-require('lspconfig').rnix.setup {
-  on_attach = on_attach
 }
