@@ -32,7 +32,7 @@ vim.opt.updatetime = 100
 vim.opt.hlsearch = false
 -- Autocomplete to the longest commons string and than cycle through the
 -- alternatives
-vim.opt.wildmode = "longest:full,full"
+vim.opt.wildmode = 'longest:full,full'
 
 -- Keymap
 vim.g.mapleader = ' '

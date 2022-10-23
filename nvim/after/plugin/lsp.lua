@@ -6,7 +6,7 @@ require('mason-lspconfig').setup({
 
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-local opts = { noremap=true, silent=true }
+local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
@@ -20,7 +20,7 @@ local on_attach = function(_, bufnr)
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  local bufopts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
@@ -38,10 +38,10 @@ local on_attach = function(_, bufnr)
   vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
-require('lspconfig').rust_analyzer.setup{
+require('lspconfig').rust_analyzer.setup {
   on_attach = on_attach
 }
-require('lspconfig').sumneko_lua.setup{
+require('lspconfig').sumneko_lua.setup {
   on_attach = on_attach,
   settings = {
     Lua = {
@@ -51,11 +51,11 @@ require('lspconfig').sumneko_lua.setup{
       },
       diagnostics = {
         -- Get the language server to recognize the `vim` global
-        globals = {'vim'},
+        globals = { 'vim' },
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
+        library = vim.api.nvim_get_runtime_file('', true),
       },
       -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = {
@@ -65,14 +65,14 @@ require('lspconfig').sumneko_lua.setup{
   },
 }
 
-require('lspconfig').jdtls.setup{
+require('lspconfig').jdtls.setup {
   on_attach = on_attach
 }
 
-require('lspconfig').metals.setup{
+require('lspconfig').metals.setup {
   on_attach = on_attach
 }
 
-require('lspconfig').bashls.setup{
+require('lspconfig').bashls.setup {
   on_attach = on_attach
 }
