@@ -5,7 +5,9 @@ alias grep='grep --color=always'
 alias gtypist='gtypist --personal-best --max-error=1'
 alias ls='exa --classify'
 alias t='tmux attach || tmux new'
-alias fd='fdfind'
+if ! command -v fd > /dev/null && command -v fdfind > /dev/null ; then
+    alias fd='fdfind'
+fi
 
 # Enable CTRL-S for forward history search
 # (overwrites suspension of terminal output)
