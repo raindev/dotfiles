@@ -18,5 +18,7 @@ return {
       action = wezterm.action.ToggleFullScreen
     }
   },
-  hide_tab_bar_if_only_one_tab = true
+  hide_tab_bar_if_only_one_tab = true,
+  -- the system log from systemd-core-dump includes \u{1f855} prefix
+  warn_about_missing_glyphs = false
 }
