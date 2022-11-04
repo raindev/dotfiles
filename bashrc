@@ -22,6 +22,8 @@ export LESS="--RAW-CONTROL-CHARS"
 # Load Git helper function and customize repository prompt
 [ -f /usr/share/git-core/contrib/completion/git-prompt.sh ] \
     && source /usr/share/git-core/contrib/completion/git-prompt.sh
+[ -f /run/current-system/sw/share/bash-completion/completions/git-prompt.sh ] \
+    && source /run/current-system/sw/share/bash-completion/completions/git-prompt.sh
 export GIT_PS1_SHOWDIRTYSTATE=1 # +/*
 export GIT_PS1_SHOWSTASHSTATE=1 # $
 export GIT_PS1_SHOWUNTRACKEDFILES=1 # %
