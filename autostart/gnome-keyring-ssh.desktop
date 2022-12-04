@@ -1,0 +1,6 @@
+[Desktop Entry]
+# Required for the file to be considered.
+Type=Application
+# Prevents the keyring from overriding $SSH_AUTH_SOCK set by GPG.
+# When set to true all the desktop files with the same name will be ignored.
+Hidden=true

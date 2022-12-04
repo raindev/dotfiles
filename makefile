@@ -1,6 +1,6 @@
 all: .bashrc .bash_functions .curlrc .gitconfig .gitignore .profile .tmux.conf \
 	.ssh/config .config/nvim .wezterm.lua  .config/mpv/ \
-	.config/mpv/mpv.conf .git/config
+	.config/mpv/mpv.conf .git/config .config/autostart
 SYMLINK=-ln --symbolic --force --no-target-directory ${PWD}/$< ~/$@
 MKDIR=mkdir --parents ~/$@
 .% : %
@@ -14,6 +14,8 @@ MKDIR=mkdir --parents ~/$@
 	$(SYMLINK)
 .config/mpv/ :
 	$(MKDIR)
+.config/autostart : autostart
+	$(SYMLINK)
 .PHONY : .git/config
 .git/config :
 	git config filter.nvim-background.clean "sed \"s/background = 'dark'/background = 'light'/\""
