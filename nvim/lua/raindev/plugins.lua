@@ -85,11 +85,7 @@ local plugins = function(use)
       org_default_notes_file = '~/org/inbox.org',
     })
   end }
-  use {
-    'williamboman/mason.nvim',
-    'williamboman/mason-lspconfig.nvim',
-    'neovim/nvim-lspconfig',
-  }
+  use 'neovim/nvim-lspconfig'
   use {
     'nvim-telescope/telescope.nvim', branch = '0.1.x',
     requires = { { 'nvim-lua/plenary.nvim' } }
