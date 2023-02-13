@@ -20,8 +20,11 @@ export GOPATH="$HOME/.cache/go"
 [ -d "$HOME/.local/bin" ] && export PATH="$PATH:$HOME/.local/bin"
 
 export EDITOR=nvim
-# Use all available cores for xz compression
+# Use all available cores when possible
 export XZ_DEFAULTS='--threads=0'
+export ZSTD_COMPRESS="--threads=0"
+cores=$(nproc)
+export MAKEFLAGS="-j$cores"
 
 # Source local profile
 [ -f "$HOME/.profile.local" ] && source "$HOME/.profile.local"
