@@ -46,7 +46,7 @@ for _, server in pairs(lsp_servers) do
   }
 end
 
-require('lspconfig').sumneko_lua.setup {
+require('lspconfig').lua_ls.setup {
   on_attach = on_attach,
   settings = {
     Lua = {
