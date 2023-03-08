@@ -5,6 +5,7 @@ alias grep='grep --color=always'
 alias gtypist='gtypist --personal-best --max-error=1'
 alias ls='exa --classify'
 alias t='tmux attach || tmux new'
+alias up='configure'
 if ! command -v fd > /dev/null && command -v fdfind > /dev/null ; then
     alias fd='fdfind'
 fi
