@@ -1,3 +1,5 @@
+Archived: coalesced into https://github.com/raindev/nix-config.
+
 raindev's .[dot]files
 =====================
 
