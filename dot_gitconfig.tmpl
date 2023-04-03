@@ -1,7 +1,12 @@
 [user]
 	name = Andrew Barchuk
+	{{- if eq .chezmoi.hostname "charcoal" }}
+	email = andrew.barchuk@zalando.de
+	signingkey = 7B7AA60DC00AF73A3820C609F89D58E0FA4F7AD4
+	{{- else }}
 	email = andrew@raindev.io
 	signingkey = B14FD6B79497FC060E88564D548706C0A2EEA361
+	{{- end }}
 [commit]
 	gpgSign = true
 [core]
