@@ -1,2 +1,4 @@
 # the file is modified dynamically and is symlinked directly
 nvim_theme.lua
+license
+readme.md
