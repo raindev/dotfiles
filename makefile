@@ -14,6 +14,3 @@ MKDIR=mkdir --parents ~/$@
 	$(MKDIR)
 .config/autostart : autostart
 	$(SYMLINK)
-.PHONY : .git/config
-.git/config :
-	git config filter.nvim-background.clean "sed \"s/background = 'dark'/background = 'light'/\""

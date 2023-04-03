@@ -1,6 +1,5 @@
 -- Enable true color support
 vim.opt.termguicolors = true
-vim.opt.background = 'light'
 require('onedark').load()
 -- Enable syntax highlighting without touching color scheme
 vim.cmd('syntax enable')
