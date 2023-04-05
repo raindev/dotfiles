@@ -9,7 +9,11 @@ local function scheme_for_appearance(appearance)
 end
 
 return {
+  {{- if eq .chezmoi.hostname "black" }}
+  font_size = 14,
+  {{- else }}
   font_size = 16,
+  {{- end }}
   font = wezterm.font('Source Code Pro'),
   color_scheme = scheme_for_appearance(wezterm.gui.get_appearance()),
   keys = {
