@@ -24,6 +24,8 @@ vim.opt.cursorline = true
 vim.opt.cursorlineopt = 'number'
 -- Always display the line info column to avoid jumping
 vim.opt.signcolumn = 'yes'
+-- Open folds by default
+vim.opt.foldlevelstart=99
 
 -- Do not highlight search results
 vim.opt.hlsearch = false
