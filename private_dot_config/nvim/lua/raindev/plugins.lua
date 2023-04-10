@@ -90,10 +90,6 @@ local plugins = function(use)
     'nvim-telescope/telescope.nvim', branch = '0.1.x',
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
-  use {
-    'glacambre/firenvim',
-    run = function() vim.fn['firenvim#install'](0) end
-  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
