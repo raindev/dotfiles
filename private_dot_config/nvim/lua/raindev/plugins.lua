@@ -91,14 +91,20 @@ local plugins = function(use)
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
   use {
-    'epwalsh/obsidian.nvim', tag = '1.8.*', config = function()
+    'epwalsh/obsidian.nvim', tag = '1.8.*',
+    requires = {
+      { 'preservim/vim-markdown'},
+      { 'hrsh7th/nvim-cmp' }
+    } ,
+    config = function()
       require("obsidian").setup({
         dir = "~/notes",
         daily_notes = {
           folder = "journals"
-        }
+        },
+        disable_frontmatter = true
       })
-  end }
+    end }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
