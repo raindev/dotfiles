@@ -19,7 +19,7 @@ export GOPATH="$HOME/.cache/go"
 # Include user executables into PATH (used by pip)
 [ -d "$HOME/.local/bin" ] && export PATH="$PATH:$HOME/.local/bin"
 # Homebrew binaries
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+[ -d "/home/linuxbrew" ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 export EDITOR=nvim
 # Use all available cores when possible
