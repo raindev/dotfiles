@@ -91,24 +91,27 @@ local plugins = function(use)
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
   use {
-    'epwalsh/obsidian.nvim', tag = '1.8.*',
+    'epwalsh/obsidian.nvim', tag = 'v1.8.*',
     requires = {
       { 'preservim/vim-markdown'},
       { 'hrsh7th/nvim-cmp' }
     } ,
     config = function()
-      require("obsidian").setup({
-        dir = "~/notes",
+      require('obsidian').setup({
+        dir = '~/notes',
         daily_notes = {
-          folder = "journals"
+          folder = 'journals'
         },
+        note_id_func = function(title)
+          return title
+        end,
         disable_frontmatter = true
       })
-      vim.keymap.set("n", "gf", function()
+      vim.keymap.set('n', 'gf', function()
         if require('obsidian').util.cursor_on_markdown_link() then
-          return "<cmd>ObsidianFollowLink<CR>"
+          return '<cmd>ObsidianFollowLink<CR>'
         else
-          return "gf"
+          return 'gf'
         end
       end,
       { noremap = false, expr = true})
