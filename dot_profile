@@ -25,6 +25,7 @@ export GOPATH="$HOME/.cache/go"
 [ -d "/home/linuxbrew" ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 export EDITOR=nvim
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 # Use all available cores when possible
 export XZ_DEFAULTS='--threads=0'
 export ZSTD_COMPRESS="--threads=0"
