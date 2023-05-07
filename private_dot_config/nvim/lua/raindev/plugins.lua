@@ -1,26 +1,25 @@
-local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
-    vim.cmd [[packadd packer.nvim]]
-    return true
-  end
-  return false
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
-local packer_bootstrap = ensure_packer()
-
-local plugins = function(use)
-  use 'wbthomason/packer.nvim'
-  use 'navarasu/onedark.nvim'
-  use 'tpope/vim-surround'
-  use 'tpope/vim-sleuth'
-  use 'andymass/vim-matchup'
-  use {
+require("lazy").setup({
+  'wbthomason/packer.nvim',
+  'navarasu/onedark.nvim',
+  'tpope/vim-surround',
+  'tpope/vim-sleuth',
+  'andymass/vim-matchup',
+  {
     'lewis6991/gitsigns.nvim',
-    config = function()
-      require('gitsigns').setup {
+    opts = {
         on_attach = function(bufnr)
           local gs = package.loaded.gitsigns
 
@@ -60,14 +59,12 @@ local plugins = function(use)
           map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
         end
       }
-    end
-  }
-  use 'rust-lang/rust.vim'
-  use 'udalov/kotlin-vim'
-  use 'keith/swift.vim'
-  use 'LnL7/vim-nix'
-  use { 'nvim-treesitter/nvim-treesitter', config = function()
-    require('nvim-treesitter.configs').setup({
+  },
+  'rust-lang/rust.vim',
+  'udalov/kotlin-vim',
+  'keith/swift.vim',
+  'LnL7/vim-nix',
+  { 'nvim-treesitter/nvim-treesitter', opts = {
       -- If TS highlights are not enabled at all, or disabled via `disable` prop, highlighting will fallback to default Vim syntax highlighting
       highlight = {
         enable = true,
@@ -75,29 +72,28 @@ local plugins = function(use)
         additional_vim_regex_highlighting = { 'org' }, -- Required since TS highlighter doesn't support all syntax features (conceal)
       },
       ensure_installed = { 'org' },
-    })
-  end }
-  use { 'nvim-orgmode/orgmode', config = function()
+    }
+  },
+  { 'nvim-orgmode/orgmode', config = function()
     local orgmode = require('orgmode')
     orgmode.setup_ts_grammar()
     orgmode.setup({
       org_agenda_files = { '~/org/*' },
       org_default_notes_file = '~/org/inbox.org',
     })
-  end }
-  use 'neovim/nvim-lspconfig'
-  use {
+  end },
+  'neovim/nvim-lspconfig',
+  {
     'nvim-telescope/telescope.nvim', branch = '0.1.x',
-    requires = { { 'nvim-lua/plenary.nvim' } }
-  }
-  use {
-    'epwalsh/obsidian.nvim', tag = 'v1.8.*',
-    requires = {
-      { 'preservim/vim-markdown'},
-      { 'hrsh7th/nvim-cmp' }
-    } ,
-    config = function()
-      require('obsidian').setup({
+    dependencies = { 'nvim-lua/plenary.nvim' }
+  },
+  {
+    'epwalsh/obsidian.nvim', version = 'v1.8.*',
+    dependencies = {
+      'preservim/vim-markdown',
+      'hrsh7th/nvim-cmp'
+    },
+    opts = {
         dir = '~/notes',
         daily_notes = {
           folder = 'journals'
@@ -106,7 +102,8 @@ local plugins = function(use)
           return title
         end,
         disable_frontmatter = true
-      })
+      },
+    init = function()
       vim.keymap.set('n', 'gf', function()
         if require('obsidian').util.cursor_on_markdown_link() then
           return '<cmd>ObsidianFollowLink<CR>'
@@ -115,15 +112,6 @@ local plugins = function(use)
         end
       end,
       { noremap = false, expr = true})
-    end }
-
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if packer_bootstrap then
-    require('packer').sync()
-  end
-end
-
-return require('packer').startup({ plugins, config = {
-  compile_path = vim.fn.stdpath('data') .. '/site/plugin/packer_compiled.lua'
-} })
+    end
+  }
+})
