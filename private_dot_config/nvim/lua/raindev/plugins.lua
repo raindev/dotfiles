@@ -12,7 +12,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  'wbthomason/packer.nvim',
+  -- lazy.nvim resets the runtime path constrolled with
+  -- config.performance.rtp.reset
+  'equalsraf/neovim-gui-shim',
   'navarasu/onedark.nvim',
   'tpope/vim-surround',
   'tpope/vim-sleuth',

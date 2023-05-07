@@ -3,6 +3,8 @@ GuiFont Source Code Pro:h16
 {{- else }}
 GuiFont Source Code Pro:h18
 {{- end }}
+" Disable GUI tabse
+GuiTabline 0
 " Normal, Visual, Select, Operator-pending
 noremap <silent><F11> :call GuiWindowFullScreen(!g:GuiWindowFullScreen)<CR>
 " Insert and Command-line
