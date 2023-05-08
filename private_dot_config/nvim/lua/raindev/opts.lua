@@ -57,6 +57,8 @@ if vim.fn.isdirectory(swap_dir) ~= 1 then
 end
 -- Save netrw history and bookmarks outside of configs dir
 vim.g.netrw_home = home_dir .. '/.cache/nvim/'
+-- Persist undoo history
+vim.opt.undofile = true
 
 -- Load local configuration
 local local_init = home_dir .. '/.config/nvim/init.local.lua'
