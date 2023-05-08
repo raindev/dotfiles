@@ -4,8 +4,14 @@ require('onedark').load()
 -- Enable syntax highlighting without touching color scheme
 vim.cmd('syntax enable')
 
--- Use spaces instead of tabs
-vim.opt.expandtab = true
+-- Render tabs as 8 spaces
+vim.opt.tabstop = 8
+-- Insert 4 spaces for a tab
+vim.opt.softtabstop = 4
+-- Insert 4 spaces for an indent
+vim.opt.shiftwidth = 4
+-- Replace each 8 spaces by a tab
+vim.opt.expandtab = false
 
 -- Use space as vertical split character
 vim.opt.fillchars:append('vert: ')
