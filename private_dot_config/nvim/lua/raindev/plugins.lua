@@ -45,8 +45,8 @@ require("lazy").setup({
           end, { expr = true })
 
           -- Actions
-          map({ 'n', 'v' }, '<leader>hs', ':Gitsigns stage_hunk<CR>')
-          map({ 'n', 'v' }, '<leader>hr', ':Gitsigns reset_hunk<CR>')
+          map({ 'n', 'v' }, '<leader>hs', gs.stage_hunk)
+          map({ 'n', 'v' }, '<leader>hr', gs.reset_hunk)
           map('n', '<leader>hS', gs.stage_buffer)
           map('n', '<leader>hu', gs.undo_stage_hunk)
           map('n', '<leader>hR', gs.reset_buffer)
@@ -66,25 +66,46 @@ require("lazy").setup({
   'udalov/kotlin-vim',
   'keith/swift.vim',
   'LnL7/vim-nix',
-  { 'nvim-treesitter/nvim-treesitter', opts = {
+  { 'nvim-treesitter/nvim-treesitter',
+    main = 'nvim-treesitter.configs',
+    build = ':TSUpdate',
+    opts = {
+      ensure_installed = { 'org', 'rust', 'lua', 'go', 'c', 'cpp', 'sql', 'html', 'css', 'javascript' },
       -- If TS highlights are not enabled at all, or disabled via `disable` prop, highlighting will fallback to default Vim syntax highlighting
       highlight = {
         enable = true,
         disable = { 'org' }, -- Remove this to use TS highlighter for some of the highlights (Experimental)
         additional_vim_regex_highlighting = { 'org' }, -- Required since TS highlighter doesn't support all syntax features (conceal)
       },
-      ensure_installed = { 'org' },
     }
   },
   { 'nvim-orgmode/orgmode', config = function()
     local orgmode = require('orgmode')
     orgmode.setup_ts_grammar()
     orgmode.setup({
-      org_agenda_files = { '~/org/*' },
-      org_default_notes_file = '~/org/inbox.org',
+      org_agenda_files = { '~/notes/*.org' },
+      org_default_notes_file = '~/notes/inbox.org',
     })
   end },
-  'neovim/nvim-lspconfig',
+  { 'VonHeikemen/lsp-zero.nvim',
+    branch = 'v2.x',
+    dependencies = {
+      -- LSP Support
+      {'neovim/nvim-lspconfig'},             -- Required
+      {                                      -- Optional
+        'williamboman/mason.nvim',
+        build = function()
+          pcall(vim.cmd, 'MasonUpdate')
+        end,
+      },
+      {'williamboman/mason-lspconfig.nvim'}, -- Optional
+
+      -- Autocompletion
+      {'hrsh7th/nvim-cmp'},     -- Required
+      {'hrsh7th/cmp-nvim-lsp'}, -- Required
+      {'L3MON4D3/LuaSnip'},     -- Required
+    }
+  },
   {
     'nvim-telescope/telescope.nvim', branch = '0.1.x',
     dependencies = { 'nvim-lua/plenary.nvim' }
@@ -115,5 +136,8 @@ require("lazy").setup({
       end,
       { noremap = false, expr = true})
     end
-  }
+  },
+  'ThePrimeagen/harpoon',
+  'mbbill/undotree',
+  'tpope/vim-fugitive'
 })
