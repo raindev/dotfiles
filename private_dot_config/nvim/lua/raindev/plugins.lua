@@ -139,5 +139,6 @@ require("lazy").setup({
   },
   'ThePrimeagen/harpoon',
   'mbbill/undotree',
-  'tpope/vim-fugitive'
+  'tpope/vim-fugitive',
+  'ypcrts/securemodelines',
 })
