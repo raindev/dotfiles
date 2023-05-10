@@ -1,10 +1,18 @@
+# vi: ft=tmux
+
 set -g escape-time 0
 set-option -g prefix C-j
 set-option -g history-limit 10000
 set-window-option -g mode-keys vi
-bind -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel "xclip -i -selection clipboard"
+
+{{ if eq .chezmoi.os "linux" }}
 bind-key -T prefix * run "xclip -o -sel primary | tmux load-buffer - ; tmux paste-buffer"
 bind-key -T prefix + run "xclip -o -sel clipboard | tmux load-buffer - ; tmux paste-buffer"
+{{ else if eq .chezmoi.os "darwin" }}
+bind-key -T prefix * run "pbpaste | tmux load-buffer - ; tmux paste-buffer"
+bind-key -T prefix + run "pbpaste | tmux load-buffer - ; tmux paste-buffer"
+{{ end }}
+
 # Open splits in the same directory
 bind '"' split-window -v -c "#{pane_current_path}"
 bind % split-window -h -c "#{pane_current_path}"
