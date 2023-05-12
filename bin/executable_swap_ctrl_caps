@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# Toggles swapping of Ctrl and Caps Lock.
+# Warning: the script clears any additional keyboard layout options set.
+
+schema=org.gnome.desktop.input-sources
+key=xkb-options
+clear_options="[]"
+swap_ctrl_caps="ctrl:swapcaps"
+xkb_options=$(gsettings get "$schema" "$key")
+
+if [[ $xkb_options == *"$swap_ctrl_caps"* ]]; then
+    gsettings set "$schema" "$key" "$clear_options"
+else
+    gsettings set "$schema" "$key" "['$swap_ctrl_caps']"
+fi

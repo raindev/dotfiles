@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+IFS='/' read -ra script_path <<< "$0"
+# the scirpt is called as "light" or "dark"
+bg=${script_path[${#script_path[@]}-1]}
+sed -i --follow-symlinks "s/background = '.*'/background = '$bg'/" ~/.config/nvim/lua/raindev/theme.lua
