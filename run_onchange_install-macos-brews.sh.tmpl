@@ -1,0 +1,48 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/usr/bin/env bash
+# vi: set ft=bash
+
+brew bundle --no-lock --file=/dev/stdin <<EOF
+brew 'bash'
+brew 'bash-completion'
+brew 'chezmoi'
+brew 'coreutils'
+brew 'exa'
+brew 'fd'
+brew 'git'
+brew 'git-gui'
+brew 'gnu-sed'
+brew 'gnupg'
+brew 'go'
+brew 'mas'
+brew 'neovim'
+brew 'neovim-qt'
+brew 'node'
+brew 'openjdk'
+brew 'pass'
+brew 'pass-otp'
+brew 'pinentry-mac'
+brew 'ripgrep'
+brew 'shellcheck'
+brew 'tmux'
+brew 'topgrade'
+brew 'tree'
+
+cask 'firefox'
+cask 'font-source-code-pro'
+cask 'logseq'
+cask 'meld'
+cask 'mouse-fix'
+cask 'mullvadvpn'
+cask 'obs'
+cask 'obsidian'
+cask 'spotify'
+cask 'syncthing'
+cask 'telegram'
+cask 'vlc'
+cask 'wezterm'
+
+mas "Xcode", id: 497799835
+mas "Omnivore", id: 1564031042
+EOF
+{{ end }}
