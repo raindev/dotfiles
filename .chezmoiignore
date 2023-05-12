@@ -1,5 +1,3 @@
-# Nvim files modified dynamically and symlinked directly
-nvim/
-
 license
 readme.md
+update-passwords.sh

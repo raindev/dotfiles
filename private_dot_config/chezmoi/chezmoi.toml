@@ -1,3 +1,6 @@
 [merge]
     command = "nvim"
     args = ["-d", "{{ .Destination }}", "{{ .Source }}", "{{ .Target }}"]
+[hooks.update.post]
+    command = "bash"
+    args = [ "-c", "pass git pull --rebase --quiet && pass git push --quiet" ]
