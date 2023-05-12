@@ -1,17 +1,9 @@
-Archived: coalesced into https://github.com/raindev/nix-config.
-
-raindev's .[dot]files
-=====================
+Dotfiles & More
+===============
 
 Install
 -------
 
-Symlink all files
+    sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply raindev
 
-    make all
-
-If a dotfile exists already an error message will be printed but make will
-continue with the other files. A specific file can be symlinked by making it,
-e.g.:
-
-    make .tmux.conf
+See [chezmoi](https://www.chezmoi.io/).
