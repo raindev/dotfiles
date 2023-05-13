@@ -65,7 +65,6 @@ require("lazy").setup({
   'rust-lang/rust.vim',
   'udalov/kotlin-vim',
   'keith/swift.vim',
-  'LnL7/vim-nix',
   { 'nvim-treesitter/nvim-treesitter',
     main = 'nvim-treesitter.configs',
     build = ':TSUpdate',
