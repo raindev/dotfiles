@@ -3,6 +3,9 @@ vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
 vim.keymap.set('', '<leader>th', function()
   vim.opt.hlsearch = not vim.opt.hlsearch:get()
 end)
+vim.keymap.set('', '<leader>ts', function ()
+  vim.opt.spell = not vim.opt.spell:get()
+end)
 
 -- Save the pinky
 vim.keymap.set('i', 'jk', '<Esc>')
