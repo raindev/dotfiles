@@ -140,4 +140,11 @@ require("lazy").setup({
   'mbbill/undotree',
   'tpope/vim-fugitive',
   'ypcrts/securemodelines',
+  { 'raindev/daybreak.nvim', config = true }
+},
+{
+  dev = {
+    path = "~/code",
+    patterns = { "raindev" },
+  },
 })

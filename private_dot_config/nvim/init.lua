@@ -13,5 +13,4 @@ vim.g.maplocalleader = ' '
 require('raindev.plugins')
 require('raindev.opts')
 require('raindev.keymap')
-require('raindev.theme')
 require('raindev.filetype')
