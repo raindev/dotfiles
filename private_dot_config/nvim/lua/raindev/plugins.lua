@@ -146,5 +146,6 @@ require("lazy").setup({
   dev = {
     path = "~/code",
     patterns = { "raindev" },
+    fallback = true,
   },
 })
