@@ -70,7 +70,20 @@ require("lazy").setup({
     main = 'nvim-treesitter.configs',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'org', 'rust', 'lua', 'go', 'c', 'cpp', 'sql', 'html', 'css', 'javascript' },
+      ensure_installed = {
+        'c',
+        'cpp',
+        'css',
+        'go',
+        'html',
+        'java',
+        'javascript',
+        'lua',
+        'org',
+        'rust',
+        'sql',
+        'zig'
+      },
       -- If TS highlights are not enabled at all, or disabled via `disable` prop, highlighting will fallback to default Vim syntax highlighting
       highlight = {
         enable = true,
