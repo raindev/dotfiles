@@ -4,6 +4,7 @@ lsp.on_attach(function(_, bufnr)
 end)
 lsp.ensure_installed({
   'bashls',
+  'clangd',
   'jdtls',
   'lua_ls',
   'rust_analyzer',
