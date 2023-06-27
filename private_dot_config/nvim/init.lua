@@ -14,3 +14,10 @@ require('raindev.plugins')
 require('raindev.opts')
 require('raindev.keymap')
 require('raindev.filetype')
+
+local augroup = vim.api.nvim_create_augroup('init', {})
+vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
+  group = augroup,
+  pattern = '*',
+  command = [[%s/\s\+$//e]],
+})
