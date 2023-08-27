@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if ! gpg --list-key andrew@raindev.io > /dev/null; then
+if ! gpg --list-key andrew@raindev.io >/dev/null; then
 	echo '>setting up GPG'
 	echo 'Insert the smartcard'
 	read -r
