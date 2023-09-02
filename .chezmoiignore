@@ -2,3 +2,4 @@ license
 readme.md
 update-passwords.sh
 lazy-lock.json
+install.sh
