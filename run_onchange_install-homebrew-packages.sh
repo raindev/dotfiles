@@ -6,6 +6,7 @@ brew install \
 	bash-completion \
 	exercism \
 	go \
+	litecli \
 	neovim \
 	staticcheck \
 	topgrade \
