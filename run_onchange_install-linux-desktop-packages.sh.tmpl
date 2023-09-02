@@ -4,39 +4,20 @@
 set -e
 
 sudo apt install \
-	build-essential \
-	fd-find \
-	curl \
-	exa \
-	findutils \
-	flatpak \
-	g++ \
-	git \
 	gnome-shell-extensions \
 	gnome-shell-pomodoro \
 	gnome-sushi \
 	gnome-tweaks \
 	gnome-weather \
 	imagemagick \
-	libcurl4-openssl-dev \
-	libgit2-dev \
-	libssh-dev \
-	libssl-dev \
-	litecli \
 	meld \
 	neovim-qt \
-	npm \
 	pass \
 	pass-extension-otp \
-	pkg-config \
 	powertop \
-	rename \
 	ripgrep \
 	scdaemon \
-	shellcheck \
-	sqlite3 \
 	syncthing \
-	tmux \
 	wl-clipboard \
 	youtube-dl
 
@@ -48,12 +29,4 @@ flatpak install \
 	org.signal.Signal \
 	org.telegram.desktop \
 	org.wezfurlong.wezterm
-
-brew install \
-	bash-completion \
-	exercism \
-	watchexec \
-	staticcheck \
-	topgrade
-
 {{ end }}
