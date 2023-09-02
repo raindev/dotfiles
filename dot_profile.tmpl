@@ -14,7 +14,6 @@ export GOPATH="$HOME/.cache/go"
 # go installe'ed binaries
 [ -d "$HOME/.cache/go/bin" ] && export PATH="$PATH:$HOME/.cache/go/bin"
 
-
 # Include my scripts into PATH
 [ -e "$HOME/bin" ] && export PATH="$PATH:$HOME/bin"
 [ -e "$HOME/code/scripts" ] && export PATH="$PATH:$HOME/code/scripts"
@@ -31,8 +30,10 @@ if [ -d "/opt/homebrew/" ]; then
 fi
 
 export EDITOR=nvim
+{{ if eq .chezmoi.hostname "xps13" "black" "mini-mac" -}}
 SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 export SSH_AUTH_SOCK
+{{ end }}
 # Use all available cores when possible
 export XZ_DEFAULTS='--threads=0'
 export ZSTD_COMPRESS="--threads=0"
