@@ -1,4 +1,4 @@
-vim.keymap.set('n', '<leader>;', ':', { desc = 'Command line mode' })
+vim.keymap.set({'n', 'v'}, '<leader>;', ':', { desc = 'Command line mode' })
 vim.keymap.set('', '<leader>th', function() -- <leader>ur
    vim.opt.hlsearch = not vim.opt.hlsearch:get()
 end, { desc = '[T]oggle [H]ighlighting' })
