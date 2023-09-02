@@ -1,0 +1,11 @@
+{{ if eq .chezmoi.hostname "xps13" "black" "mini-mac" -}}
+#!/usr/bin/env bash
+# vi: set ft=bash
+set -e
+
+if [ ! -e "$HOME/.password-store" ]; then
+	echo '>setting up pass'
+	git clone git@github.com:raindev/passwords.git "$HOME/.password-store"
+	pass git init
+fi
+{{ end }}
