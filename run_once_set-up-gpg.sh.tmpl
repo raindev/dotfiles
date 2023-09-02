@@ -1,3 +1,4 @@
+{{ if eq .chezmoi.hostname "xps13" "black" -}}
 #!/usr/bin/env bash
 
 if ! gpg --list-key andrew@raindev.io >/dev/null; then
@@ -9,3 +10,4 @@ if ! gpg --list-key andrew@raindev.io >/dev/null; then
 	echo 'Set key trust level'
 	gpg --edit-key andrew@raindev.io
 fi
+{{ end }}
