@@ -1,22 +1,18 @@
 {{ if eq .chezmoi.os "darwin" -}}
 #!/usr/bin/env bash
 # vi: set ft=bash
+set -e
 
 brew bundle --no-lock --file=/dev/stdin <<EOF
 brew 'bash'
-brew 'bash-completion'
-brew 'chezmoi'
 brew 'coreutils'
 brew 'exa'
-brew 'exercism'
 brew 'fd'
 brew 'git'
 brew 'git-gui'
 brew 'gnu-sed'
 brew 'gnupg'
-brew 'go'
 brew 'mas'
-brew 'neovim'
 brew 'neovim-qt'
 brew 'node'
 brew 'openjdk'
@@ -25,9 +21,7 @@ brew 'pass-otp'
 brew 'pinentry-mac'
 brew 'ripgrep'
 brew 'shellcheck'
-brew 'staticcheck'
 brew 'tmux'
-brew 'topgrade'
 brew 'tree'
 
 cask 'firefox'
