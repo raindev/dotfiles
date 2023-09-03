@@ -9,6 +9,7 @@ fi
 
 brew install \
 	bash-completion \
+	exa \
 	exercism \
 	gh \
 	go \
