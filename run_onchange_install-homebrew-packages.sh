@@ -11,6 +11,7 @@ brew install \
 	bash-completion \
 	exa \
 	exercism \
+	fd \
 	gh \
 	go \
 	litecli \
