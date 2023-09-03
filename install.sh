@@ -1,8 +1,5 @@
 #!/bin/sh
-
-# -e: exit on error
-# -u: exit on unset variables
-set -eu
+set -eux
 
 if ! chezmoi="$(command -v chezmoi)"; then
 	bin_dir="${HOME}/.local/bin"
@@ -25,5 +22,5 @@ script_dir="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
 
 echo "Running 'chezmoi $*'" >&2
 "$chezmoi" init --source="${script_dir}"
-"$chezmoi" apply --source="${script_dir}" "${HOME}/.config/chezmoi/chezmoi.toml"
+"$chezmoi" apply --source="${script_dir}" "${HOME}/.config/chezmoi"
 "$chezmoi" apply --source="${script_dir}"
