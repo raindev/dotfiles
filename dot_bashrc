@@ -41,6 +41,7 @@ export PS1="\[\e]0;\u@\h: \w\a\]$PS1"
     && source /home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh
 [ -f /opt/homebrew/etc/profile.d/bash_completion.sh ] \
     && source /opt/homebrew/etc/profile.d/bash_completion.sh
+source <(chezmoi completion bash)
 # Enable Cargo completion
 command -v rustup &> /dev/null && source <(rustup completions bash cargo)
 command -v rustup &> /dev/null && source <(rustup completions bash rustup)
