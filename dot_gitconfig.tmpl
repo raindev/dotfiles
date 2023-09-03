@@ -8,7 +8,7 @@
 	signingkey = B14FD6B79497FC060E88564D548706C0A2EEA361
 	{{- end }}
 [commit]
-	gpgSign = true
+	gpgSign = {{ .gpg.enabled }}
 [core]
 	excludesfile = ~/.gitignore
 [include]

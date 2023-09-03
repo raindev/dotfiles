@@ -30,7 +30,7 @@ if [ -d "/opt/homebrew/" ]; then
 fi
 
 export EDITOR=nvim
-{{ if eq .chezmoi.hostname "xps13" "black" "mini-mac" -}}
+{{ if .gpg.enabled -}}
 SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 export SSH_AUTH_SOCK
 {{ end }}
