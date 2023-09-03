@@ -15,6 +15,7 @@ brew install \
 	go \
 	litecli \
 	neovim \
+	npm \
 	staticcheck \
 	topgrade \
 	watchexec
