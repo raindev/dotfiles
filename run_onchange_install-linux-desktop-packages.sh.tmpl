@@ -3,7 +3,8 @@
 # vi: set ft=bash
 set -e
 
-sudo apt install \
+sudo apt update --yes
+sudo apt install --yes \
 	flatpak \
 	gnome-shell-extensions \
 	gnome-shell-pomodoro \
@@ -23,7 +24,7 @@ sudo apt install \
 	youtube-dl
 
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-flatpak install \
+flatpak install --assumeyes \
 	com.logseq.Logseq \
 	com.spotify.Client \
 	md.obsidian.Obsidian \
