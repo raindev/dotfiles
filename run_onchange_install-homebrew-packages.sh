@@ -9,6 +9,7 @@ fi
 brew install \
 	bash-completion \
 	exercism \
+	gh \
 	go \
 	litecli \
 	neovim \
