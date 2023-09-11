@@ -1,6 +1,6 @@
-vim.opt.background = 'light'
 -- Enable true color support
 vim.opt.termguicolors = true
+require('onedark').load()
 -- Enable syntax highlighting without touching color scheme
 vim.cmd('syntax enable')
 
@@ -13,8 +13,6 @@ vim.opt.shiftwidth = 4
 -- Replace each 8 spaces by a tab
 vim.opt.expandtab = false
 
--- Allow to navigate to the first/last line
-vim.opt.scrolloff = 0
 -- Use space as vertical split character
 vim.opt.fillchars:append('vert: ')
 -- Show trailing characters, tabs and non-breakable spaces
@@ -27,14 +25,13 @@ vim.opt.listchars:append('extends:»')
 vim.opt.listchars:append('precedes:«')
 -- Display line numbers
 vim.opt.number = true
-vim.opt.relativenumber = false
 -- Highlight the line number for the current line
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = 'number'
 -- Always display the line info column to avoid jumping
 vim.opt.signcolumn = 'yes'
 -- Open folds by default
-vim.opt.foldlevelstart = 99
+vim.opt.foldlevelstart=99
 
 -- Do not highlight search results
 vim.opt.hlsearch = false
@@ -49,14 +46,14 @@ vim.opt.backup = true
 -- Create backupdir if doens't exist
 local backup_dir = home_dir .. '/.cache/nvim/backup'
 if vim.fn.isdirectory(backup_dir) ~= 1 then
-   vim.fn.mkdir(backup_dir)
+  vim.fn.mkdir(backup_dir)
 end
 -- Save all backups in one place rather than in .
 vim.opt.backupdir = backup_dir
 -- Create swap directory if doens't exist
 local swap_dir = home_dir .. '/.cache/nvim/swap'
 if vim.fn.isdirectory(swap_dir) ~= 1 then
-   vim.fn.mkdir(swap_dir)
+  vim.fn.mkdir(swap_dir)
 end
 -- Save netrw history and bookmarks outside of configs dir
 vim.g.netrw_home = home_dir .. '/.cache/nvim/'
@@ -66,5 +63,5 @@ vim.opt.undofile = true
 -- Load local configuration
 local local_init = home_dir .. '/.config/nvim/init.local.lua'
 if vim.fn.filereadable(local_init) ~= 0 then
-   dofile(local_init)
+  dofile(local_init)
 end
