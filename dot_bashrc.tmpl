@@ -52,6 +52,9 @@ command -v rustup &> /dev/null && source <(rustup completions bash rustup)
 # Tell GPG pinentry where to prompt for password
 GPG_TTY=$(tty)
 export GPG_TTY
+{{- if eq .chezmoi.os "darwin" }}
+gpgconf --launch gpg-agent
+{{- end }}
 
 source ~/.bash_functions
 
