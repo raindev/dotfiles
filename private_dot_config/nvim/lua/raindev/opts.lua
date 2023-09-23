@@ -23,6 +23,8 @@ vim.opt.listchars:append('nbsp:⍽')
 -- Show when line continues outside of screen
 vim.opt.listchars:append('extends:»')
 vim.opt.listchars:append('precedes:«')
+-- Conceal syntax (e.g. Markdown), but not completely (highlight code block marks)
+vim.opt.conceallevel=1
 -- Display line numbers
 vim.opt.number = true
 -- Highlight the line number for the current line
