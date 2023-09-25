@@ -9,6 +9,8 @@ local function scheme_for_appearance(appearance)
 end
 
 return {
+  -- use full binary path as macOS doesn't source ~/.profile on login
+  default_prog = { '{{ lookPath "tmux" }}', 'new', '-A' },
   {{- if eq .chezmoi.hostname "black" }}
   font_size = 14,
   {{- else }}
