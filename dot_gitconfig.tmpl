@@ -19,6 +19,12 @@
 	ff = only
 [push]
         autoSetupRemote = true
+[mergetool "nvim"]
+	cmd = nvim -c "Gvdiffsplit!" "$MERGED"
+	prompt = false
+	keepBackup = false
+[merge]
+	tool = nvim
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
