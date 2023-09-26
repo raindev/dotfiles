@@ -150,6 +150,7 @@ require("lazy").setup({
       { noremap = false, expr = true})
     end
   },
+  'christoomey/vim-tmux-navigator',
   'ThePrimeagen/harpoon',
   'mbbill/undotree',
   'tpope/vim-fugitive',
