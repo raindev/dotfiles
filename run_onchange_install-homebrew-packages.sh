@@ -19,4 +19,5 @@ brew install \
 	npm \
 	staticcheck \
 	topgrade \
+	tpm \
 	watchexec
