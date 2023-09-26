@@ -14,6 +14,7 @@ brew install \
 	fd \
 	gh \
 	go \
+	hugo \
 	litecli \
 	neovim \
 	npm \
