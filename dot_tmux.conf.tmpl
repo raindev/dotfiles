@@ -12,6 +12,8 @@ set-window-option -g pane-base-index 1
 # Open splits in the same directory
 bind - split-window -v -c '#{pane_current_path}'
 bind \\ split-window -h -c '#{pane_current_path}'
+# Ctrl-L is overwritten by vim-tmux-navigator
+bind C-l send-keys 'C-l'
 # Enable Neovim focus events
 set-option -g focus-events on
 set-option -g mouse on
