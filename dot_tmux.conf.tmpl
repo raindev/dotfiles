@@ -10,8 +10,8 @@ set-option -g base-index 1
 set-window-option -g pane-base-index 1
 
 # Open splits in the same directory
-bind '"' split-window -v -c '#{pane_current_path}'
-bind % split-window -h -c '#{pane_current_path}'
+bind - split-window -v -c '#{pane_current_path}'
+bind | split-window -h -c '#{pane_current_path}'
 # Enable Neovim focus events
 set-option -g focus-events on
 set-option -g mouse on

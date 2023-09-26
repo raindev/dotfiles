@@ -21,6 +21,9 @@ vim.keymap.set('n', '<leader>fo', telescope.oldfiles, { desc = '[F]ind [O]ld fil
 vim.keymap.set('n', '<leader>fh', telescope.help_tags, { desc = '[F]ind [H]elp' })
 vim.keymap.set('', '<C-p>', telescope.git_files)
 
+vim.keymap.set('n', '<leader>-', vim.cmd.split, { desc = 'Split window horizontally' })
+vim.keymap.set('n', '<leader>|', vim.cmd.vsplit, { desc = 'Split window vertically' })
+
 local harpoon_mark = require('harpoon.mark')
 local harpoon_ui = require('harpoon.ui')
 vim.keymap.set('n', '<leader>A', harpoon_mark.add_file)
