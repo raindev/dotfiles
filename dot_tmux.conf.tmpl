@@ -4,7 +4,6 @@ set-option -g escape-time 0
 set-option -g prefix C-Space
 bind-key -T prefix \; command-prompt
 set-option -g history-limit 100000
-set-window-option -g mode-keys vi
 # Number windows and panes starting from 1
 set-option -g base-index 1
 set-window-option -g pane-base-index 1
@@ -22,6 +21,12 @@ set-option -g mouse on
 set-option -sa terminal-overrides ',xterm-256color:RGB'
 set-option -g default-terminal 'screen-256color'
 
+set-window-option -g mode-keys vi
+bind-key -T copy-mode-vi v send-keys -X begin-selection
+bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
+bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+bind-key -T copy-mode-vi Y send-keys -X copy-end-of-line-and-cancel
+bind-key -T copy-mode-vi C-y send-keys -X copy-line-and-cancel
 {{ if eq .chezmoi.os "linux" }}
 bind-key -T prefix * run 'xclip -o -sel primary | tmux load-buffer - ; tmux paste-buffer'
 bind-key -T prefix + run 'xclip -o -sel clipboard | tmux load-buffer - ; tmux paste-buffer'
