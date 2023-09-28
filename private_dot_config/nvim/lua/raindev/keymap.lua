@@ -1,4 +1,3 @@
-vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
 -- Toggle search highlighting
 vim.keymap.set('', '<leader>th', function()
   vim.opt.hlsearch = not vim.opt.hlsearch:get()
@@ -24,8 +23,10 @@ vim.keymap.set('', '<C-p>', telescope.git_files)
 vim.keymap.set('n', '<leader>-', vim.cmd.split, { desc = 'Split window horizontally' })
 vim.keymap.set('n', '<leader>\\', vim.cmd.vsplit, { desc = 'Split window vertically' })
 
-vim.keymap.set({'n', 'v'}, '<leader>y', [["+y]], { desc = '[Y]ank into the clipboard' })
-vim.keymap.set('n', '<leader>Y', [["+Y]], { desc = '[Y]ank line(s) into the clipboard' })
+vim.keymap.set({'n', 'v'}, '<leader>y', [["+y]], { desc = '[Y]ank into clipboard' })
+vim.keymap.set('n', '<leader>Y', [["+Y]], { desc = '[Y]ank line(s) into clipboard' })
+vim.keymap.set({'n', 'v'}, '<leader>p', [["+p]], { desc = '[P]aste from clipboard' })
+vim.keymap.set('n', '<leader>P', [["+P]], { desc = '[P]aste from clipboard before cursor' })
 
 local harpoon_mark = require('harpoon.mark')
 local harpoon_ui = require('harpoon.ui')
