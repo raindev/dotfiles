@@ -24,6 +24,9 @@ vim.keymap.set('', '<C-p>', telescope.git_files)
 vim.keymap.set('n', '<leader>-', vim.cmd.split, { desc = 'Split window horizontally' })
 vim.keymap.set('n', '<leader>\\', vim.cmd.vsplit, { desc = 'Split window vertically' })
 
+vim.keymap.set({'n', 'v'}, '<leader>y', [["+y]], { desc = '[Y]ank into the clipboard' })
+vim.keymap.set('n', '<leader>Y', [["+Y]], { desc = '[Y]ank line(s) into the clipboard' })
+
 local harpoon_mark = require('harpoon.mark')
 local harpoon_ui = require('harpoon.ui')
 vim.keymap.set('n', '<leader>A', harpoon_mark.add_file)
