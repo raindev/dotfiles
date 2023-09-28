@@ -24,7 +24,7 @@ vim.keymap.set('n', '<leader>-', vim.cmd.split, { desc = 'Split window horizonta
 vim.keymap.set('n', '<leader>\\', vim.cmd.vsplit, { desc = 'Split window vertically' })
 
 vim.keymap.set({'n', 'v'}, '<leader>y', [["+y]], { desc = '[Y]ank into clipboard' })
-vim.keymap.set('n', '<leader>Y', [["+Y]], { desc = '[Y]ank line(s) into clipboard' })
+vim.keymap.set('n', '<leader>Y', [["+y$]], { desc = '[Y]ank tail of line into clipboard' })
 vim.keymap.set({'n', 'v'}, '<leader>p', [["+p]], { desc = '[P]aste from clipboard' })
 vim.keymap.set('n', '<leader>P', [["+P]], { desc = '[P]aste from clipboard before cursor' })
 
