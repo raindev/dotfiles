@@ -8,7 +8,8 @@ alias grep='grep --color=always'
 alias gtypist='gtypist --personal-best --max-error=1'
 alias ls='exa --classify'
 alias t='tmux attach || tmux new'
-alias topgrade='topgrade --yes'
+# Mas keeps "upgrading" some apps: https://github.com/mas-cli/mas/issues/384
+alias topgrade='topgrade --yes --disable vim --disable mas'
 if ! command -v fd > /dev/null && command -v fdfind > /dev/null ; then
     alias fd='fdfind'
 fi
