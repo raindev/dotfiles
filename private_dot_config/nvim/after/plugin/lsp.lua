@@ -6,6 +6,7 @@ lsp.ensure_installed({
   'bashls',
   'clangd',
   'jdtls',
+  'gopls',
   'lua_ls',
   'rust_analyzer',
   'zls',
