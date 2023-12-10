@@ -37,4 +37,6 @@ bind-key -T prefix + run 'pbpaste | tmux load-buffer - ; tmux paste-buffer'
 
 set-option -g @plugin 'tmux-plugins/tpm'
 set-option -g @plugin 'christoomey/vim-tmux-navigator'
-run '$HOMEBREW_PREFIX/opt/tpm/share/tpm/tpm'
+# Homebrew is only added to PATH in .profile which is loaded by shell later
+set-environment -g PATH "/opt/homebrew/bin:/bin:/usr/bin"
+run '$(brew --prefix)/opt/tpm/share/tpm/tpm'
