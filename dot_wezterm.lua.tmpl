@@ -28,5 +28,8 @@ return {
   check_for_updates = false,
   -- the system log from systemd-core-dump includes \u{1f855} prefix
   warn_about_missing_glyphs = false,
-  audible_bell = "Disabled"
+  audible_bell = "Disabled",
+  -- make both Option keys behave as Meta on macOS
+  send_composed_key_when_left_alt_is_pressed = false,
+  send_composed_key_when_right_alt_is_pressed = false
 }
