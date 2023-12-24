@@ -124,7 +124,7 @@ require("lazy").setup({
     dependencies = { 'nvim-lua/plenary.nvim' }
   },
   {
-    'epwalsh/obsidian.nvim', version = 'v1.8.*',
+    'epwalsh/obsidian.nvim', version = 'v2.x',
     dependencies = {
       {
         'preservim/vim-markdown',
