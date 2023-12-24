@@ -38,5 +38,9 @@ bind-key -T prefix + run 'pbpaste | tmux load-buffer - ; tmux paste-buffer'
 set-option -g @plugin 'tmux-plugins/tpm'
 set-option -g @plugin 'christoomey/vim-tmux-navigator'
 # Homebrew is only added to PATH in .profile which is loaded by shell later
-set-environment -g PATH "/opt/homebrew/bin:/bin:/usr/bin"
+{{ if eq .chezmoi.os "linux" }}
+set-environment -g PATH "/home/linuxbrew/.linuxbrew/bin:$PATH"
+{{ else if eq .chezmoi.os "darwin" }}
+set-environment -g PATH "/opt/homebrew/bin:$PATH"
+{{ end }}
 run '$(brew --prefix)/opt/tpm/share/tpm/tpm'
