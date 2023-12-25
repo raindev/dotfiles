@@ -4,6 +4,7 @@
 set -e
 
 brew bundle --no-lock --file=/dev/stdin <<EOF
+
 brew 'bash'
 brew 'coreutils'
 brew 'git'
@@ -21,6 +22,7 @@ brew 'pinentry-mac'
 brew 'ripgrep'
 brew 'shellcheck'
 brew 'tmux'
+brew 'tpm'
 brew 'tree'
 
 cask 'firefox'
@@ -38,7 +40,8 @@ cask 'telegram'
 cask 'vlc'
 cask 'wezterm'
 
-mas "Xcode", id: 497799835
 mas "Omnivore", id: 1564031042
+mas "Xcode", id: 497799835
+
 EOF
 {{ end }}
