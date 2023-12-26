@@ -13,12 +13,9 @@ fi
 url="https://github.com/watchexec/watchexec/releases/download/v${pkgver}/watchexec-${pkgver}-${arch_prefix}-unknown-linux-gnu.tar.xz"
 
 package() {
-  # Binary
-  sudo mkdir -p "${pkgdir}/usr/bin"
-  sudo mv "./watchexec" "${pkgdir}/usr/bin"
-  # Man
-  sudo mkdir -p "${pkgdir}/usr/share/man/man1"
-  sudo install "./watchexec.1" "${pkgdir}/usr/share/man/man1"
+  sudo install -Dm755 "./watchexec" -t "${pkgdir}/usr/bin"
+  sudo install -Dm644 "./watchexec.1" -t "${pkgdir}/usr/share/man/man1"
+  sudo install -Dm644 "./completions/bash" "${pkgdir}/usr/share/bash-completion/completions/${name}"
 }
 
 # vim:set ft=sh ts=2 sw=2 et:
