@@ -5,15 +5,32 @@ set -e
 
 sudo apt update --yes
 sudo apt install --yes \
+	bash-completion \
 	build-essential \
 	curl \
+	exa \
+	fd-find \
 	findutils \
 	g++ \
 	git \
 	git-lfs \
+	go-staticcheck \
+	golang \
+	hugo \
+	litecli \
+	npm \
 	rename \
 	ripgrep \
 	shellcheck \
 	sqlite3 \
 	tmux
+
+sudo snap install --classic nvim
+sudo snap install exercism
+
+pacstall -I \
+	github-cli-deb \
+	topgrade-bin \
+	"$(chezmoi source-path)"/watchexec.pacscript
+
 {{ end }}

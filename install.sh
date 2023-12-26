@@ -1,5 +1,5 @@
 #!/bin/sh
-set -eux
+set -eu
 
 if ! chezmoi="$(command -v chezmoi)"; then
 	bin_dir="${HOME}/.local/bin"

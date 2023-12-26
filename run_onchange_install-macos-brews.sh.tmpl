@@ -3,33 +3,50 @@
 # vi: set ft=bash
 set -e
 
+if ! command -v brew; then
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
 brew bundle --no-lock --file=/dev/stdin <<EOF
 
 brew 'bash'
+brew 'bash-completion'
 brew 'coreutils'
+brew 'exa'
+brew 'exercism'
+brew 'fd'
+brew 'gh'
 brew 'git'
 brew 'git-gui'
 brew 'git-lfs'
 brew 'gnu-sed'
 brew 'gnupg'
+brew 'go'
+brew 'hugo'
+brew 'litecli'
 brew 'mas'
+brew 'neovim'
 brew 'neovim-qt'
 brew 'node'
+brew 'npm'
 brew 'openjdk'
 brew 'pass'
 brew 'pass-otp'
 brew 'pinentry-mac'
 brew 'ripgrep'
 brew 'shellcheck'
+brew 'staticcheck'
 brew 'tmux'
+brew 'topgrade'
 brew 'tpm'
 brew 'tree'
+brew 'watchexec'
 
 cask 'firefox'
 cask 'font-source-code-pro'
 cask 'logseq'
 cask 'meld'
-cask 'mouse-fix'
 cask 'mullvadvpn'
 cask 'obs'
 cask 'obsidian'
