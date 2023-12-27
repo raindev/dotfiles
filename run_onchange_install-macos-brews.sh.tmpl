@@ -1,9 +1,9 @@
 {{ if eq .chezmoi.os "darwin" -}}
 #!/usr/bin/env bash
 # vi: set ft=bash
-set -e
+set -euo pipefail
 
-if ! command -v brew; then
+if ! command -v brew > /dev/null; then
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
@@ -60,4 +60,12 @@ mas "Omnivore", id: 1564031042
 mas "Xcode", id: 497799835
 
 EOF
+
+# at this point Homebrew bash is expected to be the first in PATH
+homebrew_bash={{ lookPath "bash" }}
+if ! grep --quiet $homebrew_bash /etc/shells; then
+	echo "$homebrew_bash" | sudo tee -a /etc/shells
+	chsh -s "$homebrew_bash"
+fi
+
 {{ end }}
