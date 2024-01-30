@@ -29,6 +29,8 @@ if [ -d "/opt/homebrew/" ]; then
     PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:$PATH"
 fi
 
+command -v jenv &> /dev/null && eval "$(jenv init -)"
+
 export EDITOR=nvim
 {{ if .gpg.enabled -}}
 SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
