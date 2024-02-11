@@ -202,6 +202,7 @@ require('lazy').setup({
    'mbbill/undotree',
    'tpope/vim-fugitive',
    'ypcrts/securemodelines',
+   'tpope/vim-rsi',
    { 'raindev/daybreak.nvim', config = true }
 }, {
    dev = {
