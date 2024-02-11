@@ -24,7 +24,12 @@ require('lazy').setup({
    -- lazy.nvim resets the runtime path controlled with
    -- config.performance.rtp.reset
    'equalsraf/neovim-gui-shim',
-   'navarasu/onedark.nvim',
+   {
+      'navarasu/onedark.nvim',
+      config = function()
+         require('onedark').load()
+      end
+   },
    'tpope/vim-surround',
    'tpope/vim-sleuth',
    'andymass/vim-matchup',
@@ -255,7 +260,6 @@ require('lazy').setup({
 
 -- enable true color support
 vim.opt.termguicolors = true
-require('onedark').load()
 
 -- render tabs as 8 spaces
 vim.opt.tabstop = 8
