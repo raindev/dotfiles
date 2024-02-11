@@ -98,6 +98,8 @@ require('lazy').setup({
             'kotlin',
             'lua',
             'make',
+            'markdown',
+            'markdown_inline',
             'org',
             'rust',
             'scala',
