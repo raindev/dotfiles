@@ -245,6 +245,10 @@ require('lazy').setup({
          end, { nargs = 0 })
       end
    },
+   {
+      "folke/which-key.nvim",
+      opts = {}
+   },
    { 'raindev/daybreak.nvim', config = true }
 }, {
    dev = {
