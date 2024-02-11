@@ -1,23 +1,425 @@
--- Configuration order
--- 1. set the leader mapping
--- 2. set up lazy
--- 3. install plugins
--- 4. configure options
--- 5. set up basic keymap
--- 6. configure filetype detection
+-------------
+-- plugins --
+-------------
 
--- lazy.nvim requires the leader to be mapped before it is loaded
+-- bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+if not vim.loop.fs_stat(lazypath) then
+   vim.fn.system({
+      'git',
+      'clone',
+      '--filter=blob:none',
+      'https://github.com/folke/lazy.nvim.git',
+      '--branch=stable',
+      lazypath,
+   })
+end
+-- add lazy.nvim to runtimepath first
+vim.opt.rtp:prepend(lazypath)
+
+-- map leader before any plugins define their mappings
 vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
 
-require('raindev.plugins')
-require('raindev.opts')
-require('raindev.keymap')
-require('raindev.filetype')
+require('lazy').setup({
+   -- lazy.nvim resets the runtime path controlled with
+   -- config.performance.rtp.reset
+   'equalsraf/neovim-gui-shim',
+   'navarasu/onedark.nvim',
+   'tpope/vim-surround',
+   'tpope/vim-sleuth',
+   'andymass/vim-matchup',
+   {
+      'lewis6991/gitsigns.nvim',
+      opts = {
+         on_attach = function(bufnr)
+            local gs = package.loaded.gitsigns
+
+            local function map(mode, l, r, opts)
+               opts = opts or {}
+               opts.buffer = bufnr
+               vim.keymap.set(mode, l, r, opts)
+            end
+
+            -- navigation
+            map('n', ']c', function()
+               if vim.wo.diff then return ']c' end
+               vim.schedule(function() gs.next_hunk() end)
+               return '<Ignore>'
+            end, { expr = true })
+
+            map('n', '[c', function()
+               if vim.wo.diff then return '[c' end
+               vim.schedule(function() gs.prev_hunk() end)
+               return '<Ignore>'
+            end, { expr = true })
+
+            -- actions
+            map({ 'n', 'v' }, '<leader>hs', gs.stage_hunk)
+            map({ 'n', 'v' }, '<leader>hr', gs.reset_hunk)
+            map('n', '<leader>hS', gs.stage_buffer)
+            map('n', '<leader>hu', gs.undo_stage_hunk)
+            map('n', '<leader>hR', gs.reset_buffer)
+            map('n', '<leader>hp', gs.preview_hunk)
+            map('n', '<leader>hb', function() gs.blame_line { full = true } end)
+            map('n', '<leader>tb', gs.toggle_current_line_blame)
+            map('n', '<leader>hd', gs.diffthis)
+            map('n', '<leader>hD', function() gs.diffthis('~') end)
+            map('n', '<leader>td', gs.toggle_deleted)
+
+            -- text object
+            map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+         end
+      }
+   },
+   'rust-lang/rust.vim',
+   'udalov/kotlin-vim',
+   'keith/swift.vim',
+   'ziglang/zig.vim',
+   {
+      'nvim-treesitter/nvim-treesitter',
+      main = 'nvim-treesitter.configs',
+      build = ':TSUpdate',
+      opts = {
+         ensure_installed = {
+            'bash',
+            'c',
+            'cpp',
+            'css',
+            'go',
+            'html',
+            'java',
+            'javascript',
+            'json',
+            'kotlin',
+            'lua',
+            'make',
+            'org',
+            'rust',
+            'scala',
+            'sql',
+            'swift',
+            'vimdoc',
+            'yaml',
+            'zig',
+         },
+         -- If TS highlights are not enabled at all, or disabled via `disable` prop, highlighting will fallback to default Vim syntax highlighting.
+         highlight = {
+            enable = true,
+            disable = { 'org' },                           -- remove this to use TS highlighter for some of the highlights (Experimental)
+            additional_vim_regex_highlighting = { 'org' }, -- required since TS highlighter doesn't support all syntax features (conceal)
+         },
+      }
+   },
+   {
+      'nvim-orgmode/orgmode',
+      config = function()
+         local orgmode = require('orgmode')
+         orgmode.setup_ts_grammar()
+         orgmode.setup({
+            org_agenda_files = { '~/notes/*.org' },
+            org_default_notes_file = '~/notes/inbox.org',
+         })
+      end
+   },
+   {
+      'VonHeikemen/lsp-zero.nvim',
+      branch = 'v2.x',
+      dependencies = {
+         -- LSP Support
+         { 'neovim/nvim-lspconfig' }, -- Required
+         {                            -- Optional
+            'williamboman/mason.nvim',
+            build = function()
+               pcall(vim.cmd, 'MasonUpdate')
+            end,
+         },
+         { 'williamboman/mason-lspconfig.nvim' }, -- Optional
+
+         -- Autocompletion
+         { 'hrsh7th/nvim-cmp' },     -- Required
+         { 'hrsh7th/cmp-nvim-lsp' }, -- Required
+         { 'L3MON4D3/LuaSnip' },     -- Required
+      },
+      config = function()
+         local lsp = require('lsp-zero').preset({})
+         lsp.on_attach(function(_, bufnr)
+            lsp.default_keymaps({ buffer = bufnr })
+         end)
+         lsp.ensure_installed({
+            'bashls',
+            'clangd',
+            'jdtls',
+            'gopls',
+            'lua_ls',
+            'rust_analyzer',
+            'zls',
+         })
+         require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+         lsp.setup()
+      end
+   },
+   {
+      'nvim-telescope/telescope.nvim',
+      branch = '0.1.x',
+      dependencies = { 'nvim-lua/plenary.nvim' }
+   },
+   {
+      'epwalsh/obsidian.nvim',
+      version = 'v2.x',
+      dependencies = {
+         {
+            'preservim/vim-markdown',
+            init = function()
+               -- no default mapping will be added by the plugin if mapped to <Plug>
+               vim.keymap.set({ 'n', 'v' }, '<Plug>', '<Plug>Markdown_EditUrlUnderCursor')
+            end
+         },
+         'hrsh7th/nvim-cmp'
+      },
+      opts = {
+         dir = '~/notes',
+         daily_notes = {
+            folder = 'journals'
+         },
+         note_id_func = function(title)
+            return title
+         end,
+         disable_frontmatter = true
+      },
+      init = function()
+         vim.keymap.set('n', 'gf', function()
+               if require('obsidian').util.cursor_on_markdown_link() then
+                  return '<cmd>ObsidianFollowLink<CR>'
+               else
+                  return 'gf'
+               end
+            end,
+            { noremap = false, expr = true })
+      end
+   },
+   'christoomey/vim-tmux-navigator',
+   'ThePrimeagen/harpoon',
+   'mbbill/undotree',
+   'tpope/vim-fugitive',
+   'ypcrts/securemodelines',
+   { 'raindev/daybreak.nvim', config = true }
+}, {
+   dev = {
+      path = '~/code',
+      patterns = { 'raindev' },
+      fallback = true,
+   },
+})
+
+-------------
+-- options --
+-------------
+
+-- enable true color support
+vim.opt.termguicolors = true
+require('onedark').load()
+
+-- render tabs as 8 spaces
+vim.opt.tabstop = 8
+-- insert 4 spaces for a tab
+vim.opt.softtabstop = 4
+-- insert 4 spaces for an indent
+vim.opt.shiftwidth = 4
+-- replace each 8 spaces by a tab
+vim.opt.expandtab = false
+
+-- use space as vertical split character
+vim.opt.fillchars:append('vert: ')
+-- show trailing characters, tabs and non-breakable spaces
+vim.opt.list = true
+vim.opt.listchars:append('tab:▸ ')
+vim.opt.listchars:append('trail:·')
+vim.opt.listchars:append('nbsp:⍽')
+-- show when line continues outside of screen
+vim.opt.listchars:append('extends:»')
+vim.opt.listchars:append('precedes:«')
+-- conceal syntax (e.g. Markdown), but not completely (highlight code block marks)
+vim.opt.conceallevel = 1
+-- display line numbers
+vim.opt.number = true
+-- highlight the line number for the current line
+vim.opt.cursorline = true
+vim.opt.cursorlineopt = 'number'
+-- always display the line info column to avoid jumping
+vim.opt.signcolumn = 'yes'
+-- open folds by default
+vim.opt.foldlevelstart = 99
+
+-- do not highlight search results by default
+vim.opt.hlsearch = false
+-- autocomplete to the longest commons string and than cycle through the
+-- alternatives
+vim.opt.wildmode = 'longest:full,full'
+
+-- keep backup if file is overwritten
+vim.opt.backup = true
+-- create backupdir if doens't exist
+local backup_dir = vim.env.HOME .. '/.cache/nvim/backup'
+if vim.fn.isdirectory(backup_dir) ~= 1 then
+   vim.fn.mkdir(backup_dir)
+end
+-- save all backups in one place rather than in .
+vim.opt.backupdir = backup_dir
+-- persist undo history
+vim.opt.undofile = true
+
+------------
+-- keymap --
+------------
+
+-- Empty string is an equivalent of :map, which applies to
+-- normal, visual, select and operator-pending mode.
+
+-- toggle highlights
+vim.keymap.set('', '<leader>th', '<cmd>set hlsearch!<CR>', { desc = '[T]oggle [S]earch highlighting' })
+vim.keymap.set('', '<leader>ts', '<cmd>set spell!<CR>', { desc = '[T]oggle [S]pellchecking' })
+
+-- save the pinky
+vim.keymap.set('', '<leader>;', ':', { desc = 'Normal mode without shift' })
+
+-- window splits
+vim.keymap.set('', '<leader>-', vim.cmd.split, { desc = 'Split window horizontally' })
+-- todo: consider a more ergonomic map
+vim.keymap.set('', '<leader>\\', vim.cmd.vsplit, { desc = 'Split window vertically' })
+
+-- system clipboard interactions
+vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]], { desc = '[Y]ank into clipboard' })
+vim.keymap.set('n', '<leader>Y', [["+y$]], { desc = '[Y]ank tail of line into clipboard' })
+vim.keymap.set({ 'n', 'v' }, '<leader>p', [["+p]], { desc = '[P]aste from clipboard' })
+vim.keymap.set('n', '<leader>P', [["+P]], { desc = '[P]aste from clipboard before cursor' })
+
+-- quickfix list navigation
+vim.keymap.set('n', ']q', ':cnext<CR>', { desc = 'Next quickfix item' })
+vim.keymap.set('n', '[q', ':cprev<CR>', { desc = 'Previous quickfix item' })
+
+local telescope = require('telescope.builtin')
+vim.keymap.set('n', '<leader>F', vim.cmd.Telescope, { desc = '[F]ind stuff' })
+vim.keymap.set('n', '<leader>f<space>', telescope.resume, { desc = 'Resume [F]ind' })
+vim.keymap.set('n', '<leader>ff', telescope.find_files, { desc = '[F]ind [F]iles' })
+vim.keymap.set('n', '<leader>fg', telescope.live_grep, { desc = '[F]ind with [G]rep' })
+vim.keymap.set('n', '<leader>fs', telescope.grep_string, { desc = '[F]ind [S]tring' })
+vim.keymap.set('n', '<leader>fk', telescope.keymaps, { desc = '[F]ind [K]ey mapping' })
+vim.keymap.set('n', '<leader>fo', telescope.oldfiles, { desc = '[F]ind [O]ld files' })
+vim.keymap.set('n', '<leader>fh', telescope.help_tags, { desc = '[F]ind [H]elp' })
+
+local harpoon_mark = require('harpoon.mark')
+local harpoon_ui = require('harpoon.ui')
+vim.keymap.set('', '<leader>A', harpoon_mark.add_file, { desc = '[A]dd to Harpoon file list' })
+vim.keymap.set('', '<leader>H', harpoon_ui.toggle_quick_menu, { desc = 'Toggle Harpoon file selector' })
+for i = 1, 5 do
+   vim.keymap.set('', '<leader>' .. i, function() harpoon_ui.nav_file(i) end, { desc = 'Switch to Harpoon file ' .. i })
+end
+
+vim.keymap.set('', '<leader>U', vim.cmd.UndotreeToggle, { desc = 'Toggle [U] undo tree' })
+
+------------------
+-- autocommands --
+------------------
 
 local augroup = vim.api.nvim_create_augroup('init', {})
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
-  group = augroup,
-  pattern = '*',
-  command = [[%s/\s\+$//e]],
+   group = augroup,
+   pattern = '*',
+   command = [[%s/\s\+$//e]],
 })
+
+---------------
+-- filetypes --
+---------------
+
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+   group = augroup,
+   pattern = { 'gitcommit' },
+   callback = function()
+      vim.opt_local.spell = true
+   end
+})
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+   group = augroup,
+   pattern = { 'go' },
+   callback = function()
+      vim.opt_local.expandtab = false
+   end
+})
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+   group = augroup,
+   pattern = { 'html' },
+   callback = function()
+      vim.opt_local.expandtab = true
+      vim.opt_local.softtabstop = 2
+      vim.opt_local.shiftwidth = 2
+   end
+})
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+   group = augroup,
+   pattern = { 'java' },
+   callback = function()
+      vim.opt_local.expandtab = true
+      vim.opt_local.softtabstop = 4
+      vim.opt_local.shiftwidth = 4
+   end
+})
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+   group = augroup,
+   pattern = { 'kotlin' },
+   callback = function()
+      vim.opt_local.expandtab = true
+      vim.opt_local.softtabstop = 2
+      vim.opt_local.shiftwidth = 2
+   end
+})
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+   group = augroup,
+   pattern = { 'lua' },
+   callback = function()
+      vim.opt_local.expandtab = true
+      vim.opt_local.softtabstop = 3
+      vim.opt_local.shiftwidth = 3
+   end
+})
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+   group = augroup,
+   pattern = { 'markdown' },
+   callback = function()
+      vim.opt_local.linebreak = true
+   end
+})
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+   group = augroup,
+   pattern = { 'org' },
+   callback = function()
+      vim.opt_local.linebreak = true
+   end
+})
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+   group = augroup,
+   pattern = { 'sh' },
+   callback = function()
+      vim.opt_local.expandtab = true
+      vim.opt_local.softtabstop = 4
+      vim.opt_local.shiftwidth = 4
+   end
+})
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+   group = augroup,
+   pattern = { 'swift' },
+   callback = function()
+      vim.opt_local.expandtab = true
+      vim.opt_local.softtabstop = 2
+      vim.opt_local.shiftwidth = 2
+   end
+})
+
+------------------
+-- local config --
+------------------
+
+local local_init = vim.env.HOME .. '/.config/nvim/init.local.lua'
+if vim.fn.filereadable(local_init) ~= 0 then
+   dofile(local_init)
+end
