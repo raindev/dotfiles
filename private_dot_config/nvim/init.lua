@@ -203,6 +203,43 @@ require('lazy').setup({
    'tpope/vim-fugitive',
    'ypcrts/securemodelines',
    'tpope/vim-rsi',
+   {
+      'nvimdev/dashboard-nvim',
+      event = 'VimEnter',
+      opts = {
+         theme = 'doom',
+         config = {
+            week_header = {
+               enable = true
+            },
+            center = {
+               { action = "Telescope find_files", desc = " Find file", icon = " ", key = "f" },
+               { action = "ene | startinsert", desc = " New file", icon = " ", key = "n" },
+               { action = "Telescope oldfiles", desc = " Recent files", icon = " ", key = "r" },
+               { action = "Telescope live_grep", desc = " Find text", icon = " ", key = "g" },
+               { action = 'edit ~/.config/nvim/init.lua', desc = " Config", icon = " ", key = "c" },
+               { action = 'lua require("persistence").load()', desc = " Load Session", icon = " ", key = "s" },
+               { action = 'lua require("persistence").load({last = true})', desc = " Last Session", icon = "▶︎ ", key = "l" },
+               { action = "qa", desc = " Quit", icon = " ", key = "q" },
+            },
+         }
+      },
+      dependencies = { { 'nvim-tree/nvim-web-devicons' } }
+   },
+   {
+      "folke/persistence.nvim",
+      -- only start session saving when an actual file was opened
+      event = "BufReadPre",
+      config = function()
+         require("persistence").setup({})
+         vim.api.nvim_create_user_command('Load', function()
+            require("persistence").load()
+         end, { nargs = 0 })
+         vim.api.nvim_create_user_command('Last', function()
+            require("persistence").load({ last = true })
+         end, { nargs = 0 })
+      end
+   },
    { 'raindev/daybreak.nvim', config = true }
 }, {
    dev = {
