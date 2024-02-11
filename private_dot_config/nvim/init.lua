@@ -82,6 +82,9 @@ require('lazy').setup({
    'ziglang/zig.vim',
    {
       'nvim-treesitter/nvim-treesitter',
+      dependencies = {
+         'nvim-treesitter/nvim-treesitter-textobjects',
+      },
       main = 'nvim-treesitter.configs',
       build = ':TSUpdate',
       opts = {
@@ -115,6 +118,28 @@ require('lazy').setup({
             disable = { 'org' },                           -- remove this to use TS highlighter for some of the highlights (Experimental)
             additional_vim_regex_highlighting = { 'org' }, -- required since TS highlighter doesn't support all syntax features (conceal)
          },
+         incremental_selection = {
+            enable = true,
+            keymaps = {
+               -- maps in normal mode to init the node/scope selection with space
+               init_selection = ',',
+               -- increment to the upper named parent
+               node_incremental = ',',
+               -- decrement to the previous node
+               node_decremental = '<bs>',
+               -- increment to the upper scope (as defined in locals.scm)
+               scope_incremental = '<tab>',
+            },
+         },
+         autopairs = { enable = true },
+         indent = { enable = true }
+      }
+   },
+   {
+      'windwp/nvim-autopairs',
+      event = 'InsertEnter',
+      opts = {
+         check_ts = true,
       }
    },
    {
