@@ -291,6 +291,12 @@ require('lazy').setup({
       'folke/which-key.nvim',
       opts = {}
    },
+   {
+      'numToStr/Comment.nvim',
+      -- todo: map Ctrl-/ (<C-_>) for line comments
+      opts = {},
+      lazy = false,
+   },
    { 'raindev/daybreak.nvim', config = true }
 }, {
    dev = {
