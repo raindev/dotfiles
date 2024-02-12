@@ -155,39 +155,91 @@ require('lazy').setup({
    },
    {
       'VonHeikemen/lsp-zero.nvim',
-      branch = 'v2.x',
+      branch = 'v3.x',
       dependencies = {
          -- LSP Support
-         { 'neovim/nvim-lspconfig' }, -- Required
-         {                            -- Optional
-            'williamboman/mason.nvim',
-            build = function()
-               pcall(vim.cmd, 'MasonUpdate')
-            end,
-         },
-         { 'williamboman/mason-lspconfig.nvim' }, -- Optional
+         { 'neovim/nvim-lspconfig' },
+         { 'williamboman/mason.nvim', },
+         { 'williamboman/mason-lspconfig.nvim' },
 
-         -- Autocompletion
-         { 'hrsh7th/nvim-cmp' },     -- Required
-         { 'hrsh7th/cmp-nvim-lsp' }, -- Required
-         { 'L3MON4D3/LuaSnip' },     -- Required
+         -- autocompletion
+         { 'hrsh7th/nvim-cmp' },
+         { 'hrsh7th/cmp-nvim-lsp' },
+         { 'L3MON4D3/LuaSnip' },
       },
       config = function()
-         local lsp = require('lsp-zero').preset({})
-         lsp.on_attach(function(_, bufnr)
-            lsp.default_keymaps({ buffer = bufnr })
+         local lsp_zero = require('lsp-zero')
+         lsp_zero.on_attach(function(_, bufnr)
+            lsp_zero.default_keymaps({
+               buffer = bufnr,
+               -- lsp-zero thinks which-key already taken all the mappings
+               preserve_mappings = false
+            })
+
+            -- buffer local mappings.
+            local opts = { buffer = bufnr }
+
+            vim.keymap.set('n', 'gd', "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+            vim.keymap.set('n', '<leader>v', "<cmd>vsplit | lua vim.lsp.buf.definition()<CR>", opts)
+            vim.keymap.set('n', '<leader>s', "<cmd>belowright split | lua vim.lsp.buf.definition()<CR>", opts)
+
+            vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+            vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+            vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+            vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+            vim.keymap.set('n', '<leader>cl', vim.lsp.codelens.run, opts)
+            vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+            vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
          end)
-         lsp.ensure_installed({
-            'bashls',
-            'clangd',
-            'jdtls',
-            'gopls',
-            'lua_ls',
-            'rust_analyzer',
-            'zls',
+
+         require('mason').setup({})
+         require('mason-lspconfig').setup({
+            ensure_installed = {
+               'bashls',
+               'clangd',
+               'jdtls',
+               'gopls',
+               'lua_ls',
+               'rust_analyzer',
+               'zls',
+            },
+            handlers = {
+               lsp_zero.default_setup,
+               lua_ls = function()
+                  local lua_opts = lsp_zero.nvim_lua_ls()
+                  require('lspconfig').lua_ls.setup(lua_opts)
+               end,
+            }
          })
-         require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
-         lsp.setup()
+
+         local cmp = require('cmp')
+         local luasnip = require('luasnip')
+         cmp.setup({
+            mapping = cmp.mapping.preset.insert({
+               ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+               ['<CR>'] = cmp.mapping.confirm({ select = false }),
+               -- Allow to jump over snippet placeholders with Tab, but also to use
+               -- Tab normally when nor the completion nor a snippet is active.
+               ['<Tab>'] = cmp.mapping(function(fallback)
+                  if cmp.visible() then
+                     cmp.select_next_item()
+                  elseif luasnip.expand_or_locally_jumpable() then
+                     luasnip.expand_or_jump()
+                  else
+                     fallback()
+                  end
+               end, { 'i', 's' }),
+               ['<S-Tab>'] = cmp.mapping(function(fallback)
+                  if cmp.visible() then
+                     cmp.select_prev_item()
+                  elseif luasnip.jumpable(-1) then
+                     luasnip.jump(-1)
+                  else
+                     fallback()
+                  end
+               end, { 'i', 's' }),
+            })
+         })
       end
    },
    {
