@@ -191,6 +191,11 @@ require('lazy').setup({
             vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
             vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
          end)
+         lsp_zero.format_on_save({
+            servers = {
+               ['gopls'] = { 'go' },
+            }
+         })
 
          require('mason').setup({})
          require('mason-lspconfig').setup({
