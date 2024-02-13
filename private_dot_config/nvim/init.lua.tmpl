@@ -201,7 +201,9 @@ require('lazy').setup({
          require('mason-lspconfig').setup({
             ensure_installed = {
                'bashls',
+               -- clangd does not support arm64 {{- if ne .chezmoi.hostname "pi4" }}
                'clangd',
+               -- {{ end  }}
                'jdtls',
                'gopls',
                'lua_ls',
@@ -576,3 +578,5 @@ local local_init = vim.env.HOME .. '/.config/nvim/init.local.lua'
 if vim.fn.filereadable(local_init) ~= 0 then
    dofile(local_init)
 end
+
+-- vim: ft=lua
