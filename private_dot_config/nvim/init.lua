@@ -467,6 +467,8 @@ for i = 1, 5 do
 end
 
 vim.keymap.set('', '<leader>U', vim.cmd.UndotreeToggle, { desc = 'Toggle [U] undo tree' })
+vim.keymap.set('', '<leader>w', '<cmd>:write<cr>', { desc = '[W]rite current buffer' })
+vim.keymap.set('', '<leader>q', '<cmd>:confirm quitall<cr>', { desc = '[Q]uit with confirmation' })
 
 ------------------
 -- autocommands --
