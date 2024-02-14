@@ -108,6 +108,7 @@ require('lazy').setup({
             'scala',
             'sql',
             'swift',
+            'toml',
             'vimdoc',
             'yaml',
             'zig',
@@ -203,7 +204,7 @@ require('lazy').setup({
                'bashls',
                -- clangd does not support arm64 {{- if ne .chezmoi.hostname "pi4" }}
                'clangd',
-               -- {{ end  }}
+               -- {{- end }}
                'jdtls',
                'gopls',
                'lua_ls',

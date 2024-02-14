@@ -1,6 +1,0 @@
-[misc]
-no_self_update = true
-
-[brew]
-greedy_cask = true
-autoremove = true
