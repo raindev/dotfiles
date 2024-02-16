@@ -395,7 +395,7 @@ vim.opt.listchars:append('precedes:«')
 -- indent wrapped lines
 vim.opt.breakindent = true
 -- show marker for wrapped lines
-vim.opt.showbreak = '↳'
+vim.opt.showbreak = '↳ '
 -- before indented text
 vim.opt.breakindentopt = 'sbr'
 -- in the number column
@@ -551,6 +551,7 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
    pattern = { 'markdown' },
    callback = function()
       vim.opt_local.linebreak = true
+      vim.opt_local.number = false
    end
 })
 vim.api.nvim_create_autocmd({ 'FileType' }, {
