@@ -392,6 +392,14 @@ vim.opt.listchars:append('nbsp:⍽')
 -- show when line continues outside of screen
 vim.opt.listchars:append('extends:»')
 vim.opt.listchars:append('precedes:«')
+-- indent wrapped lines
+vim.opt.breakindent = true
+-- show marker for wrapped lines
+vim.opt.showbreak = '↳'
+-- before indented text
+vim.opt.breakindentopt = 'sbr'
+-- in the number column
+vim.opt.cpoptions:append('n')
 -- conceal syntax (e.g. Markdown), but not completely (highlight code block marks)
 vim.opt.conceallevel = 1
 -- display line numbers
