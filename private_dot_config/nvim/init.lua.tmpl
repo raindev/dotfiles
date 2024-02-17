@@ -272,7 +272,9 @@ require('lazy').setup({
       opts = {
          dir = '~/notes',
          daily_notes = {
-            folder = 'journals'
+            folder = 'journals',
+            -- February 1, Thursday
+            alias_format = "%B %-d, %A",
          },
          note_id_func = function(title)
             return title
@@ -306,14 +308,21 @@ require('lazy').setup({
                week_header = {
                   enable = true
                },
+               -- stylua: ignore
                center = {
+                  { action = 'ObsidianToday', desc = ' Today\'s journal', icon = '󰢧 ', key = 't' },
                   { action = 'Telescope find_files', desc = ' Find file', icon = ' ', key = 'f' },
                   { action = 'ene | startinsert', desc = ' New file', icon = ' ', key = 'n' },
                   { action = 'Telescope oldfiles', desc = ' Recent files', icon = ' ', key = 'r' },
                   { action = 'Telescope live_grep', desc = ' Find text', icon = ' ', key = 'g' },
                   { action = 'edit ~/.config/nvim/init.lua', desc = ' Config', icon = ' ', key = 'c' },
                   { action = 'lua require("persistence").load()', desc = ' Load Session', icon = ' ', key = 's' },
-                  { action = 'lua require("persistence").load({last = true})', desc = ' Last Session', icon = '▶︎ ', key = 'l' },
+                  {
+                     action = 'lua require("persistence").load({last = true})',
+                     desc = ' Last Session',
+                     icon = '󰼛 ',
+                     key = 'l'
+                  },
                   { action = 'qa', desc = ' Quit', icon = ' ', key = 'q' },
                },
             }
@@ -477,6 +486,10 @@ vim.keymap.set('', '<leader>H', harpoon_ui.toggle_quick_menu, { desc = 'Toggle H
 for i = 1, 5 do
    vim.keymap.set('', '<leader>' .. i, function() harpoon_ui.nav_file(i) end, { desc = 'Switch to Harpoon file ' .. i })
 end
+
+vim.keymap.set('', '<leader>jt', '<cmd>:ObsidianToday<cr>', { desc = '[J]ournal for [T]oday' })
+vim.keymap.set('', '<leader>jm', '<cmd>:ObsidianToday 1<cr>', { desc = '[J]ournal for To[M]orrow' })
+vim.keymap.set('', '<leader>jy', '<cmd>:ObsidianToday -1<cr>', { desc = '[J]ournal for [Y]esterday' })
 
 vim.keymap.set('', '<leader>U', vim.cmd.UndotreeToggle, { desc = 'Toggle [U] undo tree' })
 vim.keymap.set('', '<leader>w', '<cmd>:write<cr>', { desc = '[W]rite current buffer' })
