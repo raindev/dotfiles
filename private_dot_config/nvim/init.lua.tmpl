@@ -180,9 +180,9 @@ require('lazy').setup({
             -- buffer local mappings.
             local opts = { buffer = bufnr }
 
-            vim.keymap.set('n', 'gd', "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-            vim.keymap.set('n', '<leader>v', "<cmd>vsplit | lua vim.lsp.buf.definition()<CR>", opts)
-            vim.keymap.set('n', '<leader>s', "<cmd>belowright split | lua vim.lsp.buf.definition()<CR>", opts)
+            vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+            vim.keymap.set('n', '<leader>v', '<cmd>vsplit | lua vim.lsp.buf.definition()<CR>', opts)
+            vim.keymap.set('n', '<leader>s', '<cmd>belowright split | lua vim.lsp.buf.definition()<CR>', opts)
 
             vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
             vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
@@ -274,7 +274,7 @@ require('lazy').setup({
          daily_notes = {
             folder = 'journals',
             -- February 1, Thursday
-            alias_format = "%B %-d, %A",
+            alias_format = '%B %-d, %A',
          },
          note_id_func = function(title)
             return title
@@ -329,12 +329,12 @@ require('lazy').setup({
          }
 
          -- close Lazy and re-open when the dashboard is ready
-         if vim.o.filetype == "lazy" then
+         if vim.o.filetype == 'lazy' then
             vim.cmd.close()
-            vim.api.nvim_create_autocmd("User", {
-               pattern = "DashboardLoaded",
+            vim.api.nvim_create_autocmd('User', {
+               pattern = 'DashboardLoaded',
                callback = function()
-                  require("lazy").show()
+                  require('lazy').show()
                end,
             })
          end
