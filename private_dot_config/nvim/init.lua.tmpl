@@ -566,6 +566,11 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
    callback = function()
       vim.opt_local.linebreak = true
       vim.opt_local.number = false
+      -- swap gj/gk with j/k for finer navigation over wrapped lines
+      vim.api.nvim_set_keymap('n', 'j', 'gj', { noremap = true, silent = true })
+      vim.api.nvim_set_keymap('n', 'gj', 'j', { noremap = true, silent = true })
+      vim.api.nvim_set_keymap('n', 'k', 'gk', { noremap = true, silent = true })
+      vim.api.nvim_set_keymap('n', 'gk', 'k', { noremap = true, silent = true })
    end
 })
 vim.api.nvim_create_autocmd({ 'FileType' }, {
