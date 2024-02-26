@@ -500,7 +500,10 @@ vim.keymap.set('', '<leader>jt', '<cmd>:ObsidianToday<cr>', { desc = '[J]ournal 
 -- navigate to the previous workday on work laptop {{- if not .work.laptop }}
 vim.keymap.set('', '<leader>jm', '<cmd>:ObsidianToday 1<cr>', { desc = '[J]ournal for To[M]orrow' })
 vim.keymap.set('', '<leader>jy', '<cmd>:ObsidianToday -1<cr>', { desc = '[J]ournal for [Y]esterday' })
--- and to the previous calendar day on private machines {{- end }}
+-- and to the previous calendar day on private machines {{- else }}
+vim.keymap.set('', '<leader>jm', '<cmd>:ObsidianTomorrow<cr>', { desc = '[J]ournal for To[M]orrow' })
+vim.keymap.set('', '<leader>jy', '<cmd>:ObsidianYesterday<cr>', { desc = '[J]ournal for [Y]esterday' })
+-- {{- end }}
 
 vim.keymap.set('', '<leader>U', vim.cmd.UndotreeToggle, { desc = 'Toggle [U] undo tree' })
 vim.keymap.set('', '<leader>w', '<cmd>:write<cr>', { desc = '[W]rite current buffer' })
