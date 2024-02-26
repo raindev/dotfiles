@@ -1,6 +1,6 @@
 [user]
 	name = Andrew Barchuk
-	{{- if eq .chezmoi.hostname "charcoal" }}
+	{{- if .work.laptop }}
 	email = andrew.barchuk@zalando.de
 	signingkey = 7B7AA60DC00AF73A3820C609F89D58E0FA4F7AD4
 	{{- else }}
@@ -8,7 +8,7 @@
 	signingkey = B14FD6B79497FC060E88564D548706C0A2EEA361
 	{{- end }}
 [commit]
-	gpgSign = {{ .gpg.enabled }}
+	gpgSign = {{ or .gpg.enabled .work.laptop }}
 [core]
 	excludesfile = ~/.gitignore
 [include]
@@ -34,7 +34,10 @@
 	continue = "!f() { git commit --edit --file=$(git rev-parse --git-dir)/COMMIT_EDITMSG; }; f"
 [credential "https://github.com"]
 	helper =
-	helper = !/usr/bin/gh auth git-credential
+	helper = !gh auth git-credential
 [credential "https://gist.github.com"]
 	helper =
-	helper = !/usr/bin/gh auth git-credential
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://github.bus.zalan.do"]
+	helper =
+	helper = !gh auth git-credential
