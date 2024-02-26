@@ -273,7 +273,13 @@ require('lazy').setup({
          'hrsh7th/nvim-cmp'
       },
       opts = {
+         -- customize work notes path {{- if .work.laptop }}
+         --- @diagnostic disable-next-line:duplicate-index
+         dir = '~/work-notes',
+         -- {{- else }}
+         --- @diagnostic disable-next-line:duplicate-index
          dir = '~/notes',
+         -- {{- end }}
          daily_notes = {
             folder = 'journals',
             -- February 1, Thursday
@@ -491,8 +497,10 @@ for i = 1, 5 do
 end
 
 vim.keymap.set('', '<leader>jt', '<cmd>:ObsidianToday<cr>', { desc = '[J]ournal for [T]oday' })
+-- navigate to the previous workday on work laptop {{- if not .work.laptop }}
 vim.keymap.set('', '<leader>jm', '<cmd>:ObsidianToday 1<cr>', { desc = '[J]ournal for To[M]orrow' })
 vim.keymap.set('', '<leader>jy', '<cmd>:ObsidianToday -1<cr>', { desc = '[J]ournal for [Y]esterday' })
+-- and to the previous calendar day on private machines {{- end }}
 
 vim.keymap.set('', '<leader>U', vim.cmd.UndotreeToggle, { desc = 'Toggle [U] undo tree' })
 vim.keymap.set('', '<leader>w', '<cmd>:write<cr>', { desc = '[W]rite current buffer' })
