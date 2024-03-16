@@ -260,16 +260,6 @@ require('lazy').setup({
       'epwalsh/obsidian.nvim',
       version = 'v2.x',
       dependencies = {
-         {
-            'preservim/vim-markdown',
-            init = function()
-               -- no default mapping will be added by the plugin if mapped to <Plug>
-               -- do not override ge
-               vim.keymap.set({ 'n' }, '<Plug>', '<Plug>Markdown_EditUrlUnderCursor')
-               -- avoid broken gx: https://github.com/preservim/vim-markdown/issues/372
-               vim.keymap.set({ 'n', }, '<Plug>', '<Plug>Markdown_OpenUrlUnderCursor')
-            end
-         },
          'hrsh7th/nvim-cmp'
       },
       opts = {
