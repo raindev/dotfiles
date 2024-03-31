@@ -178,6 +178,8 @@ require('lazy').setup({
          { 'hrsh7th/nvim-cmp' },
          { 'hrsh7th/cmp-nvim-lsp' },
          { 'L3MON4D3/LuaSnip' },
+         { 'saadparwaiz1/cmp_luasnip' },
+         { 'honza/vim-snippets' },
       },
       config = function()
          local lsp_zero = require('lsp-zero')
@@ -232,9 +234,19 @@ require('lazy').setup({
             }
          })
 
-         local cmp = require('cmp')
+         require('luasnip.loaders.from_snipmate').lazy_load()
          local luasnip = require('luasnip')
+         local cmp = require('cmp')
          cmp.setup({
+            snippet = {
+               expand = function(args)
+                  require('luasnip').lsp_expand(args.body)
+               end
+            },
+            sources = {
+               { name = 'nvim_lsp' },
+               { name = 'luasnip' },
+            },
             mapping = cmp.mapping.preset.insert({
                ['<C-y>'] = cmp.mapping.confirm({ select = true }),
                ['<CR>'] = cmp.mapping.confirm({ select = false }),
@@ -310,19 +322,19 @@ require('lazy').setup({
       dependencies = { 'nvim-lua/plenary.nvim' }
    },
    {
-      "vhyrro/luarocks.nvim",
+      'vhyrro/luarocks.nvim',
       priority = 1000,
       config = true,
    },
    {
-      "rest-nvim/rest.nvim",
-      ft = "http",
-      dependencies = { "luarocks.nvim" },
+      'rest-nvim/rest.nvim',
+      ft = 'http',
+      dependencies = { 'luarocks.nvim' },
       config = function()
-         require("rest-nvim").setup({
+         require('rest-nvim').setup({
             keybinds = {
-               { "<localleader>rr", "<cmd>:Rest run<cr>",      "Run request under the cursor", },
-               { "<localleader>rl", "<cmd>:Rest run last<cr>", "Re-run latest request", },
+               { '<localleader>rr', '<cmd>:Rest run<cr>',      'Run request under the cursor', },
+               { '<localleader>rl', '<cmd>:Rest run last<cr>', 'Re-run latest request', },
             }
          })
       end,
