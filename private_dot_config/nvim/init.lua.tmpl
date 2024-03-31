@@ -283,6 +283,16 @@ require('lazy').setup({
       dependencies = { 'nvim-lua/plenary.nvim' }
    },
    {
+      'rgroli/other.nvim',
+      config = function()
+         require('other-nvim').setup({
+            mappings = {
+               'golang'
+            }
+         })
+      end
+   },
+   {
       'epwalsh/obsidian.nvim',
       version = 'v2.x',
       dependencies = {
@@ -521,6 +531,7 @@ vim.keymap.set('', '<leader>jm', '<cmd>:ObsidianTomorrow<cr>', { desc = '[J]ourn
 vim.keymap.set('', '<leader>jy', '<cmd>:ObsidianYesterday<cr>', { desc = '[J]ournal for [Y]esterday' })
 -- {{- end }}
 
+vim.keymap.set('', '<leader>O', '<cmd>:Other<cr>', { desc = 'Open the [O]ther file' })
 vim.keymap.set('', '<leader>D',
    function()
       local dap = require('dap')
