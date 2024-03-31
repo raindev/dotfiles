@@ -540,12 +540,15 @@ vim.keymap.set('', '<leader>q', '<cmd>:confirm quitall<cr>', { desc = '[Q]uit wi
 ------------------
 
 local augroup = vim.api.nvim_create_augroup('init', {})
+
+-- strip trailing whitespace on write
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
    group = augroup,
    pattern = '*',
    command = [[%s/\s\+$//e]],
 })
 
+-- run linters on write
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
    group = augroup,
    callback = function()
