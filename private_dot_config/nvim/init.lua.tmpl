@@ -76,6 +76,14 @@ require('lazy').setup({
          end
       }
    },
+   {
+      'akinsho/toggleterm.nvim',
+      config = function()
+         require('toggleterm').setup({
+            open_mapping = [[<a-;>]],
+         })
+      end
+   },
    'rust-lang/rust.vim',
    'udalov/kotlin-vim',
    'keith/swift.vim',
