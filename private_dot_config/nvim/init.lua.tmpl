@@ -260,6 +260,24 @@ require('lazy').setup({
       end
    },
    {
+      "rcarriga/nvim-dap-ui",
+      dependencies = {
+         "mfussenegger/nvim-dap",
+         "nvim-neotest/nvim-nio"
+      },
+      config = true
+   },
+   {
+      'leoluz/nvim-dap-go',
+      config = true
+   },
+   {
+      'theHamsta/nvim-dap-virtual-text',
+      config = function()
+         require("nvim-dap-virtual-text").setup({ commented = true })
+      end
+   },
+   {
       'nvim-telescope/telescope.nvim',
       branch = '0.1.x',
       dependencies = { 'nvim-lua/plenary.nvim' }
@@ -503,6 +521,16 @@ vim.keymap.set('', '<leader>jm', '<cmd>:ObsidianTomorrow<cr>', { desc = '[J]ourn
 vim.keymap.set('', '<leader>jy', '<cmd>:ObsidianYesterday<cr>', { desc = '[J]ournal for [Y]esterday' })
 -- {{- end }}
 
+vim.keymap.set('', '<leader>D',
+   function()
+      local dap = require('dap')
+      if dap.status() == '' then
+         dap.continue()
+      end
+      require('dapui').toggle()
+   end,
+   { desc = 'Toggle [D]ebugging UI' })
+vim.keymap.set('', '<leader>db', require('dap').toggle_breakpoint, { desc = 'Toggle [D]ebugger [B]reakpoint' })
 vim.keymap.set('', '<leader>U', vim.cmd.UndotreeToggle, { desc = 'Toggle [U] undo tree' })
 vim.keymap.set('', '<leader>w', '<cmd>:write<cr>', { desc = '[W]rite current buffer' })
 vim.keymap.set('', '<leader>q', '<cmd>:confirm quitall<cr>', { desc = '[Q]uit with confirmation' })
