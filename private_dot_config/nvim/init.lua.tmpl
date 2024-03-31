@@ -260,10 +260,10 @@ require('lazy').setup({
       end
    },
    {
-      "rcarriga/nvim-dap-ui",
+      'rcarriga/nvim-dap-ui',
       dependencies = {
-         "mfussenegger/nvim-dap",
-         "nvim-neotest/nvim-nio"
+         'mfussenegger/nvim-dap',
+         'nvim-neotest/nvim-nio'
       },
       config = true
    },
@@ -274,7 +274,23 @@ require('lazy').setup({
    {
       'theHamsta/nvim-dap-virtual-text',
       config = function()
-         require("nvim-dap-virtual-text").setup({ commented = true })
+         require('nvim-dap-virtual-text').setup({ commented = true })
+      end
+   },
+   {
+      'nvim-neotest/neotest',
+      dependencies = {
+         'nvim-neotest/nvim-nio',
+         'nvim-lua/plenary.nvim',
+         'antoinemadec/FixCursorHold.nvim',
+         'nvim-neotest/neotest-go'
+      },
+      config = function()
+         require('neotest').setup({
+            adapters = {
+               require('neotest-go')
+            }
+         })
       end
    },
    {
@@ -483,8 +499,8 @@ vim.opt.undofile = true
 -- normal, visual, select and operator-pending mode.
 
 -- toggle highlights
-vim.keymap.set('', '<leader>th', '<cmd>set hlsearch!<CR>', { desc = '[T]oggle [S]earch highlighting' })
-vim.keymap.set('', '<leader>ts', '<cmd>set spell!<CR>', { desc = '[T]oggle [S]pellchecking' })
+vim.keymap.set('', '<leader>Th', '<cmd>set hlsearch!<CR>', { desc = '[T]oggle [S]earch highlighting' })
+vim.keymap.set('', '<leader>Ts', '<cmd>set spell!<CR>', { desc = '[T]oggle [S]pellchecking' })
 
 -- save the pinky
 vim.keymap.set('', '<leader>;', ':', { desc = 'Normal mode without shift' })
@@ -532,6 +548,17 @@ vim.keymap.set('', '<leader>jy', '<cmd>:ObsidianYesterday<cr>', { desc = '[J]our
 -- {{- end }}
 
 vim.keymap.set('', '<leader>O', '<cmd>:Other<cr>', { desc = 'Open the [O]ther file' })
+vim.keymap.set('', '<leader>ts', require('neotest').summary.toggle, { desc = '[t]ests [s]ummary' })
+vim.keymap.set('', '<leader>tt', require('neotest').run.run, { desc = 'Run nearest [t]est' })
+vim.keymap.set('', '<leader>tl', function() require('neotest').run.run_last() end, { desc = 'Run nearest [t]est' })
+vim.keymap.set('', '<leader>tf', function() require('neotest').run.run(vim.fn.expand('%')) end,
+   { desc = 'Run all test in [f]ile' })
+vim.keymap.set('', '<leader>td', function() require('neotest').run.run('.') end,
+   { desc = 'Run all tests in [d]irectory' })
+vim.keymap.set('', '<leader>tD', function() require('neotest').run.run({ strategy = 'dap' }) end,
+   { desc = '[D]ebug nearest test' })
+vim.keymap.set('', '<leader>to', require('neotest').output_panel.toggle, { desc = 'Toggle [o]utput panel' })
+vim.keymap.set('', '<leader>tw', require('neotest').watch.toggle, { desc = 'Toggle [w]atch mode' })
 vim.keymap.set('', '<leader>D',
    function()
       local dap = require('dap')
@@ -560,10 +587,10 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
 })
 
 -- run linters on write
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
    group = augroup,
    callback = function()
-      require("lint").try_lint()
+      require('lint').try_lint()
    end,
 })
 
@@ -583,6 +610,8 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
    pattern = { 'go' },
    callback = function()
       vim.opt_local.expandtab = false
+      -- Workaround for the lack of a DAP strategy in neotest-go: https://github.com/nvim-neotest/neotest-go/issues/12
+      vim.api.nvim_buf_set_keymap(0, '', '<leader>tD', '<cmd>lua require("dap-go").debug_test()<cr>', {})
    end
 })
 vim.api.nvim_create_autocmd({ 'FileType' }, {
@@ -628,10 +657,12 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
       vim.opt_local.linebreak = true
       vim.opt_local.number = false
       -- swap gj/gk with j/k for finer navigation over wrapped lines
-      vim.api.nvim_set_keymap('n', 'j', '(v:count == 0 ? "gj" : "j")', { noremap = true, silent = true, expr = true })
-      vim.api.nvim_set_keymap('n', 'k', '(v:count == 0 ? "gk" : "k")', { noremap = true, silent = true, expr = true })
-      vim.api.nvim_set_keymap('n', 'gj', 'j', { noremap = true, silent = true })
-      vim.api.nvim_set_keymap('n', 'gk', 'k', { noremap = true, silent = true })
+      vim.api.nvim_buf_set_keymap(0, 'n', 'j', '(v:count == 0 ? "gj" : "j")',
+         { noremap = true, silent = true, expr = true })
+      vim.api.nvim_buf_set_keymap(0, 'n', 'k', '(v:count == 0 ? "gk" : "k")',
+         { noremap = true, silent = true, expr = true })
+      vim.api.nvim_buf_set_keymap(0, 'n', 'gj', 'j', { noremap = true, silent = true })
+      vim.api.nvim_buf_set_keymap(0, 'n', 'gk', 'k', { noremap = true, silent = true })
    end
 })
 vim.api.nvim_create_autocmd({ 'FileType' }, {
