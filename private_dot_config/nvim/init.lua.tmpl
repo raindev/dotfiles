@@ -252,6 +252,14 @@ require('lazy').setup({
       end
    },
    {
+      'mfussenegger/nvim-lint',
+      config = function()
+         require('lint').linters_by_ft = {
+            go = { 'golangcilint' }
+         }
+      end
+   },
+   {
       'nvim-telescope/telescope.nvim',
       branch = '0.1.x',
       dependencies = { 'nvim-lua/plenary.nvim' }
@@ -508,6 +516,13 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
    group = augroup,
    pattern = '*',
    command = [[%s/\s\+$//e]],
+})
+
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+   group = augroup,
+   callback = function()
+      require("lint").try_lint()
+   end,
 })
 
 ---------------
