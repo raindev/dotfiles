@@ -4,6 +4,7 @@
   "LuaSnip": { "branch": "master", "commit": "a7a4b4682c4b3e2ba82b82a4e6e5f5a0e79dec32" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "5af77f54de1b16c34b23cba810150689a3a90312" },
   "cmp_luasnip": { "branch": "master", "commit": "05a9ab28b53f71d1aece421ef32fee2cb857a843" },
+  "copilot.vim": { "branch": "release", "commit": "9484e35cf222e9360e05450622a884f95c662c4c" },
   "dashboard-nvim": { "branch": "master", "commit": "39f308a0b845b8da46f83c8a2d69f0191d4b7a8f" },
   "gitsigns.nvim": { "branch": "main", "commit": "70584ff9aae8078b64430c574079d79620b8f06d" },
   "harpoon": { "branch": "master", "commit": "ccae1b9bec717ae284906b0bf83d720e59d12b91" },
