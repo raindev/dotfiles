@@ -21,18 +21,251 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = ' '
 
 require('lazy').setup({
-   -- lazy.nvim resets the runtime path controlled with
-   -- config.performance.rtp.reset
+   -- add back the GUI commands: lazy.nvim resets the runtime path controlled
+   -- with config.performance.rtp.reset
    'equalsraf/neovim-gui-shim',
+   -- language parsers
+   {
+      'nvim-treesitter/nvim-treesitter',
+      dependencies = {
+         'nvim-treesitter/nvim-treesitter-textobjects',
+      },
+      main = 'nvim-treesitter.configs',
+      build = ':TSUpdate',
+      opts = {
+         ensure_installed = {
+            'bash',
+            'c',
+            'cpp',
+            'css',
+            'go',
+            'graphql',
+            'html',
+            'http',
+            'java',
+            'javascript',
+            'json',
+            'kotlin',
+            'lua',
+            'make',
+            'markdown',
+            'markdown_inline',
+            'org',
+            'rust',
+            'scala',
+            'sql',
+            'swift',
+            'toml',
+            'vimdoc',
+            'xml',
+            'yaml',
+            'zig',
+         },
+         -- If TS highlights are not enabled at all, or disabled via `disable` prop,
+         -- highlighting will fallback to default Vim syntax highlighting.
+         highlight = {
+            enable = true,
+            -- remove this to use TS highlighter for some of the highlights (experimental)
+            disable = { 'org' },
+            -- required since TS highlighter doesn't support all syntax features (conceal)
+            additional_vim_regex_highlighting = { 'org' },
+         },
+         incremental_selection = {
+            enable = true,
+            keymaps = {
+               -- maps in normal mode to init the node/scope selection with space
+               init_selection = ',',
+               -- increment to the upper named parent
+               node_incremental = ',',
+               -- decrement to the previous node
+               node_decremental = '<bs>',
+               -- increment to the upper scope (as defined in locals.scm)
+               scope_incremental = '<tab>',
+            },
+         },
+         indent = { enable = true }
+      }
+   },
+   -- colorscheme
    {
       'navarasu/onedark.nvim',
       config = function()
          require('onedark').load()
       end
    },
-   'tpope/vim-surround',
-   'tpope/vim-sleuth',
+   -- match system light/dark mode
+   { 'raindev/daybreak.nvim', config = true },
+   -- restrict allowed modeline options
+   'ypcrts/securemodelines',
+   -- readline style editing keybindings
+   'tpope/vim-rsi',
+   -- repeat plugin commands with dot
+   'tpope/vim-repeat',
+   -- highlight and navigate matching text
    'andymass/vim-matchup',
+   -- add, change and delete surrounding characters
+   'tpope/vim-surround',
+   -- insert and step over matching characters
+   {
+      'windwp/nvim-autopairs',
+      event = 'InsertEnter',
+      opts = {
+         -- use Tree-sitter to find the matching pair
+         check_ts = true,
+      }
+   },
+   -- keymap discovery
+   {
+      'folke/which-key.nvim',
+      opts = {}
+   },
+   -- persistent branching undo history
+   'mbbill/undotree',
+   -- preserve last session per directory
+   {
+      'folke/persistence.nvim',
+      -- only start session saving when an actual file was opened
+      event = 'BufReadPre',
+      config = function()
+         require('persistence').setup({})
+         vim.api.nvim_create_user_command('Load', function()
+            require('persistence').load()
+         end, { nargs = 0 })
+         vim.api.nvim_create_user_command('Last', function()
+            require('persistence').load({ last = true })
+         end, { nargs = 0 })
+      end
+   },
+   -- navigation
+   'christoomey/vim-tmux-navigator',
+   'ThePrimeagen/harpoon',
+   {
+      'rgroli/other.nvim',
+      config = function()
+         require('other-nvim').setup({
+            mappings = {
+               'golang'
+            }
+         })
+      end
+   },
+   -- search
+   {
+      'nvim-telescope/telescope.nvim',
+      branch = '0.1.x',
+      dependencies = { 'nvim-lua/plenary.nvim' }
+   },
+   -- journalling & notetaking
+   {
+      'epwalsh/obsidian.nvim',
+      version = 'v2.x',
+      dependencies = {
+         'hrsh7th/nvim-cmp'
+      },
+      opts = {
+         -- customize work notes path {{- if .work.laptop }}
+         --- @diagnostic disable-next-line:duplicate-index
+         dir = '~/work-notes',
+         -- {{- else }}
+         --- @diagnostic disable-next-line:duplicate-index
+         dir = '~/notes',
+         -- {{- end }}
+         daily_notes = {
+            folder = 'journals',
+            -- February 1, Thursday
+            alias_format = '%B %-d, %A',
+         },
+         note_id_func = function(title)
+            return title
+         end,
+         disable_frontmatter = true
+      },
+      init = function()
+         vim.keymap.set('n', 'gf', function()
+               if require('obsidian').util.cursor_on_markdown_link() then
+                  return '<cmd>ObsidianFollowLink<CR>'
+               else
+                  return 'gf'
+               end
+            end,
+            { noremap = false, expr = true })
+      end
+   },
+   {
+      'nvim-orgmode/orgmode',
+      config = function()
+         local orgmode = require('orgmode')
+         orgmode.setup_ts_grammar()
+         orgmode.setup({
+            org_agenda_files = { '~/notes/*.org' },
+            org_default_notes_file = '~/notes/inbox.org',
+         })
+      end
+   },
+   -- startup screen
+   {
+      'nvimdev/dashboard-nvim',
+      event = 'VimEnter',
+      opts = function()
+         local opts = {
+            theme = 'doom',
+            config = {
+               week_header = {
+                  enable = true
+               },
+               -- stylua: ignore
+               center = {
+                  { action = 'ObsidianToday', desc = ' Today\'s journal', icon = '󰢧 ', key = 't' },
+                  { action = 'Telescope find_files', desc = ' Find file', icon = ' ', key = 'f' },
+                  { action = 'ene | startinsert', desc = ' New file', icon = ' ', key = 'n' },
+                  { action = 'Telescope oldfiles', desc = ' Recent files', icon = ' ', key = 'r' },
+                  { action = 'Telescope live_grep', desc = ' Find text', icon = ' ', key = 'g' },
+                  { action = 'edit ~/.config/nvim/init.lua', desc = ' Config', icon = ' ', key = 'c' },
+                  { action = 'lua require("persistence").load()', desc = ' Load Session', icon = ' ', key = 's' },
+                  {
+                     action = 'lua require("persistence").load({last = true})',
+                     desc = ' Last Session',
+                     icon = '󰼛 ',
+                     key = 'l'
+                  },
+                  { action = 'qa', desc = ' Quit', icon = ' ', key = 'q' },
+               },
+            }
+         }
+
+         -- close Lazy and re-open when the dashboard is ready
+         if vim.o.filetype == 'lazy' then
+            vim.cmd.close()
+            vim.api.nvim_create_autocmd('User', {
+               pattern = 'DashboardLoaded',
+               callback = function()
+                  require('lazy').show()
+               end,
+            })
+         end
+
+         return opts
+      end,
+      dependencies = { { 'nvim-tree/nvim-web-devicons' } }
+   },
+   {
+      'numToStr/Comment.nvim',
+      -- todo: map Ctrl-/ (<C-_>) for line comments
+      opts = {},
+      lazy = false,
+   },
+   -- persistent fast access terminal
+   {
+      'akinsho/toggleterm.nvim',
+      config = function()
+         require('toggleterm').setup({
+            open_mapping = [[<a-;>]],
+         })
+      end
+   },
+   -- Git interface
+   'tpope/vim-fugitive',
+   -- inline Git interface
    {
       'lewis6991/gitsigns.nvim',
       opts = {
@@ -76,95 +309,80 @@ require('lazy').setup({
          end
       }
    },
+   -- HTTP client
    {
-      'akinsho/toggleterm.nvim',
-      config = function()
-         require('toggleterm').setup({
-            open_mapping = [[<a-;>]],
-         })
-      end
+      'vhyrro/luarocks.nvim',
+      priority = 1000,
+      config = true,
    },
-   'rust-lang/rust.vim',
-   'udalov/kotlin-vim',
-   'keith/swift.vim',
-   'ziglang/zig.vim',
    {
-      'nvim-treesitter/nvim-treesitter',
+      'rest-nvim/rest.nvim',
+      ft = 'http',
+      dependencies = { 'luarocks.nvim' },
+      config = function()
+         require('rest-nvim').setup({
+            keybinds = {
+               { '<localleader>rr', '<cmd>:Rest run<cr>',      'Run request under the cursor', },
+               { '<localleader>rl', '<cmd>:Rest run last<cr>', 'Re-run latest request', },
+            }
+         })
+      end,
+   },
+   -- refactoring tools
+   {
+      'ThePrimeagen/refactoring.nvim',
       dependencies = {
-         'nvim-treesitter/nvim-treesitter-textobjects',
+         'nvim-lua/plenary.nvim',
+         'nvim-treesitter/nvim-treesitter',
       },
-      main = 'nvim-treesitter.configs',
-      build = ':TSUpdate',
-      opts = {
-         ensure_installed = {
-            'bash',
-            'c',
-            'cpp',
-            'css',
-            'go',
-            'graphql',
-            'html',
-            'http',
-            'java',
-            'javascript',
-            'json',
-            'kotlin',
-            'lua',
-            'make',
-            'markdown',
-            'markdown_inline',
-            'org',
-            'rust',
-            'scala',
-            'sql',
-            'swift',
-            'toml',
-            'vimdoc',
-            'xml',
-            'yaml',
-            'zig',
-         },
-         -- If TS highlights are not enabled at all, or disabled via `disable` prop, highlighting will fallback to default Vim syntax highlighting.
-         highlight = {
-            enable = true,
-            disable = { 'org' },                           -- remove this to use TS highlighter for some of the highlights (Experimental)
-            additional_vim_regex_highlighting = { 'org' }, -- required since TS highlighter doesn't support all syntax features (conceal)
-         },
-         incremental_selection = {
-            enable = true,
-            keymaps = {
-               -- maps in normal mode to init the node/scope selection with space
-               init_selection = ',',
-               -- increment to the upper named parent
-               node_incremental = ',',
-               -- decrement to the previous node
-               node_decremental = '<bs>',
-               -- increment to the upper scope (as defined in locals.scm)
-               scope_incremental = '<tab>',
-            },
-         },
-         autopairs = { enable = true },
-         indent = { enable = true }
-      }
+      config = true,
    },
+   -- linter integration
    {
-      'windwp/nvim-autopairs',
-      event = 'InsertEnter',
-      opts = {
-         check_ts = true,
-      }
-   },
-   {
-      'nvim-orgmode/orgmode',
+      'mfussenegger/nvim-lint',
       config = function()
-         local orgmode = require('orgmode')
-         orgmode.setup_ts_grammar()
-         orgmode.setup({
-            org_agenda_files = { '~/notes/*.org' },
-            org_default_notes_file = '~/notes/inbox.org',
+         require('lint').linters_by_ft = {
+            go = { 'golangcilint' }
+         }
+      end
+   },
+   -- testing
+   {
+      'nvim-neotest/neotest',
+      dependencies = {
+         'nvim-neotest/nvim-nio',
+         'nvim-lua/plenary.nvim',
+         'antoinemadec/FixCursorHold.nvim',
+         'nvim-neotest/neotest-go'
+      },
+      config = function()
+         require('neotest').setup({
+            adapters = {
+               require('neotest-go')
+            }
          })
       end
    },
+   -- debugging
+   {
+      'rcarriga/nvim-dap-ui',
+      dependencies = {
+         'mfussenegger/nvim-dap',
+         'nvim-neotest/nvim-nio'
+      },
+      config = true
+   },
+   {
+      'leoluz/nvim-dap-go',
+      config = true
+   },
+   {
+      'theHamsta/nvim-dap-virtual-text',
+      config = function()
+         require('nvim-dap-virtual-text').setup({ commented = true })
+      end
+   },
+   -- LSP configuration & servers, completion, snippets
    {
       'VonHeikemen/lsp-zero.nvim',
       branch = 'v3.x',
@@ -274,203 +492,14 @@ require('lazy').setup({
          })
       end
    },
-   { 'github/copilot.vim' },
-   {
-      'ThePrimeagen/refactoring.nvim',
-      dependencies = {
-         'nvim-lua/plenary.nvim',
-         'nvim-treesitter/nvim-treesitter',
-      },
-      config = function()
-         require('refactoring').setup()
-      end,
-   },
-   {
-      'mfussenegger/nvim-lint',
-      config = function()
-         require('lint').linters_by_ft = {
-            go = { 'golangcilint' }
-         }
-      end
-   },
-   {
-      'rcarriga/nvim-dap-ui',
-      dependencies = {
-         'mfussenegger/nvim-dap',
-         'nvim-neotest/nvim-nio'
-      },
-      config = true
-   },
-   {
-      'leoluz/nvim-dap-go',
-      config = true
-   },
-   {
-      'theHamsta/nvim-dap-virtual-text',
-      config = function()
-         require('nvim-dap-virtual-text').setup({ commented = true })
-      end
-   },
-   {
-      'nvim-neotest/neotest',
-      dependencies = {
-         'nvim-neotest/nvim-nio',
-         'nvim-lua/plenary.nvim',
-         'antoinemadec/FixCursorHold.nvim',
-         'nvim-neotest/neotest-go'
-      },
-      config = function()
-         require('neotest').setup({
-            adapters = {
-               require('neotest-go')
-            }
-         })
-      end
-   },
-   {
-      'nvim-telescope/telescope.nvim',
-      branch = '0.1.x',
-      dependencies = { 'nvim-lua/plenary.nvim' }
-   },
-   {
-      'vhyrro/luarocks.nvim',
-      priority = 1000,
-      config = true,
-   },
-   {
-      'rest-nvim/rest.nvim',
-      ft = 'http',
-      dependencies = { 'luarocks.nvim' },
-      config = function()
-         require('rest-nvim').setup({
-            keybinds = {
-               { '<localleader>rr', '<cmd>:Rest run<cr>',      'Run request under the cursor', },
-               { '<localleader>rl', '<cmd>:Rest run last<cr>', 'Re-run latest request', },
-            }
-         })
-      end,
-   },
-   {
-      'rgroli/other.nvim',
-      config = function()
-         require('other-nvim').setup({
-            mappings = {
-               'golang'
-            }
-         })
-      end
-   },
-   {
-      'epwalsh/obsidian.nvim',
-      version = 'v2.x',
-      dependencies = {
-         'hrsh7th/nvim-cmp'
-      },
-      opts = {
-         -- customize work notes path {{- if .work.laptop }}
-         --- @diagnostic disable-next-line:duplicate-index
-         dir = '~/work-notes',
-         -- {{- else }}
-         --- @diagnostic disable-next-line:duplicate-index
-         dir = '~/notes',
-         -- {{- end }}
-         daily_notes = {
-            folder = 'journals',
-            -- February 1, Thursday
-            alias_format = '%B %-d, %A',
-         },
-         note_id_func = function(title)
-            return title
-         end,
-         disable_frontmatter = true
-      },
-      init = function()
-         vim.keymap.set('n', 'gf', function()
-               if require('obsidian').util.cursor_on_markdown_link() then
-                  return '<cmd>ObsidianFollowLink<CR>'
-               else
-                  return 'gf'
-               end
-            end,
-            { noremap = false, expr = true })
-      end
-   },
-   'christoomey/vim-tmux-navigator',
-   'ThePrimeagen/harpoon',
-   'mbbill/undotree',
-   'tpope/vim-fugitive',
-   'ypcrts/securemodelines',
-   'tpope/vim-rsi',
-   {
-      'nvimdev/dashboard-nvim',
-      event = 'VimEnter',
-      opts = function()
-         local opts = {
-            theme = 'doom',
-            config = {
-               week_header = {
-                  enable = true
-               },
-               -- stylua: ignore
-               center = {
-                  { action = 'ObsidianToday', desc = ' Today\'s journal', icon = '󰢧 ', key = 't' },
-                  { action = 'Telescope find_files', desc = ' Find file', icon = ' ', key = 'f' },
-                  { action = 'ene | startinsert', desc = ' New file', icon = ' ', key = 'n' },
-                  { action = 'Telescope oldfiles', desc = ' Recent files', icon = ' ', key = 'r' },
-                  { action = 'Telescope live_grep', desc = ' Find text', icon = ' ', key = 'g' },
-                  { action = 'edit ~/.config/nvim/init.lua', desc = ' Config', icon = ' ', key = 'c' },
-                  { action = 'lua require("persistence").load()', desc = ' Load Session', icon = ' ', key = 's' },
-                  {
-                     action = 'lua require("persistence").load({last = true})',
-                     desc = ' Last Session',
-                     icon = '󰼛 ',
-                     key = 'l'
-                  },
-                  { action = 'qa', desc = ' Quit', icon = ' ', key = 'q' },
-               },
-            }
-         }
-
-         -- close Lazy and re-open when the dashboard is ready
-         if vim.o.filetype == 'lazy' then
-            vim.cmd.close()
-            vim.api.nvim_create_autocmd('User', {
-               pattern = 'DashboardLoaded',
-               callback = function()
-                  require('lazy').show()
-               end,
-            })
-         end
-
-         return opts
-      end,
-      dependencies = { { 'nvim-tree/nvim-web-devicons' } }
-   },
-   {
-      'folke/persistence.nvim',
-      -- only start session saving when an actual file was opened
-      event = 'BufReadPre',
-      config = function()
-         require('persistence').setup({})
-         vim.api.nvim_create_user_command('Load', function()
-            require('persistence').load()
-         end, { nargs = 0 })
-         vim.api.nvim_create_user_command('Last', function()
-            require('persistence').load({ last = true })
-         end, { nargs = 0 })
-      end
-   },
-   {
-      'folke/which-key.nvim',
-      opts = {}
-   },
-   {
-      'numToStr/Comment.nvim',
-      -- todo: map Ctrl-/ (<C-_>) for line comments
-      opts = {},
-      lazy = false,
-   },
-   { 'raindev/daybreak.nvim', config = true }
+   -- programming language specific plugins
+   'fatih/vim-go',
+   'ziglang/zig.vim',
+   'rust-lang/rust.vim',
+   'keith/swift.vim',
+   'udalov/kotlin-vim',
+   -- AI
+   'github/copilot.vim',
 }, {
    dev = {
       path = '~/code',
@@ -737,6 +766,7 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
          { noremap = true, silent = true, expr = true })
       vim.api.nvim_buf_set_keymap(0, 'n', 'gj', 'j', { noremap = true, silent = true })
       vim.api.nvim_buf_set_keymap(0, 'n', 'gk', 'k', { noremap = true, silent = true })
+      vim.b.copilot_enabled = false
    end
 })
 vim.api.nvim_create_autocmd({ 'FileType' }, {
