@@ -197,6 +197,12 @@ require('lazy').setup({
          })
       end
    },
+   -- status line
+   {
+      'nvim-lualine/lualine.nvim',
+      dependencies = { 'nvim-tree/nvim-web-devicons' },
+      opts = { theme = 'auto' }
+   },
    -- startup screen
    {
       'nvimdev/dashboard-nvim',
