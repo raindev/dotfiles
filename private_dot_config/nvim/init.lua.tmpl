@@ -275,6 +275,16 @@ require('lazy').setup({
       end
    },
    {
+      'ThePrimeagen/refactoring.nvim',
+      dependencies = {
+         'nvim-lua/plenary.nvim',
+         'nvim-treesitter/nvim-treesitter',
+      },
+      config = function()
+         require('refactoring').setup()
+      end,
+   },
+   {
       'mfussenegger/nvim-lint',
       config = function()
          require('lint').linters_by_ft = {
@@ -600,6 +610,7 @@ vim.keymap.set('', '<leader>tD', function() require('neotest').run.run({ strateg
    { desc = '[D]ebug nearest test' })
 vim.keymap.set('', '<leader>to', require('neotest').output_panel.toggle, { desc = 'Toggle [o]utput panel' })
 vim.keymap.set('', '<leader>tw', require('neotest').watch.toggle, { desc = 'Toggle [w]atch mode' })
+
 vim.keymap.set('', '<leader>D',
    function()
       local dap = require('dap')
@@ -610,6 +621,27 @@ vim.keymap.set('', '<leader>D',
    end,
    { desc = 'Toggle [D]ebugging UI' })
 vim.keymap.set('', '<leader>db', require('dap').toggle_breakpoint, { desc = 'Toggle [D]ebugger [B]reakpoint' })
+
+vim.keymap.set('x', '<leader>re', ':Refactor extract ')
+vim.keymap.set('x', '<leader>rf', ':Refactor extract_to_file ')
+vim.keymap.set('x', '<leader>rv', ':Refactor extract_var ')
+vim.keymap.set({ 'n', 'x' }, '<leader>ri', ':Refactor inline_var')
+vim.keymap.set('n', '<leader>rI', ':Refactor inline_func')
+vim.keymap.set('n', '<leader>rb', ':Refactor extract_block')
+vim.keymap.set('n', '<leader>rbf', ':Refactor extract_block_to_file')
+vim.keymap.set(
+   { 'n', 'x' },
+   '<leader>rr',
+   function() require('refactoring').select_refactor() end
+)
+vim.keymap.set(
+   'n',
+   '<leader>rp',
+   function() require('refactoring').debug.printf({ below = false }) end
+)
+vim.keymap.set({ 'x', 'n' }, '<leader>rv', function() require('refactoring').debug.print_var() end)
+vim.keymap.set('n', '<leader>rc', function() require('refactoring').debug.cleanup({}) end)
+
 vim.keymap.set('', '<leader>U', vim.cmd.UndotreeToggle, { desc = 'Toggle [U] undo tree' })
 vim.keymap.set('', '<leader>w', '<cmd>:write<cr>', { desc = '[W]rite current buffer' })
 vim.keymap.set('', '<leader>q', '<cmd>:confirm quitall<cr>', { desc = '[Q]uit with confirmation' })

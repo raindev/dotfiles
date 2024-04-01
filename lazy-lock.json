@@ -34,6 +34,7 @@
   "other.nvim": { "branch": "main", "commit": "d36a66af270b63459c080d4589126a06cf56578c" },
   "persistence.nvim": { "branch": "main", "commit": "4982499c1636eac254b72923ab826ee7827b3084" },
   "plenary.nvim": { "branch": "master", "commit": "8aad4396840be7fc42896e3011751b7609ca4119" },
+  "refactoring.nvim": { "branch": "master", "commit": "d2786877c91aa409c824f27b4ce8a9f560dda60a" },
   "rest.nvim": { "branch": "main", "commit": "a1221086cfdeb58de393f4bbae11063c6c8c075c" },
   "rust.vim": { "branch": "master", "commit": "889b9a7515db477f4cb6808bef1769e53493c578" },
   "securemodelines": { "branch": "master", "commit": "364b4ae0ae01544ba5af005c5ae2aba92e83fa98" },
