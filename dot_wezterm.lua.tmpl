@@ -1,14 +1,17 @@
 -- vi: ft=lua
 
 local wezterm = require('wezterm')
+local rose_pine = wezterm.plugin.require("https://github.com/raindev/rose-pine-wezterm")
 
-local function scheme_for_appearance(appearance)
+local function theme_for_appearance(appearance)
   if appearance:find 'Dark' then
-    return 'OneDark (base16)'
+    return rose_pine.main
   else
-    return 'One Light (base16)'
+    return rose_pine.dawn
   end
 end
+
+local theme = theme_for_appearance(wezterm.gui.get_appearance())
 
 return {
   -- use full binary path as macOS doesn't source ~/.profile on login
@@ -19,14 +22,16 @@ return {
   font_size = 16,
   {{- end }}
   font = wezterm.font('Source Code Pro'),
-  color_scheme = scheme_for_appearance(wezterm.gui.get_appearance()),
+  use_fancy_tab_bar = false,
+  window_decorations = "RESIZE",
+  window_frame = theme.window_frame(),
+  colors = theme.colors(),
   keys = {
     {
       key = 'F11',
       action = wezterm.action.ToggleFullScreen
     }
   },
-  hide_tab_bar_if_only_one_tab = true,
   check_for_updates = false,
   -- the system log from systemd-core-dump includes \u{1f855} prefix
   warn_about_missing_glyphs = false,

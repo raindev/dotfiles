@@ -87,12 +87,7 @@ require('lazy').setup({
       }
    },
    -- colorscheme
-   {
-      'navarasu/onedark.nvim',
-      config = function()
-         require('onedark').load()
-      end
-   },
+   { "rose-pine/neovim",      name = "rose-pine", },
    -- match system light/dark mode
    { 'raindev/daybreak.nvim', config = true },
    -- restrict allowed modeline options
@@ -514,6 +509,8 @@ require('lazy').setup({
 
 -- enable true color support
 vim.opt.termguicolors = true
+-- colorscheme
+vim.cmd('colorscheme rose-pine')
 
 -- render tabs as 8 spaces
 vim.opt.tabstop = 8
