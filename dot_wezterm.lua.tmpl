@@ -3,10 +3,21 @@
 local wezterm = require('wezterm')
 local rose_pine = wezterm.plugin.require("https://github.com/raindev/rose-pine-wezterm")
 
+local function change_tmux_theme(theme)
+  local home = os.getenv('HOME')
+  local sed_cmd = string.format(
+    [[{{ lookPath "sed" }} -i "s/@rose_pine_variant '.*'/@rose_pine_variant '%s'/" %s/.tmux.conf]],
+    theme, home)
+  local tmux_cmd = string.format('{{ lookPath "tmux" }} source %s/.tmux.conf', home)
+  os.execute(sed_cmd .. ' && ' .. tmux_cmd .. ' &')
+end
+
 local function theme_for_appearance(appearance)
   if appearance:find 'Dark' then
+    change_tmux_theme('main')
     return rose_pine.main
   else
+    change_tmux_theme('dawn')
     return rose_pine.dawn
   end
 end
@@ -16,11 +27,11 @@ local theme = theme_for_appearance(wezterm.gui.get_appearance())
 return {
   -- use full binary path as macOS doesn't source ~/.profile on login
   default_prog = { '{{ lookPath "tmux" }}', 'new', '-A' },
-  {{- if eq .chezmoi.hostname "black" }}
+  -- adjust based on hostname {{- if eq .chezmoi.hostname "black" }}
   font_size = 14,
-  {{- else }}
+  -- {{- else }}
   font_size = 16,
-  {{- end }}
+  -- {{- end }}
   font = wezterm.font('Source Code Pro'),
   use_fancy_tab_bar = false,
   window_decorations = "RESIZE",
