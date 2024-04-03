@@ -176,6 +176,8 @@ require('lazy').setup({
          disable_frontmatter = true
       },
       init = function()
+         vim.keymap.set('v', '<leader>ol', '<cmd>:ObsidianLink<cr><esc>')
+         vim.keymap.set('n', '<leader>ol', 'viw<cmd>:ObsidianLink<cr><esc>')
          vim.keymap.set('n', 'gf', function()
                if require('obsidian').util.cursor_on_markdown_link() then
                   return '<cmd>ObsidianFollowLink<CR>'
@@ -541,8 +543,8 @@ vim.opt.listchars:append('precedes:«')
 vim.opt.breakindent = true
 -- show marker for wrapped lines
 vim.opt.showbreak = '↳ '
--- before indented text
-vim.opt.breakindentopt = 'sbr'
+-- before indented text; shift lists to keep alignment
+vim.opt.breakindentopt = 'sbr,list:2'
 -- in the number column
 vim.opt.cpoptions:append('n')
 -- conceal syntax (e.g. Markdown), but not completely (highlight code block marks)
@@ -762,7 +764,11 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
    group = augroup,
    pattern = { 'markdown' },
    callback = function()
+      -- visually wrap lines
       vim.opt_local.linebreak = true
+      -- hide line break continuation markers
+      vim.opt_local.showbreak = ''
+      --- hide line numbers
       vim.opt_local.number = false
       -- swap gj/gk with j/k for finer navigation over wrapped lines
       vim.api.nvim_buf_set_keymap(0, 'n', 'j', '(v:count == 0 ? "gj" : "j")',
