@@ -767,7 +767,7 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
       -- visually wrap lines
       vim.opt_local.linebreak = true
       -- hide line break continuation markers
-      vim.opt_local.showbreak = ''
+      vim.opt_local.showbreak = 'NONE'
       --- hide line numbers
       vim.opt_local.number = false
       -- swap gj/gk with j/k for finer navigation over wrapped lines
