@@ -50,7 +50,6 @@ require('lazy').setup({
             'make',
             'markdown',
             'markdown_inline',
-            'org',
             'rust',
             'scala',
             'sql',
@@ -63,13 +62,7 @@ require('lazy').setup({
          },
          -- If TS highlights are not enabled at all, or disabled via `disable` prop,
          -- highlighting will fallback to default Vim syntax highlighting.
-         highlight = {
-            enable = true,
-            -- remove this to use TS highlighter for some of the highlights (experimental)
-            disable = { 'org' },
-            -- required since TS highlighter doesn't support all syntax features (conceal)
-            additional_vim_regex_highlighting = { 'org' },
-         },
+         highlight = { enable = true },
          incremental_selection = {
             enable = true,
             keymaps = {
@@ -153,7 +146,7 @@ require('lazy').setup({
    -- journalling & notetaking
    {
       'epwalsh/obsidian.nvim',
-      version = 'v2.x',
+      version = 'v3.x',
       dependencies = {
          'hrsh7th/nvim-cmp'
       },
@@ -186,17 +179,6 @@ require('lazy').setup({
                end
             end,
             { noremap = false, expr = true })
-      end
-   },
-   {
-      'nvim-orgmode/orgmode',
-      config = function()
-         local orgmode = require('orgmode')
-         orgmode.setup_ts_grammar()
-         orgmode.setup({
-            org_agenda_files = { '~/notes/*.org' },
-            org_default_notes_file = '~/notes/inbox.org',
-         })
       end
    },
    -- status line
@@ -613,7 +595,7 @@ vim.keymap.set('n', '<leader>ff', telescope.find_files, { desc = '[F]ind [F]iles
 vim.keymap.set('n', '<leader>fg', telescope.live_grep, { desc = '[F]ind with [G]rep' })
 vim.keymap.set('n', '<leader>fs', telescope.grep_string, { desc = '[F]ind [S]tring' })
 vim.keymap.set('n', '<leader>fk', telescope.keymaps, { desc = '[F]ind [K]ey mapping' })
-vim.keymap.set('n', '<leader>fo', telescope.oldfiles, { desc = '[F]ind [O]ld files' })
+vim.keymap.set('n', '<leader>fr', telescope.oldfiles, { desc = '[f]ind [r]ecent files' })
 vim.keymap.set('n', '<leader>fh', telescope.help_tags, { desc = '[F]ind [H]elp' })
 
 local harpoon_mark = require('harpoon.mark')
@@ -785,13 +767,6 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
    pattern = { 'text' },
    callback = function()
       vim.b.copilot_enabled = false
-   end
-})
-vim.api.nvim_create_autocmd({ 'FileType' }, {
-   group = augroup,
-   pattern = { 'org' },
-   callback = function()
-      vim.opt_local.linebreak = true
    end
 })
 vim.api.nvim_create_autocmd({ 'FileType' }, {
