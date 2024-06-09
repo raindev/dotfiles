@@ -12,7 +12,8 @@
     "bindings": {
       "space w": "workspace::Save",
       "space q": "zed::Quit",
-      ", q": "pane::CloseActiveItem"
+      ", q": "pane::CloseActiveItem",
+      "space j t": "journal::NewJournalEntry"
     }
   }
 ]
