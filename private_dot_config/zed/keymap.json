@@ -4,15 +4,15 @@
       "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
       "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
       "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
-      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"],
-      ", q": "pane::CloseActiveItem"
+      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"]
     }
   },
   {
     "context": "Editor && vim_mode == normal && (vim_operator == none || vim_operator == n) && !VimWaiting",
     "bindings": {
       "space w": "workspace::Save",
-      "space q": "zed::Quit"
+      "space q": "zed::Quit",
+      ", q": "pane::CloseActiveItem"
     }
   }
 ]
