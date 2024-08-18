@@ -7,5 +7,5 @@
     command = "bash"
     args = [ "-c", "! command -v pass &>/dev/null || (pass git pull --rebase --quiet && pass git push --quiet)" ]
 [data]
-    gpg.enabled = {{ eq .chezmoi.hostname "xps13" "black" "mini-mac" }}
+    gpg.enabled = {{ eq .chezmoi.hostname "m3air" }}
     work.laptop = {{ eq .chezmoi.hostname "ZALANDO-82607" }}
