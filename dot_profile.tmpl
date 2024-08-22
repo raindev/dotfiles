@@ -32,10 +32,6 @@ fi
 command -v jenv &> /dev/null && eval "$(jenv init -)"
 
 export EDITOR=nvim
-{{ if .gpg.enabled -}}
-SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-export SSH_AUTH_SOCK
-{{ end }}
 # Use all available cores when possible
 export XZ_DEFAULTS='--threads=0'
 export ZSTD_COMPRESS="--threads=0"
