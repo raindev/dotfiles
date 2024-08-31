@@ -9,6 +9,9 @@
 	{{- end }}
 [commit]
 	gpgSign = {{ or .gpg.enabled .work.laptop }}
+[gpg]
+	# for Xcode to be able to find GPG
+	program = {{ lookPath "gpg" }}
 [core]
 	excludesfile = ~/.gitignore
 [include]
