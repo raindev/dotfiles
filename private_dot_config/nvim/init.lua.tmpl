@@ -158,6 +158,8 @@ require('lazy').setup({
          --- @diagnostic disable-next-line:duplicate-index
          dir = '~/notes',
          -- {{- end }}
+         -- create notes in the main dir, also when viewing the journal
+         new_notes_location = "notes_subdir",
          daily_notes = {
             folder = 'journal',
             -- February 1, Thursday
