@@ -151,13 +151,20 @@ require('lazy').setup({
          'hrsh7th/nvim-cmp'
       },
       opts = {
-         -- customize work notes path {{- if .work.laptop }}
-         --- @diagnostic disable-next-line:duplicate-index
-         dir = '~/work-notes',
-         -- {{- else }}
-         --- @diagnostic disable-next-line:duplicate-index
-         dir = '~/notes',
-         -- {{- end }}
+         workspaces = {
+            {
+               name = 'zettelkasten',
+               path = '~/zk',
+               -- customize work notes {{- if .work.laptop }}
+               overrides = {
+                  notes_subdir = 'notes',
+                  daily_notes = {
+                     date_format = "%Y-%m-%dz"
+                  }
+               },
+               -- {{- end }}
+            },
+         },
          -- create notes in the main dir, also when viewing the journal
          new_notes_location = "notes_subdir",
          daily_notes = {
@@ -202,7 +209,7 @@ require('lazy').setup({
                },
                -- stylua: ignore
                center = {
-                  { action = 'cd ~/notes | ObsidianToday', desc = ' Today\'s journal', icon = '󰢧 ', key = 't' },
+                  { action = 'cd ~/zk | ObsidianToday', desc = ' Today\'s journal', icon = '󰢧 ', key = 't' },
                   { action = 'Telescope find_files', desc = ' Find file', icon = ' ', key = 'f' },
                   { action = 'ene | startinsert', desc = ' New file', icon = ' ', key = 'n' },
                   { action = 'Telescope oldfiles', desc = ' Recent files', icon = ' ', key = 'r' },

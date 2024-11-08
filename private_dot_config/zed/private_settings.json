@@ -10,7 +10,7 @@
   "autosave": "on_focus_change",
   "cursor_blink": false,
   "journal": {
-    "path": "~/notes",
+    "path": "~/zk",
     "hour_format": "hour24"
   }
 }
