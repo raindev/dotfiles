@@ -172,7 +172,6 @@ require('lazy').setup({
             folder = 'journal',
             -- February 1, Thursday
             alias_format = '%B %-d, %A',
-            template = 'journal',
          },
          note_id_func = function(title)
             return title
@@ -186,12 +185,13 @@ require('lazy').setup({
                end
             end
 
+            local today_link = os.date('[[%Y-%m-%d]]')
             if note.metadata == nil or not note.metadata.created then
-               out.created = os.date('%Y-%m-%d')
+               out.created = today_link
             end
             -- only add update date if not updated later after creation
-            if out.created ~= os.date('%Y-%m-%d') then
-               out.updated = os.date('%Y-%m-%d')
+            if out.created ~= today_link then
+               out.updated = today_link
             end
             return out
          end
