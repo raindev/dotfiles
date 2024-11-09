@@ -80,7 +80,7 @@ require('lazy').setup({
       }
    },
    -- colorscheme
-   { "rose-pine/neovim",      name = "rose-pine", },
+   { 'rose-pine/neovim',      name = 'rose-pine', },
    -- match system light/dark mode
    { 'raindev/daybreak.nvim', config = true },
    -- restrict allowed modeline options
@@ -159,23 +159,42 @@ require('lazy').setup({
                overrides = {
                   notes_subdir = 'notes',
                   daily_notes = {
-                     date_format = "%Y-%m-%dz"
+                     -- unique journal note title
+                     date_format = '%Y-%m-%dz'
                   }
                },
                -- {{- end }}
             },
          },
          -- create notes in the main dir, also when viewing the journal
-         new_notes_location = "notes_subdir",
+         new_notes_location = 'notes_subdir',
          daily_notes = {
             folder = 'journal',
             -- February 1, Thursday
             alias_format = '%B %-d, %A',
+            template = 'journal',
          },
          note_id_func = function(title)
             return title
          end,
-         disable_frontmatter = true
+         note_frontmatter_func = function(note)
+            local out = {}
+            -- preserve the existing frontmatter
+            if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
+               for k, v in pairs(note.metadata) do
+                  out[k] = v
+               end
+            end
+
+            if note.metadata == nil or not note.metadata.created then
+               out.created = os.date('%Y-%m-%d')
+            end
+            -- only add update date if not updated later after creation
+            if out.created ~= os.date('%Y-%m-%d') then
+               out.updated = os.date('%Y-%m-%d')
+            end
+            return out
+         end
       },
       init = function()
          vim.keymap.set('v', '<leader>ol', '<cmd>:ObsidianLink<cr><esc>')
@@ -306,7 +325,7 @@ require('lazy').setup({
    {
       'stevearc/oil.nvim',
       config = true,
-      dependencies = { "nvim-tree/nvim-web-devicons" },
+      dependencies = { 'nvim-tree/nvim-web-devicons' },
    },
    -- HTTP client
    {
