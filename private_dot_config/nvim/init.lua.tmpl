@@ -198,7 +198,7 @@ require('lazy').setup({
       },
       init = function()
          vim.keymap.set('v', '<leader>ol', '<cmd>:ObsidianLink<cr><esc>')
-         vim.keymap.set('n', '<leader>ol', 'viw<cmd>:ObsidianLink<cr><esc>')
+         vim.keymap.set('n', '<leader>ol', 'viW<cmd>:ObsidianLink<cr><esc>')
          vim.keymap.set('n', 'gf', function()
                if require('obsidian').util.cursor_on_markdown_link() then
                   return '<cmd>ObsidianFollowLink<CR>'
@@ -207,6 +207,41 @@ require('lazy').setup({
                end
             end,
             { noremap = false, expr = true })
+         local function journal_next(step)
+            local buf_path = vim.api.nvim_buf_get_name(0)
+            if not buf_path or buf_path == '' then
+               vim.notify('buffer has no path', vim.log.levels.INFO)
+               return
+            end
+            local buf_dir = vim.fn.fnamemodify(buf_path, ':p:h')
+            local journal_dir = vim.fn.fnamemodify('~/zk/journal', ':p:h')
+            if buf_dir ~= journal_dir then
+               vim.notify('not a journal buffer', vim.log.levels.INFO)
+               return
+            end
+            local buf_file = vim.fn.fnamemodify(buf_path, ':t:r')
+            local year, month, day = buf_file:match('(%d+)%-(%d+)%-(%d+)')
+            if not year or not month or not day then
+               vim.notify('unexpected journal file format: ' .. buf_path, vim.log.levels.INFO)
+               return
+            end
+            local curr_date = os.time({ year = year, month = month, day = day })
+            for i = 1, 30 do -- only look for files within a month
+               local next_date = os.date('%Y-%m-%d', curr_date + i * step * 24 * 3600)
+               local next_file = journal_dir .. '/' .. next_date .. '.md'
+               if vim.loop.fs_stat(next_file) then
+                  vim.cmd('edit ' .. next_file)
+                  return
+               end
+            end
+            vim.notify('no more close journal files', vim.log.levels.INFO)
+         end
+         vim.keymap.set('n', '<leader>j;', function()
+            journal_next(1)
+         end, { desc = 'Open next journal file' })
+         vim.keymap.set('n', '<leader>j,', function()
+            journal_next(-1)
+         end, { desc = 'Open previous journal file' })
       end
    },
    -- status line
