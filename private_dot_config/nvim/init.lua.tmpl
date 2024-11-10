@@ -822,12 +822,10 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
       --- hide line numbers
       vim.opt_local.number = false
       -- swap gj/gk with j/k for finer navigation over wrapped lines
-      vim.api.nvim_buf_set_keymap(0, 'n', 'j', '(v:count == 0 ? "gj" : "j")',
-         { noremap = true, silent = true, expr = true })
-      vim.api.nvim_buf_set_keymap(0, 'n', 'k', '(v:count == 0 ? "gk" : "k")',
-         { noremap = true, silent = true, expr = true })
-      vim.api.nvim_buf_set_keymap(0, 'n', 'gj', 'j', { noremap = true, silent = true })
-      vim.api.nvim_buf_set_keymap(0, 'n', 'gk', 'k', { noremap = true, silent = true })
+      vim.keymap.set({ 'n', 'v' }, 'j', 'gj', { silent = true, buffer = true })
+      vim.keymap.set({ 'n', 'v' }, 'k', 'gk', { silent = true, buffer = true })
+      vim.keymap.set({ 'n', 'v' }, 'gj', 'j', { silent = true, buffer = true })
+      vim.keymap.set({ 'n', 'v' }, 'gk', 'k', { silent = true, buffer = true })
       vim.b.copilot_enabled = false
    end
 })
