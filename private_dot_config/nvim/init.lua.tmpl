@@ -20,6 +20,14 @@ vim.opt.rtp:prepend(lazypath)
 -- map leader before any plugins define their mappings
 vim.g.mapleader = ' '
 
+
+local function is_journal_file(path)
+   local note_dir = vim.fn.fnamemodify(path, ':p:h')
+   local journal_dir = vim.fn.fnamemodify('~/zk/journal', ':p:h')
+   return note_dir == journal_dir
+end
+
+
 require('lazy').setup({
    -- add back the GUI commands: lazy.nvim resets the runtime path controlled
    -- with config.performance.rtp.reset
@@ -184,7 +192,10 @@ require('lazy').setup({
                   out[k] = v
                end
             end
-
+            -- skip create/update metadata for journal
+            if is_journal_file(note.path.filename) then
+               return out
+            end
             local today_link = os.date('[[%Y-%m-%d]]')
             if note.metadata == nil or not note.metadata.created then
                out.created = today_link
@@ -213,9 +224,7 @@ require('lazy').setup({
                vim.notify('buffer has no path', vim.log.levels.INFO)
                return
             end
-            local buf_dir = vim.fn.fnamemodify(buf_path, ':p:h')
-            local journal_dir = vim.fn.fnamemodify('~/zk/journal', ':p:h')
-            if buf_dir ~= journal_dir then
+            if not is_journal_file(buf_path) then
                vim.notify('not a journal buffer', vim.log.levels.INFO)
                return
             end
