@@ -234,6 +234,7 @@ require('lazy').setup({
                vim.notify('unexpected journal file format: ' .. buf_path, vim.log.levels.INFO)
                return
             end
+            local journal_dir = vim.fn.fnamemodify(buf_path, ':p:h')
             local curr_date = os.time({ year = year, month = month, day = day })
             for i = 1, 30 do -- only look for files within a month
                local next_date = os.date('%Y-%m-%d', curr_date + i * step * 24 * 3600)
