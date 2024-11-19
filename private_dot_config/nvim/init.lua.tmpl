@@ -193,7 +193,7 @@ require('lazy').setup({
                end
             end
             -- skip create/update metadata for journal
-            if is_journal_file(note.path.filename) then
+            if string.find(note.path.filename, 'journal') then
                return out
             end
             local today_link = os.date('[[%Y-%m-%d]]')
