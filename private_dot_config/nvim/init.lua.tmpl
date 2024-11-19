@@ -229,16 +229,16 @@ require('lazy').setup({
                return
             end
             local buf_file = vim.fn.fnamemodify(buf_path, ':t:r')
-            local year, month, day = buf_file:match('(%d+)%-(%d+)%-(%d+)')
+            local date_pattern = '(%d%d%d%d)%-(%d%d)%-(%d%d)'
+            local year, month, day = buf_file:match(date_pattern)
             if not year or not month or not day then
                vim.notify('unexpected journal file format: ' .. buf_path, vim.log.levels.INFO)
                return
             end
-            local journal_dir = vim.fn.fnamemodify(buf_path, ':p:h')
             local curr_date = os.time({ year = year, month = month, day = day })
             for i = 1, 30 do -- only look for files within a month
                local next_date = os.date('%Y-%m-%d', curr_date + i * step * 24 * 3600)
-               local next_file = journal_dir .. '/' .. next_date .. '.md'
+               local next_file = buf_path:gsub(date_pattern, next_date)
                if vim.loop.fs_stat(next_file) then
                   vim.cmd('edit ' .. next_file)
                   return
@@ -561,8 +561,6 @@ require('lazy').setup({
    'rust-lang/rust.vim',
    'keith/swift.vim',
    'udalov/kotlin-vim',
-   -- AI
-   'github/copilot.vim',
 }, {
    dev = {
       path = '~/code',
@@ -836,14 +834,6 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
       vim.keymap.set({ 'n', 'v' }, 'k', 'gk', { silent = true, buffer = true })
       vim.keymap.set({ 'n', 'v' }, 'gj', 'j', { silent = true, buffer = true })
       vim.keymap.set({ 'n', 'v' }, 'gk', 'k', { silent = true, buffer = true })
-      vim.b.copilot_enabled = false
-   end
-})
-vim.api.nvim_create_autocmd({ 'FileType' }, {
-   group = augroup,
-   pattern = { 'text' },
-   callback = function()
-      vim.b.copilot_enabled = false
    end
 })
 vim.api.nvim_create_autocmd({ 'FileType' }, {
