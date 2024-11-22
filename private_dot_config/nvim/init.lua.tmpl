@@ -22,9 +22,7 @@ vim.g.mapleader = ' '
 
 
 local function is_journal_file(path)
-   local note_dir = vim.fn.fnamemodify(path, ':p:h')
-   local journal_dir = vim.fn.fnamemodify('~/zk/journal', ':p:h')
-   return note_dir == journal_dir
+   return path:find('journal')
 end
 
 
@@ -193,7 +191,7 @@ require('lazy').setup({
                end
             end
             -- skip create/update metadata for journal
-            if string.find(note.path.filename, 'journal') then
+            if is_journal_file(note.path.filename) then
                return out
             end
             local today_link = os.date('[[%Y-%m-%d]]')
