@@ -163,7 +163,7 @@ require('lazy').setup({
                path = '~/notes',
                -- customize work notes {{- if .work.laptop }}
                overrides = {
-                  notes_subdir = 'notes/zk',
+                  notes_subdir = 'notes',
                   daily_notes = {
                      -- unique journal note title
                      date_format = '%Y-%m-%dz'
@@ -173,7 +173,6 @@ require('lazy').setup({
             },
          },
          -- create notes in the main dir, also when viewing the journal
-         notes_subdir = 'zk',
          new_notes_location = 'notes_subdir',
          daily_notes = {
             folder = 'journal',
