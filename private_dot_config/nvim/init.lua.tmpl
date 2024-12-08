@@ -196,7 +196,16 @@ require('lazy').setup({
             end
             local today_link = os.date('[[%Y-%m-%d]]')
             if note.metadata == nil or not note.metadata.created then
-               out.created = today_link
+               local file_status = vim.uv.fs_stat(note.path.filename)
+               if file_status then
+                  if file_status.birthtime then
+                     out.created = os.date('[[%Y-%m-%d]]', file_status.birthtime.sec)
+                  else
+                     out.created = os.date('[[%Y-%m-%d]]', file_status.ctime.sec)
+                  end
+               else
+                  out.created = today_link
+               end
             end
             -- only add update date if not updated later after creation
             if out.created ~= today_link then
@@ -623,6 +632,9 @@ vim.opt.wildmode = 'longest:full,full'
 
 -- keep backup if file is overwritten
 vim.opt.backup = true
+-- make a copy to create a backup, overwrite the original file in place
+-- this preserves the file creation timestamp (birthtime)
+vim.opt.backupcopy = 'yes'
 -- create backupdir if doens't exist
 local backup_dir = vim.env.HOME .. '/.cache/nvim/backup'
 if vim.fn.isdirectory(backup_dir) ~= 1 then
