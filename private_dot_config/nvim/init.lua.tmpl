@@ -585,8 +585,8 @@ vim.opt.termguicolors = true
 -- colorscheme
 vim.cmd('colorscheme rose-pine')
 
--- render tabs as 8 spaces
-vim.opt.tabstop = 8
+-- render tabs as 4 spaces
+vim.opt.tabstop = 4
 -- insert 4 spaces for a tab
 vim.opt.softtabstop = 4
 -- insert 4 spaces for an indent
@@ -598,7 +598,7 @@ vim.opt.expandtab = false
 vim.opt.fillchars:append('vert: ')
 -- show trailing characters, tabs and non-breakable spaces
 vim.opt.list = true
-vim.opt.listchars:append('tab:▸ ')
+vim.opt.listchars:append('tab:  ')
 vim.opt.listchars:append('trail:·')
 vim.opt.listchars:append('nbsp:⍽')
 -- show when line continues outside of screen
@@ -833,6 +833,8 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
    group = augroup,
    pattern = { 'markdown' },
    callback = function()
+      vim.opt_local.spell = true
+      vim.opt_local.expandtab = false
       -- visually wrap lines
       vim.opt_local.linebreak = true
       -- hide line break continuation markers
