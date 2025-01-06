@@ -1,6 +1,10 @@
 Host *
-        AddKeysToAgent yes
+	AddKeysToAgent yes
+	UseKeychain yes
 	HashKnownHosts no
+	{{- if .work.laptop }}
+	Include /Users/abarchuk/.colima/ssh_config
+	{{- end }}
 Host pi4.local netcup.raindev.io
         # ssh will set SSH_AUTH_SOCK without a need for server configuration.
         ForwardAgent yes
