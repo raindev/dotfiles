@@ -9,6 +9,7 @@
 	{{- end }}
 [commit]
 	gpgSign = {{ or .gpg.enabled .work.laptop }}
+	verbose = true
 [gpg]
 	# for Xcode to be able to find GPG
 	program = {{ lookPath "gpg" }}
