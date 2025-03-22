@@ -8,7 +8,7 @@ if ! command -v brew > /dev/null; then
 	eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-brew bundle --no-lock --file=/dev/stdin <<EOF
+brew bundle --file=/dev/stdin <<EOF
 
 brew 'bash'
 brew 'bash-completion'
@@ -38,11 +38,13 @@ brew 'pinentry-mac'
 brew 'ripgrep'
 brew 'shellcheck'
 brew 'staticcheck'
+brew 'tlrc'
 brew 'tmux'
 brew 'topgrade'
 brew 'tpm'
 brew 'tree'
 brew 'tree-sitter'
+brew 'uv'
 brew 'watchexec'
 brew 'wget'
 
