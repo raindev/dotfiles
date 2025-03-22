@@ -86,9 +86,15 @@ require('lazy').setup({
       }
    },
    -- colorscheme
-   { 'rose-pine/neovim',      name = 'rose-pine', },
+   { 'projekt0n/github-nvim-theme', name = 'github-theme' },
    -- match system light/dark mode
-   { 'raindev/daybreak.nvim', config = true },
+   {
+      'raindev/daybreak.nvim',
+      opts = {
+         light = 'github_light_default',
+         dark = 'github_dark_default',
+      }
+   },
    -- restrict allowed modeline options
    'ypcrts/securemodelines',
    -- readline style editing keybindings
@@ -260,12 +266,6 @@ require('lazy').setup({
             journal_next(-1)
          end, { desc = 'Open previous journal file' })
       end
-   },
-   -- status line
-   {
-      'nvim-lualine/lualine.nvim',
-      dependencies = { 'nvim-tree/nvim-web-devicons' },
-      opts = { theme = 'auto' }
    },
    -- startup screen
    {
@@ -582,8 +582,6 @@ require('lazy').setup({
 
 -- enable true color support
 vim.opt.termguicolors = true
--- colorscheme
-vim.cmd('colorscheme rose-pine')
 
 -- render tabs as 4 spaces
 vim.opt.tabstop = 4

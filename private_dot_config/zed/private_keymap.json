@@ -1,10 +1,10 @@
 [
   {
     "bindings": {
-      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
-      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
-      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
-      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"]
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown"
     }
   },
   {
@@ -14,6 +14,13 @@
       "space q": "zed::Quit",
       ", q": "pane::CloseActiveItem",
       "space j t": "journal::NewJournalEntry"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-:": "assistant::ToggleFocus",
+      "cmd-?": null
     }
   }
 ]
