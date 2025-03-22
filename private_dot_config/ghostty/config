@@ -1,0 +1,4 @@
+theme = light:AtomOneLight, dark:Everblush
+font-size=16
+initial-command=/opt/homebrew/bin/tmux new -A
+font-family = JetBrains Mono
