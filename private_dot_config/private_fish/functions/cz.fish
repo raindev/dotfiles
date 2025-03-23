@@ -1,3 +1,3 @@
 function cz --wraps=chezmoi
-     chezmoi $argv;
+     chezmoi $argv; 
 end
