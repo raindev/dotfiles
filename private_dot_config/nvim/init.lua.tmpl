@@ -188,37 +188,7 @@ require('lazy').setup({
          note_id_func = function(title)
             return title
          end,
-         note_frontmatter_func = function(note)
-            local out = {}
-            -- preserve the existing frontmatter
-            if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
-               for k, v in pairs(note.metadata) do
-                  out[k] = v
-               end
-            end
-            -- skip create/update metadata for journal
-            if is_journal_file(note.path.filename) then
-               return out
-            end
-            local today_link = os.date('[[%Y-%m-%d]]')
-            if note.metadata == nil or not note.metadata.created then
-               local file_status = vim.uv.fs_stat(note.path.filename)
-               if file_status then
-                  if file_status.birthtime then
-                     out.created = os.date('[[%Y-%m-%d]]', file_status.birthtime.sec)
-                  else
-                     out.created = os.date('[[%Y-%m-%d]]', file_status.ctime.sec)
-                  end
-               else
-                  out.created = today_link
-               end
-            end
-            -- only add update date if not updated later after creation
-            if out.created ~= today_link then
-               out.updated = today_link
-            end
-            return out
-         end
+	 disable_frontmatter = true,
       },
       init = function()
          vim.keymap.set('v', '<leader>ol', '<cmd>:ObsidianLink<cr><esc>')
