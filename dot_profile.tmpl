@@ -30,8 +30,6 @@ if [ -d "/opt/homebrew/" ]; then
     PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:$PATH"
 fi
 
-command -v jenv &> /dev/null && eval "$(jenv init -)"
-
 export EDITOR=nvim
 # Use all available cores when possible
 export XZ_DEFAULTS='--threads=0'
