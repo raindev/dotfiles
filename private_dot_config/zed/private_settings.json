@@ -20,5 +20,6 @@
   "journal": {
     "path": "~/notes",
     "hour_format": "hour24"
-  }
+  },
+  "auto_update": false
 }
