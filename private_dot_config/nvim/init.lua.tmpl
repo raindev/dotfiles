@@ -1,0 +1,5 @@
+{{ if .nvim.compatible }}
+   {{ template "nvim-compatible.lua" dict "work" .work.laptop "hostname" .chezmoi.hostname }}
+{{ else }}
+   {{ template "nvim-full.lua"  dict "work" .work.laptop "hostname" .chezmoi.hostname }}
+{{ end }}
