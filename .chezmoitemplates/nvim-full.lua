@@ -167,7 +167,7 @@ require('lazy').setup({
             {
                name = 'notes',
                path = '~/notes',
-               -- customize work notes {{- if .work.laptop }}
+               -- customize work notes {{- if .work }}
                overrides = {
                   daily_notes = {
                      folder = 'journal/zalando',
@@ -188,7 +188,7 @@ require('lazy').setup({
          note_id_func = function(title)
             return title
          end,
-	 disable_frontmatter = true,
+         disable_frontmatter = true,
       },
       init = function()
          vim.keymap.set('v', '<leader>ol', '<cmd>:ObsidianLink<cr><esc>')
@@ -474,7 +474,7 @@ require('lazy').setup({
          require('mason-lspconfig').setup({
             ensure_installed = {
                'bashls',
-               -- clangd does not support arm64 {{- if ne .chezmoi.hostname "pi4" }}
+               -- clangd does not support arm64 {{- if ne .hostname "pi4" }}
                'clangd',
                -- {{- end }}
                'jdtls',
@@ -661,7 +661,7 @@ for i = 1, 5 do
 end
 
 vim.keymap.set('', '<leader>jt', '<cmd>:ObsidianToday<cr>', { desc = '[J]ournal for [T]oday' })
--- navigate to the previous workday on work laptop {{- if not .work.laptop }}
+-- navigate to the previous workday on work laptop {{- if not .work }}
 vim.keymap.set('', '<leader>jm', '<cmd>:ObsidianToday 1<cr>', { desc = '[J]ournal for To[M]orrow' })
 vim.keymap.set('', '<leader>jy', '<cmd>:ObsidianToday -1<cr>', { desc = '[J]ournal for [Y]esterday' })
 -- and to the previous calendar day on private machines {{- else }}
