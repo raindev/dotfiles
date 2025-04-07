@@ -271,6 +271,7 @@ require('lazy').setup({
 -------------
 
 vim.cmd.syntax 'off'
+vim.cmd.filetype 'plugin off'
 -- enable true color support
 vim.opt.termguicolors = true
 
