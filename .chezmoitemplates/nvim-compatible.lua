@@ -27,7 +27,16 @@ end
 
 
 require('lazy').setup({
-   'raindev/daybreak.nvim',
+   -- colorscheme
+   { 'projekt0n/github-nvim-theme', name = 'github-theme' },
+   -- match system light/dark mode
+   {
+      'raindev/daybreak.nvim',
+      opts = {
+         light = 'github_light_default',
+         dark = 'github_dark_default',
+      }
+   },
    -- restrict allowed modeline options
    'ypcrts/securemodelines',
    -- readline style editing keybindings
