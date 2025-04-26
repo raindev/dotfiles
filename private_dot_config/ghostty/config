@@ -4,3 +4,8 @@ font-size = 16
 initial-command = /opt/homebrew/bin/tmux new -A
 confirm-close-surface = false
 shell-integration = fish
+cursor-style = block
+cursor-style-blink = true
+# prevent shell integration from overriding prompt cursor to bar
+# https://ghostty.org/docs/config/reference#cursor-style
+shell-integration-features = no-cursor

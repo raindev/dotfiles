@@ -269,6 +269,10 @@ require('lazy').setup({
 -------------
 -- options --
 -------------
+-- blinking block cursor for insert, replace, command and terminal modes
+vim.opt.guicursor = {
+   'i-r-c-ci-cr-t:block-blinkwait300-blinkoff150-blinkon150'
+}
 
 vim.cmd.syntax 'off'
 vim.cmd.filetype 'plugin off'
