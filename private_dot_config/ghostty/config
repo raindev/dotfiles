@@ -9,4 +9,4 @@ cursor-style-blink = true
 # prevent shell integration from overriding prompt cursor to bar
 # https://ghostty.org/docs/config/reference#cursor-style
 shell-integration-features = no-cursor
-keybind = global:cmd+`=toggle_quick_terminal
+keybind = global:cmd+\=toggle_quick_terminal
