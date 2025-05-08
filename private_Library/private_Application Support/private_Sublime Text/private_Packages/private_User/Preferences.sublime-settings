@@ -1,0 +1,17 @@
+{
+	"color_scheme": "auto",
+	"theme": "auto",
+	"font_size": 18,
+	"trim_trailing_white_space_on_save": "not_on_caret",
+	"trim_only_modified_white_space": false,
+	"ensure_newline_at_eof_on_save": true,
+	"ignored_packages": [
+		"Go",
+		"Python",
+		"Zig"
+	],
+	"dark_theme": "Everforest Dark.sublime-theme",
+	"light_theme": "Everforest Light.sublime-theme",
+	"dark_color_scheme": "Everforest Dark.sublime-color-scheme",
+	"light_color_scheme": "Everforest Light.sublime-color-scheme",
+}
