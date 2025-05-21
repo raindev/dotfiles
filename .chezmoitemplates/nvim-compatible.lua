@@ -81,12 +81,13 @@ require('lazy').setup({
    {
       'ThePrimeagen/harpoon',
       branch = 'harpoon2',
+      dependencies = { 'nvim-lua/plenary.nvim' },
    },
    -- search
    {
-      'nvim-telescope/telescope.nvim',
-      branch = '0.1.x',
-      dependencies = { 'nvim-lua/plenary.nvim' }
+      'ibhagwan/fzf-lua',
+      dependencies = { 'nvim-tree/nvim-web-devicons' },
+      opts = {}
    },
    {
       'epwalsh/obsidian.nvim',
@@ -183,10 +184,10 @@ require('lazy').setup({
                -- stylua: ignore
                center = {
                   { action = 'cd ~/notes | ObsidianToday', desc = ' Today\'s journal', icon = '󰢧 ', key = 't' },
-                  { action = 'Telescope find_files', desc = ' Find file', icon = ' ', key = 'f' },
+                  { action = 'FzfLua files', desc = ' Find file', icon = ' ', key = 'f' },
                   { action = 'ene | startinsert', desc = ' New file', icon = ' ', key = 'n' },
-                  { action = 'Telescope oldfiles', desc = ' Recent files', icon = ' ', key = 'r' },
-                  { action = 'Telescope live_grep', desc = ' Find text', icon = ' ', key = 'g' },
+                  { action = 'FzfLua oldfiles', desc = ' Recent files', icon = ' ', key = 'r' },
+                  { action = 'FzfLua live_grep', desc = ' Find text', icon = ' ', key = 'g' },
                   { action = 'edit ~/.config/nvim/init.lua', desc = ' Config', icon = ' ', key = 'c' },
                   { action = 'lua require("persistence").load()', desc = ' Load Session', icon = ' ', key = 's' },
                   {
@@ -385,15 +386,15 @@ vim.keymap.set('n', '<leader>P', [["+P]], { desc = '[P]aste from clipboard befor
 vim.keymap.set('n', ']q', ':cnext<CR>', { desc = 'Next quickfix item' })
 vim.keymap.set('n', '[q', ':cprev<CR>', { desc = 'Previous quickfix item' })
 
-local telescope = require('telescope.builtin')
-vim.keymap.set('n', '<leader>F', vim.cmd.Telescope, { desc = '[F]ind stuff' })
-vim.keymap.set('n', '<leader>f<space>', telescope.resume, { desc = 'Resume [F]ind' })
-vim.keymap.set('n', '<leader>ff', telescope.find_files, { desc = '[F]ind [F]iles' })
-vim.keymap.set('n', '<leader>fg', telescope.live_grep, { desc = '[F]ind with [G]rep' })
-vim.keymap.set('n', '<leader>fs', telescope.grep_string, { desc = '[F]ind [S]tring' })
-vim.keymap.set('n', '<leader>fk', telescope.keymaps, { desc = '[F]ind [K]ey mapping' })
-vim.keymap.set('n', '<leader>fr', telescope.oldfiles, { desc = '[f]ind [r]ecent files' })
-vim.keymap.set('n', '<leader>fh', telescope.help_tags, { desc = '[F]ind [H]elp' })
+local fzf = require('fzf-lua')
+vim.keymap.set('n', '<leader>F', vim.cmd.FzfLua, { desc = '[F]ind stuff' })
+vim.keymap.set('n', '<leader>f<space>', fzf.resume, { desc = 'Resume [F]ind' })
+vim.keymap.set('n', '<leader>ff', fzf.files, { desc = '[F]ind [F]iles' })
+vim.keymap.set('n', '<leader>fg', fzf.live_grep, { desc = '[F]ind with [G]rep' })
+vim.keymap.set('n', '<leader>fs', fzf.grep_cWORD, { desc = '[F]ind [S]tring' })
+vim.keymap.set('n', '<leader>fk', fzf.keymaps, { desc = '[F]ind [K]ey mapping' })
+vim.keymap.set('n', '<leader>fr', fzf.oldfiles, { desc = '[f]ind [r]ecent files' })
+vim.keymap.set('n', '<leader>fh', fzf.helptags, { desc = '[F]ind [H]elp' })
 
 local harpoon = require('harpoon')
 harpoon:setup()
