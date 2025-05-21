@@ -78,7 +78,10 @@ require('lazy').setup({
    },
    -- navigation
    'christoomey/vim-tmux-navigator',
-   'ThePrimeagen/harpoon',
+   {
+      'ThePrimeagen/harpoon',
+      branch = 'harpoon2',
+   },
    -- search
    {
       'nvim-telescope/telescope.nvim',
@@ -392,12 +395,12 @@ vim.keymap.set('n', '<leader>fk', telescope.keymaps, { desc = '[F]ind [K]ey mapp
 vim.keymap.set('n', '<leader>fr', telescope.oldfiles, { desc = '[f]ind [r]ecent files' })
 vim.keymap.set('n', '<leader>fh', telescope.help_tags, { desc = '[F]ind [H]elp' })
 
-local harpoon_mark = require('harpoon.mark')
-local harpoon_ui = require('harpoon.ui')
-vim.keymap.set('', '<leader>A', harpoon_mark.add_file, { desc = '[A]dd to Harpoon file list' })
-vim.keymap.set('', '<leader>H', harpoon_ui.toggle_quick_menu, { desc = 'Toggle Harpoon file selector' })
+local harpoon = require('harpoon')
+harpoon:setup()
+vim.keymap.set('', '<leader>A', function() harpoon:list():add() end, { desc = '[A]dd to Harpoon file list' })
+vim.keymap.set('', '<leader>H', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = 'Toggle Harpoon file selector' })
 for i = 1, 5 do
-   vim.keymap.set('', '<leader>' .. i, function() harpoon_ui.nav_file(i) end, { desc = 'Switch to Harpoon file ' .. i })
+   vim.keymap.set('', '<leader>' .. i, function() harpoon:list():select(i) end, { desc = 'Switch to Harpoon file ' .. i })
 end
 
 vim.keymap.set('', '<leader>jt', '<cmd>:ObsidianToday<cr>', { desc = '[J]ournal for [T]oday' })
