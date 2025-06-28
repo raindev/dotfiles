@@ -320,8 +320,12 @@ vim.opt.listchars:append('precedes:«')
 vim.opt.breakindent = true
 -- show marker for wrapped lines
 vim.opt.showbreak = '↳ '
--- before indented text; shift lists to keep alignment
-vim.opt.breakindentopt = 'sbr,list:2'
+-- recognize bullet point as well as numbered lists: optional whitespace
+-- followed either by a digit with an optional ]/:/./)/} or -/*/+
+-- with at least one space after
+vim.opt.formatlistpat = '^\\s*\\(\\d\\+[\\]:.)}]*\\|[-\\*+]\\)\\s\\+'
+-- before indented text; shift lists by width of the prefix pattern (above)
+vim.opt.breakindentopt = 'sbr,list:-1'
 -- in the number column
 vim.opt.cpoptions:append('n')
 -- conceal syntax (e.g. Markdown), but not completely (highlight code block marks)
