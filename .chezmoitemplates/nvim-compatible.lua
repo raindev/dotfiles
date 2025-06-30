@@ -93,7 +93,8 @@ require('lazy').setup({
       'epwalsh/obsidian.nvim',
       version = 'v3.x',
       dependencies = {
-         'hrsh7th/nvim-cmp'
+         'hrsh7th/nvim-cmp',
+         'nvim-lua/plenary.nvim',
       },
       opts = {
          workspaces = {
