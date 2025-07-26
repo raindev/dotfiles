@@ -31,6 +31,10 @@ if [ -d "/opt/homebrew/" ]; then
 fi
 
 export EDITOR=nvim
+{{ if .gpg.enabled -}}
+unset SSH_AGENT_PID
+export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+{{ end }}
 # Use all available cores when possible
 export XZ_DEFAULTS='--threads=0'
 export ZSTD_COMPRESS="--threads=0"
