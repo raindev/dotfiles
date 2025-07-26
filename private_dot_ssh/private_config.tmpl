@@ -3,7 +3,9 @@ Include /Users/abarchuk/.ssh/local_config
 {{ end -}}
 Host *
 	AddKeysToAgent yes
+	{{- if eq .chezmoi.os "darwin" }}
 	UseKeychain yes
+	{{- end }}
 	HashKnownHosts no
 Host pi4.local netcup.raindev.io
         # ssh will set SSH_AUTH_SOCK without a need for server configuration.
