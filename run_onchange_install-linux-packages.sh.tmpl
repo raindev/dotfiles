@@ -3,37 +3,17 @@
 # vi: set ft=bash
 set -e
 
-sudo apt update --yes
-sudo apt install --yes \
-	bash-completion \
-	build-essential \
-	curl \
+sudo dnf install -y \
 	fd-find \
-	findutils \
-	g++ \
-	git \
+	fzf \
+	gh \
 	git-lfs \
-	go-staticcheck \
-	golang \
+	gnome-tweaks \
 	hugo \
-	litecli \
-	npm \
-	rename \
+	neovim \
+	pass \
+	pass-otp \
 	ripgrep \
-	shellcheck \
-	sqlite3 \
-	tmux \
-	tree-sitter-cli
-
-sudo snap install --classic nvim
-
-if ! command -v pacstall; then
-	sudo bash -c "$(curl -fsSL https://pacstall.dev/q/install)"
-fi
-pacstall --disable-prompts --install \
-	exercism-cli-bin \
-	github-cli-deb \
-	topgrade-bin \
-	watchexec-bin
+	shellcheck
 
 {{ end }}
