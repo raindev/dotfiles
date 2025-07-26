@@ -25,6 +25,9 @@ shopt -s histappend
 export LESS="--RAW-CONTROL-CHARS"
 
 # Customize Git repository prompt
+# Load Git helper function and customize repository prompt
+[ -f /usr/share/git-core/contrib/completion/git-prompt.sh ] \
+	&& source /usr/share/git-core/contrib/completion/git-prompt.sh
 export GIT_PS1_SHOWDIRTYSTATE=1 # +/*
 export GIT_PS1_SHOWSTASHSTATE=1 # $
 export GIT_PS1_SHOWUNTRACKEDFILES=1 # %
