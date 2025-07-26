@@ -3,30 +3,20 @@
 # vi: set ft=bash
 set -e
 
-sudo apt update --yes
-sudo apt install --yes \
-	flatpak \
-	gnome-shell-extensions \
-	gnome-shell-pomodoro \
-	gnome-sushi \
+sudo dnf install -y \
+	ImageMagick \
+	gnome-extensions-app \
 	gnome-tweaks \
-	gnome-weather \
-	imagemagick \
 	meld \
 	pass \
-	pass-extension-otp \
+	pass-otp \
 	powertop \
-	ripgrep \
-	scdaemon \
 	syncthing \
-	wl-clipboard \
 	yt-dlp
 
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak install --assumeyes \
 	com.spotify.Client \
 	md.obsidian.Obsidian \
 	org.signal.Signal \
-	org.telegram.desktop \
-	org.wezfurlong.wezterm
+	org.telegram.desktop
 {{ end }}
