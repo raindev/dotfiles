@@ -101,15 +101,6 @@ require('lazy').setup({
             {
                name = 'notes',
                path = '~/notes',
-               -- customize work notes {{- if .work }}
-               overrides = {
-                  daily_notes = {
-                     folder = 'journal/zalando',
-                     -- unique journal note title
-                     date_format = '%Y-%m-%dz'
-                  }
-               },
-               -- {{- end }}
             },
          },
          -- create notes in the main dir, also when viewing the journal
@@ -410,13 +401,8 @@ for i = 1, 5 do
 end
 
 vim.keymap.set('', '<leader>jt', '<cmd>:ObsidianToday<cr>', { desc = '[J]ournal for [T]oday' })
--- navigate to the previous workday on work laptop {{- if not .work }}
-vim.keymap.set('', '<leader>jm', '<cmd>:ObsidianToday 1<cr>', { desc = '[J]ournal for To[M]orrow' })
-vim.keymap.set('', '<leader>jy', '<cmd>:ObsidianToday -1<cr>', { desc = '[J]ournal for [Y]esterday' })
--- and to the previous calendar day on private machines {{- else }}
 vim.keymap.set('', '<leader>jm', '<cmd>:ObsidianTomorrow<cr>', { desc = '[J]ournal for To[M]orrow' })
 vim.keymap.set('', '<leader>jy', '<cmd>:ObsidianYesterday<cr>', { desc = '[J]ournal for [Y]esterday' })
--- {{- end }}
 
 vim.keymap.set('', '<leader>U', vim.cmd.UndotreeToggle, { desc = 'Toggle [U] undo tree' })
 vim.keymap.set('', '<leader>w', '<cmd>:write<cr>', { desc = '[W]rite current buffer' })
