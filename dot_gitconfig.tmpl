@@ -36,6 +36,7 @@
 	required = true
 [alias]
 	continue = "!f() { git commit --edit --file=$(git rev-parse --git-dir)/COMMIT_EDITMSG; }; f"
+	df = "diff --color-words"
 [credential "https://github.com"]
 	helper =
 	helper = !gh auth git-credential
