@@ -1,4 +1,4 @@
-{{ if eq .chezmoi.hostname "xps13" "black" "mini-mac" -}}
+{{ if eq .chezmoi.hostname "xps13" "black" -}}
 #!/usr/bin/env bash
 # vi: set ft=bash
 set -e
@@ -6,6 +6,5 @@ set -e
 if [ ! -e "$HOME/.password-store" ]; then
 	echo '>setting up pass'
 	git clone netcup.raindev.io:/home/andrew/.password-store "$HOME/.password-store"
-	pass git init
 fi
 {{ end }}
