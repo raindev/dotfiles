@@ -1,6 +1,9 @@
 {{ if .work.laptop -}}
 Include /Users/abarchuk/.ssh/local_config
 {{ end -}}
+{{- if eq .chezmoi.os "darwin" }}
+Include /Users/abarchuk/.colima/ssh_config
+{{ end -}}
 Host *
 	AddKeysToAgent yes
 	{{- if eq .chezmoi.os "darwin" }}
