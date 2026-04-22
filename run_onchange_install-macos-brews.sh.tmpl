@@ -73,7 +73,7 @@ EOF
 
 # at this point Homebrew bash is expected to be the first in PATH
 homebrew_bash={{ lookPath "bash" }}
-if ! grep --quiet $homebrew_bash /etc/shells; then
+if ! grep --quiet "$homebrew_bash" /etc/shells; then
 	echo "$homebrew_bash" | sudo tee -a /etc/shells
 	chsh -s "$homebrew_bash"
 fi
