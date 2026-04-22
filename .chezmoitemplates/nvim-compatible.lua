@@ -28,18 +28,13 @@ end
 
 require('lazy').setup({
    -- colorscheme
-   {
-      'sainnhe/everforest',
-      config = function()
-         vim.g.everforest_background = 'hard'
-      end
-   },
+   { 'projekt0n/github-nvim-theme' },
    -- match system light/dark mode
    {
       'raindev/daybreak.nvim',
       opts = {
-         light = 'everforest',
-         dark = 'everforest',
+         light = 'github_light',
+         dark = 'github_dark_dimmed',
       }
    },
    -- restrict allowed modeline options
