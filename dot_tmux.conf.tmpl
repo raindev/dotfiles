@@ -41,16 +41,12 @@ set-option -g @plugin 'tmux-plugins/tpm'
 set-option -g @plugin 'christoomey/vim-tmux-navigator'
 set -g @plugin 'tmux-plugins/tmux-open'
 set -g @plugin 'ctrlmachine/tmux-amp-theme'
-# Highlight the current tmux window (absent with tmux-amp-theme)
-set -g window-status-current-style 'fg=blue,bold'
 {{ if eq .chezmoi.os "darwin" -}}
 set -g @plugin 'erikw/tmux-dark-notify'
 set -g @dark-notify-theme-path-light '$HOME/.config/tmux/amp-light.conf'
 set -g @dark-notify-theme-path-dark '$HOME/.config/tmux/amp-dark.conf'
 {{ else -}}
 set -g @amp-theme-appearance 'auto'
-# Highlight the current tmux window (absent with tmux-amp-theme)
-set -g window-status-current-style 'fg=blue,bold'
 {{ end -}}
 
 {{- if eq .chezmoi.os "darwin" }}
@@ -63,3 +59,5 @@ run '/opt/homebrew/opt/tpm/share/tpm/tpm'
 {{- else }}
 run '~/.tmux/plugins/tpm/tpm'
 {{- end }}
+# Override after plugins load — amp-theme overwrites this if set earlier
+set -g window-status-current-style 'fg=blue,bold'
