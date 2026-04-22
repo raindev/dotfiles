@@ -42,6 +42,9 @@ set-option -g @plugin 'christoomey/vim-tmux-navigator'
 set -g @plugin 'tmux-plugins/tmux-open'
 set -g @plugin 'ctrlmachine/tmux-amp-theme'
 set -g @amp-theme-appearance 'auto'
+# Highlight the current tmux window (absent with tmux-amp-theme)
+set -g window-status-current-style 'fg=blue,bold'
+
 {{ if eq .chezmoi.os "darwin" }}
 # Homebrew is only added to PATH in .profile which is loaded by shell later
 set-environment -g PATH "/opt/homebrew/bin:$PATH"
