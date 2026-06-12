@@ -1,1 +1,2 @@
-Rely on ANTHROPIC_MODEL from ~/.claude/settings.json to determine the model for commit attribution.
+Do not interact with Git repository or GitHub (via API or gh CLI) unless
+prompted explicitly.
