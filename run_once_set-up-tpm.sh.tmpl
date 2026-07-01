@@ -1,0 +1,10 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env bash
+# vi: set ft=bash
+set -e
+
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+	echo '>installing TPM'
+	git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+fi
+{{ end }}
