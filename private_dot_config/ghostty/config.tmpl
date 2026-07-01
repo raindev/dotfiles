@@ -10,6 +10,12 @@ cursor-style-blink = true
 # prevent shell integration from overriding prompt cursor to bar
 # https://ghostty.org/docs/config/reference#cursor-style
 shell-integration-features = no-cursor
+{{ if eq .chezmoi.os "darwin" -}}
 keybind = global:cmd+\=toggle_quick_terminal
+{{ else -}}
+keybind = global:super+\=toggle_quick_terminal
+{{ end -}}
 keybind = f11=toggle_fullscreen
+{{ if eq .chezmoi.os "darwin" -}}
 macos-icon = blueprint
+{{ end -}}
