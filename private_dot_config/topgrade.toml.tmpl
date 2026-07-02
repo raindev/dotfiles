@@ -1,17 +1,18 @@
 [misc]
 no_self_update = true
 disable = [
-    # Mas keeps "upgrading" some apps: https://github.com/mas-cli/mas/issues/384
+    "vim",
+{{ if eq .chezmoi.os "darwin" -}}
     "mas",
-    # macOS command line upgrades are slow and unreliable {{- if eq .chezmoi.os "darwin" }}
     "system",
-    # {{ end }}
-    "vim"
+{{ end -}}
 ]
 assume_yes = true
 
+{{ if eq .chezmoi.os "darwin" }}
 [brew]
 greedy_cask = true
 autoremove = true
+{{ end -}}
 
 # vim: ft=toml
